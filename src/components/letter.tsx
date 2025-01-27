@@ -45,6 +45,7 @@ const Letter: React.FC<LetterProps> = ({ letter }) => {
          <Input
             ref={letterRef}
             size='large'
+            variant='outlined'
             maxLength={1}
             value={isAlphabetic ? pressedLetter : letter}
             disabled={isAlphabetic ? false : true}
@@ -54,7 +55,7 @@ const Letter: React.FC<LetterProps> = ({ letter }) => {
                fontSize: '1.3rem',
                fontWeight: 'bold',
                textAlign: 'center',
-               backgroundColor: isAlphabetic ? 'whitesmoke' : 'silver'
+               backgroundColor: isAlphabetic ? 'white' : 'silver'
             }}
             onChange={handleOnChange}
             onKeyUp={handleOnKeyUp}
