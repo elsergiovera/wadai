@@ -49,9 +49,9 @@ const Letter: React.FC<LetterProps> = ({ letter }) => {
             value={isAlphabetic ? pressedLetter : letter}
             disabled={isAlphabetic ? false : true}
             style={{
-               height: '55px',
-               width: '55px',
-               fontSize: '1.9rem',
+               height: '40px',
+               width: '40px',
+               fontSize: '1.3rem',
                fontWeight: 'bold',
                textAlign: 'center',
                backgroundColor: isAlphabetic ? 'whitesmoke' : 'silver'
