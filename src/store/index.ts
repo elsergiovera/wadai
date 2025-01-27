@@ -1,7 +1,9 @@
 import { create } from 'zustand'
 import { persist, devtools, createJSONStorage } from 'zustand/middleware'
+import current from '../data/current.json'
 
 interface StoreProps {
+   day: string
    answer: string
    setAnswer: (answer: string) => void
    resetAnswer: () => void
@@ -15,17 +17,27 @@ const useStore = create(
    devtools(
       persist<StoreProps>(
          (set, get) => ({
+            day: current.federal,
             answer: '',
             setAnswer: (answer: string) => {
                const isChar = /^[A-Za-z]$/.test(answer)
+               const day = get().day
+               const prevAnswer = get().answer
+               const newAnswer = prevAnswer + answer.toLocaleUpperCase()
 
-               isChar && set({ answer: get().answer + answer.toLocaleUpperCase() })
+               if (isChar) set({ answer: newAnswer })
+               if (newAnswer.length === day.replace(/ /g, '').length) get().setCheckAnswer(true)
             },
             resetAnswer: () => set({ answer: '' }),
             backspaceAnswer: () => {
-               const _answer = get().answer.slice(0, -1)
+               const dayNoSpaces = get().day.replace(/ /g, '')
+               const newAnswer = get().answer.slice(0, -1)
 
-               set({ answer: _answer })
+               console.log("newAnswer", newAnswer.length )
+               console.log("dayNoSpaces", dayNoSpaces.length )
+
+               set({ answer: newAnswer })
+               if (newAnswer.length <= dayNoSpaces.length) get().setCheckAnswer(false)
             },
             checkAnswer: false,
             setCheckAnswer: (check: boolean) => set({ checkAnswer: check }),

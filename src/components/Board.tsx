@@ -1,14 +1,9 @@
-// import dayjs from 'dayjs'
 import useStore from '../store'
 import Letter from './Letter'
-import current from '../data/current.json'
 
 const Board = () => {
-   const { answer, checkAnswer } = useStore()
+   const { day, answer, checkAnswer } = useStore()
    const letters_answer = answer.split('')
-
-   // const date = dayjs()
-   const day = current.federal
    const letters = day.split('')
    let column: number = 0
 
@@ -20,13 +15,14 @@ const Board = () => {
 
             {
                letters.map((letter, index) => {
-                  column = column >= 7 ? 1 : column + 1
+                  // column = letter === ''
+                  const isEmptySpace = /^\s*$/.test(letter)
                   const isChar = /^[A-Za-z]+$/.test(letter)
 
 
-                  console.log("isChar", isChar)
+                  // console.log("isChar", isChar)
                   // console.log("column", column)
-                  console.log("letter", letter)
+                  // console.log("letter", letter)
                   // console.log("letters_answer", letters_answer[index])
 
                   return <Letter letter={isChar ? letter : null} answer={letters_answer[index]} checkAnswer={checkAnswer} key={'letter-' + index} />
