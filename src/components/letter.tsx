@@ -14,7 +14,7 @@ const Letter: React.FC<LetterProps> = ({ letter }) => {
       if (!letterRef.current?.input) return
       const _pressedLetter = e.target.value.toUpperCase()
       const backgroundColor = _pressedLetter === letter ? 'palegreen' : 'tomato'
-      
+
       letterRef.current.input.style.backgroundColor = backgroundColor
       setPressedLetter(_pressedLetter)
    }
@@ -35,33 +35,32 @@ const Letter: React.FC<LetterProps> = ({ letter }) => {
          _nextLetter && _nextLetter.focus()
       }
    }
-   const handleOnFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+   const handleOnFocus = (_e: React.FocusEvent<HTMLInputElement>) => {
       if (!letterRef.current?.input) return
       letterRef.current.input.select()
    }
 
    return (
-      <>
-         <Input
-            ref={letterRef}
-            size='large'
-            variant='outlined'
-            maxLength={1}
-            value={isAlphabetic ? pressedLetter : letter}
-            disabled={isAlphabetic ? false : true}
-            style={{
-               height: '40px',
-               width: '40px',
-               fontSize: '1.3rem',
-               fontWeight: 'bold',
-               textAlign: 'center',
-               backgroundColor: isAlphabetic ? 'white' : 'silver'
-            }}
-            onChange={handleOnChange}
-            onKeyUp={handleOnKeyUp}
-            onFocus={handleOnFocus}
-         />
-      </>
+      <Input
+         ref={letterRef}
+         size='large'
+         variant='outlined'
+         maxLength={1}
+         value={isAlphabetic ? pressedLetter : letter}
+         disabled={isAlphabetic ? false : true}
+         style={{
+            height: '3rem',
+            width: '3rem',
+            fontSize: '1.3rem',
+            fontWeight: 'bold',
+            textAlign: 'center',
+            borderRadius: 0,
+            backgroundColor: isAlphabetic ? 'white' : 'silver'
+         }}
+         onChange={handleOnChange}
+         onKeyUp={handleOnKeyUp}
+         onFocus={handleOnFocus}
+      />
    )
 }
 

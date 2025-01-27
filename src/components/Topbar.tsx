@@ -1,8 +1,5 @@
 
-import { MoreOutlined } from '@ant-design/icons'
-import AppBar from '@mui/material/AppBar'
-import Toolbar from '@mui/material/Toolbar'
-import IconButton from '@mui/material/IconButton'
+import { AlignJustify } from 'lucide-react'
 
 interface TopbarProps {
    handleToggleMenu: () => void
@@ -11,21 +8,10 @@ const Topbar: React.FC<TopbarProps> = ({ handleToggleMenu }) => {
    const onClick = () => handleToggleMenu()
 
    return (
-      <div className='bg-red-500 text-white' >
-         <AppBar position="static" color="transparent" >
-            <Toolbar>
-               <IconButton
-                  size="large"
-                  edge="start"
-                  color="inherit"
-                  aria-label="menu"
-                  sx={{ mr: 2 }}
-                  onClick={onClick}
-               >
-                  <MoreOutlined />
-               </IconButton>
-            </Toolbar>
-         </AppBar>
+      <div className='w-full min-h-[50px] grid grid-cols-3 bg-red-500 text-white'>
+         <div className='place-content-center pl-3'><AlignJustify onClick={onClick} /></div>
+         <div className='place-content-center text-center text-3xl'>WADAI</div>
+         <div></div>
       </div>
    )
 }
