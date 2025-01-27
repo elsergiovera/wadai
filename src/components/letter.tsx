@@ -1,66 +1,29 @@
-import React, { useState, useRef } from 'react'
-import { Input, InputRef } from 'antd'
+import React from 'react'
 
 interface LetterProps {
-   letter: string
+   letter: string | null
+   answer: string
+   checkAnswer: boolean
 }
-const Letter: React.FC<LetterProps> = ({ letter }) => {
-   letter = letter.toUpperCase()
-   const letterRef = useRef<InputRef>(null)
-   const isAlphabetic = /^[A-Za-z]+$/.test(letter)
-   const [pressedLetter, setPressedLetter] = useState('')
+const Letter: React.FC<LetterProps> = ({ letter, answer, checkAnswer }) => {
+   letter = letter ? letter.toUpperCase() : null
+   // const isAlphabetic = /^[A-Za-z]+$/.test(letter)
 
-   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (!letterRef.current?.input) return
-      const _pressedLetter = e.target.value.toUpperCase()
-      const backgroundColor = _pressedLetter === letter ? 'palegreen' : 'tomato'
+   const bgColor = (() => {
+      if (!letter) return 'bg-neutral-400' // disabled
+      if (letter === answer) return 'bg-green-400' // success
+      if (answer === undefined) return 'bg-white' // no entry
+      return 'bg-red-400' // error
+   })()
 
-      letterRef.current.input.style.backgroundColor = backgroundColor
-      setPressedLetter(_pressedLetter)
-   }
-   const handleOnKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
-      if (!letterRef.current?.input) return
-      let _nextLetter = letterRef.current.nativeElement?.nextElementSibling as HTMLInputElement
-      let _prevLetter = letterRef.current.nativeElement?.previousElementSibling as HTMLInputElement
-
-
-      if (e.key === 'Backspace') {
-         while (_prevLetter?.disabled) _prevLetter = _prevLetter.previousElementSibling as HTMLInputElement
-         _prevLetter && _prevLetter.focus()
-
-         letterRef.current.input.style.backgroundColor = 'whitesmoke'
-      }
-      else {
-         while (_nextLetter?.disabled) _nextLetter = _nextLetter.nextElementSibling as HTMLInputElement
-         _nextLetter && _nextLetter.focus()
-      }
-   }
-   const handleOnFocus = (_e: React.FocusEvent<HTMLInputElement>) => {
-      if (!letterRef.current?.input) return
-      letterRef.current.input.select()
-   }
+   // useEffect(() => {
+   //    if (letterRef.current?.input) letterRef.current.input.style.backgroundColor = bgColor
+   // }, [checkAnswer])
 
    return (
-      <Input
-         ref={letterRef}
-         size='large'
-         variant='outlined'
-         maxLength={1}
-         value={isAlphabetic ? pressedLetter : letter}
-         disabled={isAlphabetic ? false : true}
-         style={{
-            height: '3rem',
-            width: '3rem',
-            fontSize: '1.3rem',
-            fontWeight: 'bold',
-            textAlign: 'center',
-            borderRadius: 0,
-            backgroundColor: isAlphabetic ? 'white' : 'silver'
-         }}
-         onChange={handleOnChange}
-         onKeyUp={handleOnKeyUp}
-         onFocus={handleOnFocus}
-      />
+      <div className={`${bgColor} w-[3.2rem] h-[3.2rem] place-content-center text-[1.8rem] text-white font-bold border border-1 border-neutral-400`}>
+         {answer}
+      </div>
    )
 }
 

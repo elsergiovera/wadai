@@ -1,14 +1,34 @@
-import { useState } from 'react'
+import useStore from './store'
+import { useState, useEffect } from 'react'
 import Menu from './components/Menu'
 import Topbar from './components/Topbar'
-import Day from './components/Day'
+import Board from './components/Board'
 import Keyboard from './components/Keyboard'
 
-
-
 const App = () => {
+  const { setAnswer, resetAnswer, backspaceAnswer } = useStore()
   const [openMenu, setOpenMenu] = useState(false)
+
   const handleToggleMenu = () => setOpenMenu(!openMenu)
+  const handleKeyDown = (event: KeyboardEvent | string) => {
+    const _key = (typeof event === "string") ? (event as string).replace(/[{}]/g, '') : (event as KeyboardEvent).key
+    const isChar = /^[A-Za-z]$/.test(_key)
+
+    // console.log("isChar", isChar)
+    // console.log("_key", _key)
+
+    if (isChar)
+      setAnswer(_key)
+    else if (_key.toLocaleLowerCase() === 'backspace')
+      backspaceAnswer()
+  }
+
+  useEffect(() => {
+    resetAnswer()
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [])
 
   return (
     <div className='w-screen h-screen space-y-5'>
@@ -17,8 +37,8 @@ const App = () => {
       <div className="min-h-9/10 flex justify-center">
         <div className="flex flex-col w-[400px] max-h-[600px]">
           <div className="flex flex-col h-full justify-between">
-            <Day />
-            <Keyboard />
+            <Board />
+            <Keyboard handleKeyDown={handleKeyDown} />
           </div>
         </div>
       </div>
