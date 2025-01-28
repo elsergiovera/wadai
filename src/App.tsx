@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import useStore from '@/store'
 import Menu from '@/components/Menu'
 import Topbar from '@/components/Topbar'
@@ -8,26 +8,30 @@ import Keyboard from '@/components/Keyboard'
 const App = () => {
   const { day, answer, setAnswer, resetAnswer, backspaceAnswer, setCheckAnswer } = useStore()
   const [openMenu, setOpenMenu] = useState(false)
+  const dayWithNoSpaces: string = day.replace(/ /g, '')
+  const answerRef = useRef(answer)
 
   const handleToggleMenu = () => setOpenMenu(!openMenu)
   const handleKeyDown = (event: KeyboardEvent | string) => {
-    const key = typeof event === 'string'  ? event : (event as KeyboardEvent).key
-    const isChar = /^[A-Za-z]$/.test(key)
+    const slotAvailable: boolean = dayWithNoSpaces.length >= answerRef.current.length + 1
+    const key: string = typeof event === 'string' ? event : (event as KeyboardEvent).key
+    const isChar: boolean = /^[A-Za-z]$/.test(key)
 
-    if (isChar) setAnswer(key)
+    if (slotAvailable && isChar) setAnswer(key)
     if (key.toLowerCase() === 'backspace') backspaceAnswer()
   }
 
   useEffect(() => {
     resetAnswer()
     setCheckAnswer(false)
-    window.addEventListener('keydown', handleKeyDown)
 
+    window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [])
 
   useEffect(() => {
-    if (day.replace(/ /g, '').length === answer.length) setCheckAnswer(true)
+    answerRef.current = answer
+    if (dayWithNoSpaces.length === answer.length) setCheckAnswer(true)
   }, [answer])
 
   return (

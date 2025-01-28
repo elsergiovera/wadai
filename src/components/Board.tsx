@@ -12,7 +12,6 @@ const Board = () => {
          <div className={'grid grid-cols-7 gap-1 justify-items-center'}>
             {['t', 'o', 'd', 'a', 'y'].map((item, index) => <div key={'key-today-' + index} className='font-bold h-[2.8rem]'>{item.toUpperCase()}</div>)}
             {['i', 's'].map((item, index) => <div key={'key-is-' + index} className='font-bold text-red-500 h-[2.8rem]'>{item.toUpperCase()}</div>)}
-
             {
                lettersDay.map((letter, index) => {
                   const isSpace = /^\s*$/.test(letter)
