@@ -1,4 +1,4 @@
-import Letter from '@/components/Letterrrr'
+import Letter from '@/components/Letter'
 import useStore from '@/store'
 
 const Board = () => {
