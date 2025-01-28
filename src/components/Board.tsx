@@ -1,32 +1,35 @@
 import Letter from '@/components/Letter'
 import useStore from '@/store'
 
-const Board = () => {
-   const { day, answer } = useStore()
+interface BoardProps {
+   phrase: string
+}
+const Board: React.FC<BoardProps> = ({ phrase }) => {
+   const { answer } = useStore()
    const lettersAnswer = answer.split('')
-   const lettersDay = day.split('')
+   const lettersPhrase = phrase.split('')
+   const reminingSlot = 30 - lettersPhrase.length
    let lettersCounter = -1
 
    return (
-      <div className='place-content-center p-2 text-center font-light shadow-md'>
-         <div className={'grid grid-cols-7 gap-1 justify-items-center'}>
-            {['t', 'o', 'd', 'a', 'y'].map((item, index) => <div key={'key-today-' + index} className='font-bold h-[2.8rem]'>{item.toUpperCase()}</div>)}
-            {['i', 's'].map((item, index) => <div key={'key-is-' + index} className='font-bold text-red-500 h-[2.8rem]'>{item.toUpperCase()}</div>)}
+      <div className='flex justify-center'>
+         <div className={'grid grid-cols-5 gap-1 text-center'}>
             {
-               lettersDay.map((letter, index) => {
+               lettersPhrase.map((letter, index) => {
                   const isSpace = /^\s*$/.test(letter)
                   const isChar = /^[A-Za-z]+$/.test(letter)
                   const isDisabled = !isChar || isSpace
                   if (!isDisabled) lettersCounter++
 
                   return <Letter
-                     letter={!isDisabled ? letter : null}
-                     answer={!isDisabled ? lettersAnswer[lettersCounter] : null}
+                     letter={letter}
+                     answer={lettersAnswer[lettersCounter]}
                      isDisabled={isDisabled}
                      key={'letter-' + index}
                   />
                })
             }
+            {Array.from({ length: reminingSlot }).map((_, index) => <Letter letter={null} answer={null} isDisabled={true} key={'empty-' + index} /> )}
          </div>
       </div>
    )

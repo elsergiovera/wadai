@@ -30,8 +30,8 @@ const Letter: React.FC<LetterProps> = ({ letter, answer, isDisabled }) => {
 
    return (
       isDisabled
-         ? <div className={`${bg_disabled} w-[3.2rem] h-[3.2rem] border border-1 border-neutral-400`}></div>
-         : <div className={`${currentColor} w-[3.2rem] h-[3.2rem] place-content-center text-[1.8rem] font-bold border border-1 border-neutral-400`}>
+         ? <div className={`${bg_disabled} w-[4rem] h-[4rem] border border-2 border-neutral-400`}></div>
+         : <div className={`${currentColor} w-[4rem] h-[4rem] place-content-center text-[1.8rem] font-bold border border-2 border-neutral-400`}>
             {answer}
          </div>
    )
