@@ -1,4 +1,5 @@
 import KeyboardReact from 'react-simple-keyboard'
+import click from '../assets/click.mp3'
 import 'react-simple-keyboard/build/css/index.css'
 import '../styles/keyboard.css'
 
@@ -6,7 +7,12 @@ interface KeyboardProps {
     handleKeyDown: (event: KeyboardEvent | string) => void
 }
 const Keyboard: React.FC<KeyboardProps> = ({ handleKeyDown }) => {
+    const clickSound = new Audio(click)
+    
     const handleKeyPress = (button: string) => {
+        clickSound.currentTime = 0
+        clickSound.play()
+
         handleKeyDown(button)
     }
 
