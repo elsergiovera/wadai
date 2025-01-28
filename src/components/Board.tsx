@@ -1,8 +1,8 @@
+import Letter from '@/components/Letterrrr'
 import useStore from '@/store'
-import Letter from '@/components/Letter'
 
 const Board = () => {
-   const { day, answer, checkAnswer } = useStore()
+   const { day, answer } = useStore()
    const letters_answer = answer.split('')
    const letters_day = day.split('')
    let letters_counter = -1
@@ -20,16 +20,12 @@ const Board = () => {
                   const isDisabled = !isChar || isSpace
                   letters_counter = !isDisabled ? letters_counter + 1 : letters_counter
 
-                  return (
-                     !isDisabled
-                        ? <Letter
-                           letter={!isDisabled ? letter : null}
-                           answer={!isDisabled ? letters_answer[letters_counter] : null}
-                           checkAnswer={checkAnswer}
-                           key={'letter-' + index}
-                        />
-                        : <div className={`bg-neutral-400 w-[3.2rem] h-[3.2rem] border border-1 border-neutral-400`}></div>
-                  )
+                  return <Letter
+                     letter={!isDisabled ? letter : null}
+                     answer={!isDisabled ? letters_answer[letters_counter] : null}
+                     isDisabled={isDisabled}
+                     key={'letter-' + index}
+                  />
                })
             }
          </div>

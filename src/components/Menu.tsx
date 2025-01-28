@@ -6,11 +6,8 @@ interface MenuProps {
 }
 const Menu: React.FC<MenuProps> = ({ isOpen, handleToggleMenu }) => {
    return (
-      <Drawer
-         open={isOpen}
-         onClose={handleToggleMenu}
-      >
-         <div className='w-[150px]'>
+      <Drawer open={isOpen} onClose={handleToggleMenu}>
+         <div className='w-[300px]'>
          </div>
       </Drawer>
    )
