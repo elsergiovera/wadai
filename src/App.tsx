@@ -35,12 +35,12 @@ const App = () => {
   }, [answer])
 
   return (
-    <div className='w-screen h-screen space-y-5'>
+    <div className='w-screen h-full space-y-2'>
       <Menu isOpen={openMenu} handleToggleMenu={handleToggleMenu} />
       <Topbar handleToggleMenu={handleToggleMenu} />
-      <div className='min-h-9/10 flex justify-center'>
-        <div className='flex flex-col w-[400px] max-h-[600px]'>
-          <div className='flex flex-col h-full justify-between'>
+      <div className='flex justify-center'>
+        <div className='flex w-[400px] h-[600px]'>
+          <div className='flex flex-col justify-between'>
             <Board />
             <Keyboard handleKeyDown={handleKeyDown} />
           </div>
