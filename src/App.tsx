@@ -6,18 +6,16 @@ import Board from './components/Board'
 import Keyboard from './components/Keyboard'
 
 const App = () => {
-  const { setAnswer, resetAnswer, backspaceAnswer, setCheckAnswer } = useStore()
+  const { day, answer, setAnswer, resetAnswer, backspaceAnswer, setCheckAnswer } = useStore()
   const [openMenu, setOpenMenu] = useState(false)
 
   const handleToggleMenu = () => setOpenMenu(!openMenu)
   const handleKeyDown = (event: KeyboardEvent | string) => {
-    const _key = (typeof event === "string") ? (event as string).replace(/[{}]/g, '') : (event as KeyboardEvent).key
+    const _key = typeof event === "string" ? (event as string).replace(/[{}]/g, '') : (event as KeyboardEvent).key
     const isChar = /^[A-Za-z]$/.test(_key)
 
-    if (isChar)
-      setAnswer(_key)
-    else if (_key.toLocaleLowerCase() === 'backspace')
-      backspaceAnswer()
+    if (isChar) setAnswer(_key)
+    if (_key.toLowerCase() === 'backspace') backspaceAnswer()
   }
 
   useEffect(() => {
@@ -27,6 +25,9 @@ const App = () => {
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [])
+  useEffect(() => {
+    if (day.replace(/ /g, '').length === answer.length) setCheckAnswer(true)
+  }, [answer])
 
   return (
     <div className='w-screen h-screen space-y-5'>

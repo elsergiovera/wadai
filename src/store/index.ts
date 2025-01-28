@@ -20,24 +20,14 @@ const useStore = create(
             day: current.federal,
             answer: '',
             setAnswer: (answer: string) => {
-               const isChar = /^[A-Za-z]$/.test(answer)
-               const day = get().day
                const prevAnswer = get().answer
-               const newAnswer = prevAnswer + answer.toLocaleUpperCase()
-
-               if (isChar) set({ answer: newAnswer })
-               if (newAnswer.length === day.replace(/ /g, '').length) get().setCheckAnswer(true)
+               const newAnswer = prevAnswer + answer.toUpperCase()
+               set({ answer: newAnswer })
             },
             resetAnswer: () => set({ answer: '' }),
             backspaceAnswer: () => {
-               const dayNoSpaces = get().day.replace(/ /g, '')
                const newAnswer = get().answer.slice(0, -1)
-
-               console.log("newAnswer", newAnswer.length )
-               console.log("dayNoSpaces", dayNoSpaces.length )
-
                set({ answer: newAnswer })
-               if (newAnswer.length <= dayNoSpaces.length) get().setCheckAnswer(false)
             },
             checkAnswer: false,
             setCheckAnswer: (check: boolean) => set({ checkAnswer: check }),

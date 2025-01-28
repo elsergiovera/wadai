@@ -4,31 +4,33 @@ import Letter from './Letter'
 const Board = () => {
    const { day, answer, checkAnswer } = useStore()
    const letters_answer = answer.split('')
-   const letters = day.split('')
-   let column: number = 0
+   const letters_day = day.split('')
+   let letters_counter = -1
 
    return (
       <div className='place-content-center text-center font-light'>
          <div className={'grid grid-cols-7 gap-1 justify-items-center'}>
-            {['T', 'O', 'D', 'A', 'Y'].map((day, index) => <div key={'key-today-' + index} className='font-bold h-[2.8rem]'>{day}</div>)}
-            {['i', 's'].map((day, index) => <div key={'key-is-' + index} className='font-bold text-red-500 h-[2.8rem]'>{day}</div>)}
+            {['t', 'o', 'd', 'a', 'y'].map((item, index) => <div key={'key-today-' + index} className='font-bold h-[2.8rem]'>{item.toUpperCase()}</div>)}
+            {['i', 's'].map((item, index) => <div key={'key-is-' + index} className='font-bold text-red-500 h-[2.8rem]'>{item.toUpperCase()}</div>)}
 
             {
-               letters.map((letter, index) => {
-                  // column = letter === ''
-                  const isEmptySpace = /^\s*$/.test(letter)
+               letters_day.map((letter, index) => {
+                  const isSpace = /^\s*$/.test(letter)
                   const isChar = /^[A-Za-z]+$/.test(letter)
+                  const isDisabled = !isChar || isSpace
+                  letters_counter = !isDisabled ? letters_counter + 1 : letters_counter
 
-
-                  // console.log("isChar", isChar)
-                  // console.log("column", column)
-                  // console.log("letter", letter)
-                  // console.log("letters_answer", letters_answer[index])
-
-                  return <Letter letter={isChar ? letter : null} answer={letters_answer[index]} checkAnswer={checkAnswer} key={'letter-' + index} />
+                  return (
+                     !isDisabled
+                        ? <Letter
+                           letter={!isDisabled ? letter : null}
+                           answer={!isDisabled ? letters_answer[letters_counter] : null}
+                           checkAnswer={checkAnswer}
+                           key={'letter-' + index}
+                        />
+                        : <div className={`bg-neutral-400 w-[3.2rem] h-[3.2rem] border border-1 border-neutral-400`}></div>
+                  )
                })
-
-               // letters.map((letter, index) => <Letter letter={letter} key={'letter-' + index} />)
             }
          </div>
       </div>

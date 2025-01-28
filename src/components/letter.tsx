@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 interface LetterProps {
    letter: string | null
-   answer: string
+   answer: string | null
    checkAnswer: boolean
 }
 const Letter: React.FC<LetterProps> = ({ letter, answer, checkAnswer }) => {
@@ -11,8 +11,6 @@ const Letter: React.FC<LetterProps> = ({ letter, answer, checkAnswer }) => {
 
    useEffect(() => {
       if (checkAnswer) {
-         console.log("checkAnswer", checkAnswer)
-
          const _bgColor = (() => {
             if (!letter) return 'bg-neutral-400' // disabled
             if (letter === answer) return 'bg-green-400' // success
@@ -21,8 +19,7 @@ const Letter: React.FC<LetterProps> = ({ letter, answer, checkAnswer }) => {
          })()
          setBgColor(_bgColor)
       }
-      else
-         setBgColor('bg-white')
+      else if (letter === null) setBgColor('bg-neutral-400')
    }, [checkAnswer])
 
    return (
