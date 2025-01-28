@@ -13,7 +13,7 @@ const Board: React.FC<BoardProps> = ({ phrase }) => {
 
    return (
       <div className='flex justify-center'>
-         <div className={'grid grid-cols-5 gap-1 text-center'}>
+         <div className={'grid grid-cols-6 gap-1 text-center'}>
             {
                lettersPhrase.map((letter, index) => {
                   const isSpace = /^\s*$/.test(letter)
