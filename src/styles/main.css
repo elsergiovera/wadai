@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 @font-face {
-   font-family: 'TitleFont';
-   src: url('/assets/font/fontt-title.ttf') format('truetype');
+   font-family: 'Title';
+   src: local("Title"), url('/assets/font/Title.ttf') format('truetype');
    font-weight: normal;
    font-style: normal;
+   font-display: swap;
 }
