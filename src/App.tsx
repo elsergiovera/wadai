@@ -1,9 +1,9 @@
-import useStore from './store'
+import useStore from '@/store'
 import { useState, useEffect } from 'react'
-import Menu from './components/Menu'
-import Topbar from './components/Topbar'
-import Board from './components/Board'
-import Keyboard from './components/Keyboard'
+import Menu from '@/components/Menu'
+import Topbar from '@/components/Topbar'
+import Board from '@/components/Board'
+import Keyboard from '@/components/Keyboard'
 
 const App = () => {
   const { day, answer, setAnswer, resetAnswer, backspaceAnswer, setCheckAnswer } = useStore()

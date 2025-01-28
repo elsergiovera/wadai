@@ -1,5 +1,5 @@
-import useStore from '../store'
-import Letter from './Letter'
+import useStore from '@/store'
+import Letter from '@/components/Letter'
 
 const Board = () => {
    const { day, answer, checkAnswer } = useStore()

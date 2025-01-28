@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { persist, devtools, createJSONStorage } from 'zustand/middleware'
-import current from '../data/current.json'
+import current from '@/data/current.json'
 
 interface StoreProps {
    day: string
