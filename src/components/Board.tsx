@@ -8,7 +8,7 @@ const Board = () => {
    let letters_counter = -1
 
    return (
-      <div className='place-content-center text-center font-light'>
+      <div className='place-content-center p-2 text-center font-light shadow-md'>
          <div className={'grid grid-cols-7 gap-1 justify-items-center'}>
             {['t', 'o', 'd', 'a', 'y'].map((item, index) => <div key={'key-today-' + index} className='font-bold h-[2.8rem]'>{item.toUpperCase()}</div>)}
             {['i', 's'].map((item, index) => <div key={'key-is-' + index} className='font-bold text-red-500 h-[2.8rem]'>{item.toUpperCase()}</div>)}
