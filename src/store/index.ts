@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { persist, devtools, createJSONStorage } from 'zustand/middleware'
-import current from '@/data/current.json'
+import currentDay from '@/data/day.json'
 
 interface StoreProps {
    day: string
@@ -17,7 +17,7 @@ const useStore = create(
    devtools(
       persist<StoreProps>(
          (set, get) => ({
-            day: current.federal,
+            day: currentDay.festivity,
             answer: '',
             setAnswer: (answer: string) => {
                const prevAnswer = get().answer

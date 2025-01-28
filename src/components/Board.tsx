@@ -3,9 +3,9 @@ import useStore from '@/store'
 
 const Board = () => {
    const { day, answer } = useStore()
-   const letters_answer = answer.split('')
-   const letters_day = day.split('')
-   let letters_counter = -1
+   const lettersAnswer = answer.split('')
+   const lettersDay = day.split('')
+   let lettersCounter = -1
 
    return (
       <div className='place-content-center p-2 text-center font-light shadow-md'>
@@ -14,15 +14,15 @@ const Board = () => {
             {['i', 's'].map((item, index) => <div key={'key-is-' + index} className='font-bold text-red-500 h-[2.8rem]'>{item.toUpperCase()}</div>)}
 
             {
-               letters_day.map((letter, index) => {
+               lettersDay.map((letter, index) => {
                   const isSpace = /^\s*$/.test(letter)
                   const isChar = /^[A-Za-z]+$/.test(letter)
                   const isDisabled = !isChar || isSpace
-                  letters_counter = !isDisabled ? letters_counter + 1 : letters_counter
+                  if (!isDisabled) lettersCounter++
 
                   return <Letter
                      letter={!isDisabled ? letter : null}
-                     answer={!isDisabled ? letters_answer[letters_counter] : null}
+                     answer={!isDisabled ? lettersAnswer[lettersCounter] : null}
                      isDisabled={isDisabled}
                      key={'letter-' + index}
                   />
