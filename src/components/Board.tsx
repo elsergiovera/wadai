@@ -1,4 +1,4 @@
-import Slot from '@/components/Slot'
+// import Slot from '@/components/Slot'
 import useStore from '@/store'
 
 const Board = () => {
@@ -10,10 +10,18 @@ const Board = () => {
    const remainingSlots = 30 - phrase.length
    let lettersCounter = -1
 
+   const Slot = ({ letter, color }: { letter: string | null, color: string }) => (
+      <div className={`${color} w-[3.5rem] h-[3.5rem] place-content-center text-[1.8rem] font-bold border border-2 border-neutral-400`}>
+         {letter}
+      </div>
+   )
+
    const getBackgroundColor = (letter: string, letterAnswer: string | null): string => {
-      if (letterAnswer === letter) return slot_color_success
-      else if (letterAnswer === undefined) return slot_color_default
-      else return slot_color_error
+      // if (letterAnswer === letter) return slot_color_success
+      // else if (letterAnswer === undefined) return slot_color_default
+      // else return slot_color_error
+
+      if (letterAnswer === undefined) return slot_color_default
    }
 
    return (
@@ -32,11 +40,10 @@ const Board = () => {
                      slot_color_current = getBackgroundColor(letter, letterAnswer)
                   }
 
-                  return <Slot letter={letterAnswer} color={slot_color_current} key={'letter-' + index}
-                  />
+                  return <Slot letter={letterAnswer} color={slot_color_current} key={'slot-' + index} />
                })
             }
-            { Array.from({ length: remainingSlots }).map((_, index) => <Slot letter={null} color={slot_color_disabled} key={'empty-' + index} />) }
+            {Array.from({ length: remainingSlots }).map((_, index) => <Slot letter={null} color={slot_color_disabled} key={'empty-slot-' + index} />)}
          </div>
       </div>
    )
