@@ -17,8 +17,10 @@ const Board: React.FC<BoardProps> = ({ phrase }) => {
             {
                lettersPhrase.map((letter, index) => {
                   const isSpace = /^\s*$/.test(letter)
-                  const isChar = /^[A-Za-z]+$/.test(letter)
-                  const isDisabled = !isChar || isSpace
+                  const isLetter = /^[A-Za-z]+$/.test(letter)
+                  const isDisabled = !isLetter || isSpace
+                  
+                  // increments the counter only if the character is valid
                   if (!isDisabled) lettersCounter++
 
                   return <Letter
@@ -29,7 +31,7 @@ const Board: React.FC<BoardProps> = ({ phrase }) => {
                   />
                })
             }
-            {Array.from({ length: reminingSlot }).map((_, index) => <Letter letter={null} answer={null} isDisabled={true} key={'empty-' + index} /> )}
+            {Array.from({ length: reminingSlot }).map((_, index) => <Letter letter={null} answer={null} isDisabled={true} key={'empty-' + index} />)}
          </div>
       </div>
    )

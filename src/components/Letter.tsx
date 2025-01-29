@@ -8,24 +8,23 @@ interface LetterProps {
 }
 const Letter: React.FC<LetterProps> = ({ letter, answer, isDisabled }) => {
    const { checkAnswer } = useStore()
-   const bg_success: string = 'bg-green-400'
    const bg_disabled: string = 'bg-neutral-400'
-   const bg_no_entry: string = 'bg-white-400'
+   const bg_default: string = 'bg-white-400'
+   const bg_success: string = 'bg-green-400'
    const bg_error: string = 'bg-red-400'
-   const [currentColor, setCurrentColor] = useState(bg_no_entry)
+   const [currentColor, setCurrentColor] = useState(bg_default)
    letter = letter ? letter.toUpperCase() : null
 
    useEffect(() => {
       if (checkAnswer) {
-         const _bgColor = (() => {
-            if (!letter) return bg_disabled
+         const color = (() => {
             if (letter === answer) return bg_success
-            if (answer === undefined) return bg_no_entry
-            return bg_error
+            else if (answer === undefined) return bg_default
+            else return bg_error
          })()
-         setCurrentColor(_bgColor)
+         setCurrentColor(color)
       }
-      if (letter === null) setCurrentColor(bg_disabled)
+      else if (letter === null) setCurrentColor(bg_disabled)
    }, [checkAnswer])
 
    return (

@@ -18,20 +18,20 @@ const App = () => {
   const [openMenu, setOpenMenu] = useState(false)
   const answerRef = useRef(answer)
   const formattedDate: string = new Date().toLocaleDateString('en-US', { day: '2-digit', month: '2-digit' })
-  const day: Day | undefined = _.find((days as Day[]), { date: '01/16' })
-  // const day: Day | undefined = _.find((days as Day[]), { date: formattedDate })
+  const day: Day | undefined = _.find((days as Day[]), { date: formattedDate })
+  // const day: Day | undefined = _.find((days as Day[]), { date: '01/16' })
   const phrase: string = day?.national ?? ""
   const phraseWithNoSpaces: string = phrase.replace(/ /g, '')
 
   const handleToggleMenu = () => setOpenMenu(!openMenu)
   const handleKeyDown = (event: KeyboardEvent | string) => {
-
-    const slotAvailable: boolean = phraseWithNoSpaces.length >= answerRef.current.length + 1
     const key: string = typeof event === 'string' ? event : (event as KeyboardEvent).key
     const isChar: boolean = /^[A-Za-z]$/.test(key)
+    const slotAvailable: boolean = phraseWithNoSpaces.length >= answerRef.current.length + 1
 
     if (slotAvailable && isChar) setAnswer(key)
-    if (key.toLowerCase() === 'backspace') backspaceAnswer()
+    else if (key.toLowerCase() === 'backspace') backspaceAnswer()
+    else if (key.toLowerCase() === 'enter' && !slotAvailable) setCheckAnswer(true)
   }
 
   useEffect(() => {
@@ -43,7 +43,6 @@ const App = () => {
   }, [])
   useEffect(() => {
     answerRef.current = answer
-    if (phraseWithNoSpaces.length === answer.length) setCheckAnswer(true)
   }, [answer])
 
   return (
