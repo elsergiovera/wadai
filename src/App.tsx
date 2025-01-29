@@ -14,7 +14,7 @@ type Day = {
   region: string
 }
 const App = () => {
-  const { answer, setAnswer, resetAnswer, backspaceAnswer, setCheckAnswer } = useStore()
+  const { answer, setAnswer, deleteAnswer, resetAnswer, setCheckAnswer } = useStore()
   const [openMenu, setOpenMenu] = useState(false)
   const answerRef = useRef(answer)
   const formattedDate: string = new Date().toLocaleDateString('en-US', { day: '2-digit', month: '2-digit' })
@@ -30,8 +30,8 @@ const App = () => {
     const slotAvailable: boolean = phraseWithNoSpaces.length >= answerRef.current.length + 1
 
     if (slotAvailable && isChar) setAnswer(key)
-    else if (key.toLowerCase() === 'backspace') backspaceAnswer()
-    else if (key.toLowerCase() === 'enter' && !slotAvailable) setCheckAnswer(true)
+    else if (key === 'Backspace') deleteAnswer()
+    else if (key === 'Enter' && !slotAvailable) setCheckAnswer(true)
   }
 
   useEffect(() => {

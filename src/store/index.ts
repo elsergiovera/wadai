@@ -5,7 +5,7 @@ interface StoreProps {
    answer: string
    setAnswer: (answer: string) => void
    resetAnswer: () => void
-   backspaceAnswer: () => void
+   deleteAnswer: () => void
    checkAnswer: boolean
    setCheckAnswer: (check: boolean) => void
    _hasHydrated: boolean
@@ -22,7 +22,7 @@ const useStore = create(
                set({ answer: newAnswer })
             },
             resetAnswer: () => set({ answer: '' }),
-            backspaceAnswer: () => {
+            deleteAnswer: () => {
                const newAnswer = get().answer.slice(0, -1)
                set({ answer: newAnswer })
             },
