@@ -2,7 +2,7 @@
 import useStore from '@/store'
 
 const Board = () => {
-   const { appStatus: { answerByChar, phrase } } = useStore()
+   const { appStatus: { phrase, answerByChar, matchsByChar } } = useStore()
    const slot_color_disabled: string = 'bg-neutral-400'
    const slot_color_default: string = 'bg-white-400'
    const slot_color_success: string = 'bg-green-400'
@@ -16,12 +16,12 @@ const Board = () => {
       </div>
    )
 
-   const getBackgroundColor = (letter: string, letterAnswer: string | null): string => {
-      // if (letterAnswer === letter) return slot_color_success
-      // else if (letterAnswer === undefined) return slot_color_default
-      // else return slot_color_error
+   const getBackgroundColor = (index: number): string => {
+      const match = matchsByChar[index]
 
-      if (letterAnswer === undefined) return slot_color_default
+      if (match) return slot_color_success
+      else if (match === undefined) return slot_color_default
+      else return slot_color_error
    }
 
    return (
@@ -35,9 +35,12 @@ const Board = () => {
                   let slot_color_current: string = slot_color_disabled
 
                   if (!isSpace) {
+                     // The variable `lettersCounter` keeps track of the current letter index in the phrase.
+                     // It only increments when the current character is not a space.
                      lettersCounter++
+
                      letterAnswer = answerByChar[lettersCounter]
-                     slot_color_current = getBackgroundColor(letter, letterAnswer)
+                     slot_color_current = getBackgroundColor(lettersCounter)
                   }
 
                   return <Slot letter={letterAnswer} color={slot_color_current} key={'slot-' + index} />

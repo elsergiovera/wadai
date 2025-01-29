@@ -6,8 +6,10 @@ export type Status = {
    phrase: string
    phraseByChar: string[]
    answerByChar: string[]
+   matchsByChar: (boolean | null)[]
    plays: number
    score: number
+   paused: boolean
 }
 export type Day = {
    date: string
@@ -18,54 +20,26 @@ export type Day = {
 interface StoreProps {
    appStatus: Status
    setAppStatus: (status: Status) => void
-   setAnswer: (answer: string) => void
-   resetAnswer: () => void
-   deleteAnswer: () => void
-   checkAnswer: boolean
-   setCheckAnswer: (check: boolean) => void
    _hasHydrated: boolean
    setHasHydrated: (status: boolean) => void
 }
 const useStore = create(
    devtools(
       persist<StoreProps>(
-         (set, get) => ({
-            appStatus: { date: '', phrase: '', phraseByChar: [], answerByChar: [], plays: 0, score: 100 } as Status,
+         (set) => ({
+            appStatus: {
+               date: '',
+               phrase: '',
+               phraseByChar: [],
+               answerByChar: [],
+               matchsByChar: [],
+               plays: 0,
+               score: 0,
+               paused: false
+            } as Status,
             setAppStatus: (status: Status) => {
                set({ appStatus: status })
             },
-            setAnswer: (answer: string) => {
-               const prevStatus = get().appStatus
-               const prevAnswer = prevStatus.answerByChar
-               prevAnswer.push(answer.toUpperCase())
-
-               get().setAppStatus({
-                  ...prevStatus,
-                  answerByChar: prevAnswer
-               } as Status)
-            },
-            deleteAnswer: () => {
-               const prevStatus = get().appStatus
-               const prevAnswer = prevStatus.answerByChar
-               prevAnswer.pop()
-
-               get().setAppStatus({
-                  ...prevStatus,
-                  answerByChar: prevAnswer
-               } as Status)
-
-            },
-            resetAnswer: () => {
-               const prevStatus = get().appStatus
-
-               get().setAppStatus({
-                  ...prevStatus,
-                  answerByChar: []
-               } as Status)
-            },
-
-            checkAnswer: false,
-            setCheckAnswer: (check: boolean) => set({ checkAnswer: check }),
             _hasHydrated: false,
             setHasHydrated: (status: boolean) => set({ _hasHydrated: status })
          }),
