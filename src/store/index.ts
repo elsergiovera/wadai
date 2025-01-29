@@ -1,8 +1,23 @@
 import { create } from 'zustand'
 import { persist, devtools, createJSONStorage } from 'zustand/middleware'
 
+export type Status = {
+   date: string
+   phrase: string
+   phraseByChar: string[]
+   answerByChar: string[]
+   plays: number
+   score: number
+}
+export type Day = {
+   date: string
+   festivity: string
+   festivity_int: string | null
+   region: string
+}
 interface StoreProps {
-   answer: string
+   appStatus: Status
+   setAppStatus: (status: Status) => void
    setAnswer: (answer: string) => void
    resetAnswer: () => void
    deleteAnswer: () => void
@@ -15,17 +30,40 @@ const useStore = create(
    devtools(
       persist<StoreProps>(
          (set, get) => ({
-            answer: '',
+            appStatus: { date: '', phrase: '', phraseByChar: [], answerByChar: [], plays: 0, score: 100 } as Status,
+            setAppStatus: (status: Status) => {
+               set({ appStatus: status })
+            },
             setAnswer: (answer: string) => {
-               const prevAnswer = get().answer
-               const newAnswer = prevAnswer + answer.toUpperCase()
-               set({ answer: newAnswer })
+               const prevStatus = get().appStatus
+               const prevAnswer = prevStatus.answerByChar
+               prevAnswer.push(answer.toUpperCase())
+
+               get().setAppStatus({
+                  ...prevStatus,
+                  answerByChar: prevAnswer
+               } as Status)
             },
-            resetAnswer: () => set({ answer: '' }),
             deleteAnswer: () => {
-               const newAnswer = get().answer.slice(0, -1)
-               set({ answer: newAnswer })
+               const prevStatus = get().appStatus
+               const prevAnswer = prevStatus.answerByChar
+               prevAnswer.pop()
+
+               get().setAppStatus({
+                  ...prevStatus,
+                  answerByChar: prevAnswer
+               } as Status)
+
             },
+            resetAnswer: () => {
+               const prevStatus = get().appStatus
+
+               get().setAppStatus({
+                  ...prevStatus,
+                  answerByChar: []
+               } as Status)
+            },
+
             checkAnswer: false,
             setCheckAnswer: (check: boolean) => set({ checkAnswer: check }),
             _hasHydrated: false,

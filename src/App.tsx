@@ -1,62 +1,72 @@
 import { useState, useEffect, useRef } from 'react'
-import _ from 'lodash'
-import useStore from '@/store'
+import useStore, { Status, Day } from '@/store'
+import lodash from 'lodash'
 import Menu from '@/components/Menu'
 import Topbar from '@/components/Topbar'
 import Board from '@/components/Board'
 import Keyboard from '@/components/Keyboard'
 import days from '@/data/2025/en-US.json'
 
-type Day = {
-  date: string
-  national: string | null
-  international: string | null
-  region: string
-}
 const App = () => {
-  const { answer, setAnswer, deleteAnswer, resetAnswer, setCheckAnswer } = useStore()
-  const [openMenu, setOpenMenu] = useState(false)
-  const answerRef = useRef(answer)
-  const formattedDate: string = new Date().toLocaleDateString('en-US', { day: '2-digit', month: '2-digit' })
-  const day: Day | undefined = _.find((days as Day[]), { date: formattedDate })
-  // const day: Day | undefined = _.find((days as Day[]), { date: '01/16' })
-  const phrase: string = day?.national ?? ""
-  const phraseWithNoSpaces: string = phrase.replace(/ /g, '')
+   const { appStatus, setAppStatus, setAnswer, deleteAnswer, resetAnswer, setCheckAnswer } = useStore()
+   const [openMenu, setOpenMenu] = useState(false)
+   const statusRef = useRef(appStatus)
 
-  const handleToggleMenu = () => setOpenMenu(!openMenu)
-  const handleKeyDown = (event: KeyboardEvent | string) => {
-    const key: string = typeof event === 'string' ? event : (event as KeyboardEvent).key
-    const isChar: boolean = /^[A-Za-z]$/.test(key)
-    const slotAvailable: boolean = phraseWithNoSpaces.length >= answerRef.current.length + 1
+   // console.log("appStatus", appStatus)
+   const setInitialStatus = () => {
+      // TODO add try-catch
+      // const formattedDate: string = new Date().toLocaleDateString('en-US', { day: '2-digit', month: '2-digit' })
+      const formattedDate: string = '01/16'
+      const day: Day | undefined = lodash.find((days as Day[]), { date: formattedDate })
 
-    if (slotAvailable && isChar) setAnswer(key)
-    else if (key === 'Backspace') deleteAnswer()
-    else if (key === 'Enter' && !slotAvailable) setCheckAnswer(true)
-  }
+      setAppStatus({
+         date: formattedDate,
+         phrase: day?.festivity,
+         phraseByChar: day?.festivity.replace(/ /g, '').toUpperCase().split(''),
+         answerByChar: [],
+         plays: 0,
+         score: 0
+      } as Status)
+   }
 
-  useEffect(() => {
-    resetAnswer()
-    setCheckAnswer(false)
+   const checkAnswer = () => {
+      // setCheckAnswer(true)
+   }
+   const handleToggleMenu = () => setOpenMenu(!openMenu)
+   const handleKeyDown = (event: KeyboardEvent | string) => {
+      const key: string = typeof event === 'string' ? event : (event as KeyboardEvent).key
+      const isChar: boolean = /^[A-Za-z]$/.test(key)
+      const slotAvailable: boolean = statusRef.current.phraseByChar.length >= statusRef.current.answerByChar.length + 1
 
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [])
-  useEffect(() => {
-    answerRef.current = answer
-  }, [answer])
+      if (slotAvailable && isChar) setAnswer(key)
+      else if (key === 'Backspace') deleteAnswer()
+      else if (key === 'Enter' && !slotAvailable) checkAnswer()
+   }
 
-  return (
-    <div className='w-screen h-full space-y-6'>
-      <Menu isOpen={openMenu} handleToggleMenu={handleToggleMenu} />
-      <Topbar handleToggleMenu={handleToggleMenu} />
-      <div className='flex justify-center'>
-        <div className='flex flex-col justify-between w-[450px] h-[600px]'>
-          <Board phrase={phrase} />
-          <Keyboard handleKeyDown={handleKeyDown} />
-        </div>
+   useEffect(() => {
+      // resetAnswer()
+      // setCheckAnswer(false)
+      setInitialStatus()
+
+      window.addEventListener('keydown', handleKeyDown)
+      return () => window.removeEventListener('keydown', handleKeyDown)
+   }, [])
+   useEffect(() => {
+      statusRef.current = appStatus
+   }, [appStatus])
+
+   return (
+      <div className='w-screen h-full space-y-6'>
+         <Menu isOpen={openMenu} handleToggleMenu={handleToggleMenu} />
+         <Topbar handleToggleMenu={handleToggleMenu} />
+         <div className='flex justify-center'>
+            <div className='flex flex-col justify-between w-[450px] h-[600px]'>
+               <Board />
+               <Keyboard handleKeyDown={handleKeyDown} />
+            </div>
+         </div>
       </div>
-    </div>
-  )
+   )
 }
 
 export default App
