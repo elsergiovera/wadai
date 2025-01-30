@@ -99,20 +99,20 @@ const App = () => {
 
       // Compares each character of the user's answer with the corresponding character in the correct phrase.
       const _matchsByChar: (boolean | null)[] = []
-      let _activeSlot = 1
+      let _activeSlot: number | null = null
 
       appStatusRef.current.answerByChar.map((char, index) => {
          const _match = char === appStatusRef.current.phraseByChar[index]
          _matchsByChar.push(_match)
 
          // If there's wrong answers, set the first as active slot for next round.
-         if (!_match && _activeSlot === 1) _activeSlot = index + 1
+         if (!_match && _activeSlot === null) _activeSlot = index + 1
       })
 
       const _status: Status = ({
          ...appStatusRef.current,
          matchsByChar: _matchsByChar,
-         activeSlot: _activeSlot,
+         activeSlot: _activeSlot ?? 1,
          round: appStatusRef.current.round + 1,
       })
       setAppStatus(_status)
