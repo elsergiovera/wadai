@@ -5,11 +5,14 @@ import Menu from '@/components/Menu'
 import Topbar from '@/components/Topbar'
 import Board from '@/components/Board'
 import Keyboard from '@/components/Keyboard'
+import Dialog from '@mui/material/Dialog'
 import days from '@/data/2025/en-US.json'
 
 const App = () => {
    const { appStatus, setAppStatus } = useStore()
    const [openMenu, setOpenMenu] = useState(false)
+   const [openDialog, setOpenDialog] = useState(false)
+
    const appStatusRef = useRef(appStatus)
 
    // console.log("appStatus", appStatus)
@@ -50,7 +53,7 @@ const App = () => {
       })
       setAppStatus(_status)
    }
-   const deleteKey = () =>{
+   const deleteKey = () => {
       const _answerByChar = appStatusRef.current.answerByChar
       _answerByChar.pop()
 
@@ -82,6 +85,7 @@ const App = () => {
          paused: true
       })
       setAppStatus(_status)
+      // setOpenDialog(true)
    }
 
    const handleToggleMenu = () => setOpenMenu(!openMenu)
@@ -98,16 +102,34 @@ const App = () => {
    }
 
    return (
-      <div className='w-screen h-full space-y-6'>
-         <Menu isOpen={openMenu} handleToggleMenu={handleToggleMenu} />
-         <Topbar handleToggleMenu={handleToggleMenu} />
-         <div className='flex justify-center'>
-            <div className='flex flex-col justify-between w-[450px] h-[600px]'>
-               <Board />
-               <Keyboard handleKeyDown={handleKeyDown} />
+      <>
+         <div className='w-screen h-full space-y-6'>
+            <Menu isOpen={openMenu} handleToggleMenu={handleToggleMenu} />
+            <Topbar handleToggleMenu={handleToggleMenu} />
+            <div className='flex justify-center'>
+               <div className='flex flex-col justify-between w-[450px] h-[600px]'>
+                  <Board />
+                  <Keyboard handleKeyDown={handleKeyDown} />
+               </div>
             </div>
          </div>
-      </div>
+
+         {/* <Dialog
+            fullScreen
+            open={false}
+            onClose={() => setOpenDialog(false)}
+         >
+            <div className='flex place-content-center h-full'>
+               <div className='flex flex-col justify-center w-[450px]'>
+                  <div className='h-[300px] border'>
+                     {
+
+                     }
+                  </div>
+               </div>
+            </div>
+         </Dialog> */}
+      </>
    )
 }
 
