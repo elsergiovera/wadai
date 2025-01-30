@@ -1,28 +1,14 @@
-// import Slot from '@/components/Slot'
+import Slot from '@/components/Slot'
 import useStore from '@/store'
 
 const Board = () => {
    const { appStatus: { phrase, answerByChar, matchsByChar } } = useStore()
-   const slot_color_disabled: string = 'bg-neutral-400'
-   const slot_color_default: string = 'bg-white-400'
-   const slot_color_success: string = 'bg-green-400'
-   const slot_color_error: string = 'bg-red-400'
+   const slot_color_disabled = 'bg-neutral-400'
+   const slot_color_default = 'bg-white-400'
+   const slot_color_success = 'bg-green-400'
+   const slot_color_error = 'bg-red-400'
    const remainingSlots = 30 - phrase.length
    let lettersCounter = -1
-
-   const Slot = ({ letter, color }: { letter: string | null, color: string }) => (
-      <div className={`${color} w-[3.5rem] h-[3.5rem] place-content-center text-[1.8rem] font-bold border border-2 border-neutral-400`}>
-         {letter}
-      </div>
-   )
-
-   const getBackgroundColor = (index: number): string => {
-      const match = matchsByChar[index]
-
-      if (match) return slot_color_success
-      else if (match === undefined) return slot_color_default
-      else return slot_color_error
-   }
 
    return (
       <div className='flex justify-center'>
@@ -31,22 +17,32 @@ const Board = () => {
                phrase.split('').map((letter, index) => {
                   letter = letter.toUpperCase()
                   const isSpace = /^\s*$/.test(letter)
-                  let letterAnswer: string | null = null
-                  let slot_color_current: string = slot_color_disabled
+                  let slot_letter: string | null = null
+                  let slot_color = slot_color_disabled
+                  let slot_active = false
 
                   if (!isSpace) {
                      // The variable `lettersCounter` keeps track of the current letter index in the phrase.
                      // It only increments when the current character is not a space.
                      lettersCounter++
+                     slot_letter = answerByChar[lettersCounter]
 
-                     letterAnswer = answerByChar[lettersCounter]
-                     slot_color_current = getBackgroundColor(lettersCounter)
+                     // Check if there's a match and set the Slot colors accordingly.
+                     const isMatch = matchsByChar[lettersCounter]
+                     if (isMatch) {
+                        slot_color = slot_color_success
+                     }
+                     else if (isMatch === undefined) {
+                        slot_color = !isSpace ? slot_color_default : slot_color_disabled
+                        slot_active = true
+                     }
+                     else slot_color = slot_color_error
                   }
 
-                  return <Slot letter={letterAnswer} color={slot_color_current} key={'slot-' + index} />
+                  return <Slot letter={slot_letter} color={slot_color} active={slot_active} key={'slot-' + index} />
                })
             }
-            {Array.from({ length: remainingSlots }).map((_, index) => <Slot letter={null} color={slot_color_disabled} key={'empty-slot-' + index} />)}
+            {Array.from({ length: remainingSlots }).map((_, index) => <Slot letter={null} color={slot_color_disabled} active={false} key={'empty-slot-' + index} />)}
          </div>
       </div>
    )

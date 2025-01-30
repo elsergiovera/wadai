@@ -5,17 +5,16 @@ import Menu from '@/components/Menu'
 import Topbar from '@/components/Topbar'
 import Board from '@/components/Board'
 import Keyboard from '@/components/Keyboard'
-import Dialog from '@mui/material/Dialog'
+// import Dialog from '@mui/material/Dialog'
 import days from '@/data/2025/en-US.json'
 
 const App = () => {
    const { appStatus, setAppStatus } = useStore()
    const [openMenu, setOpenMenu] = useState(false)
-   const [openDialog, setOpenDialog] = useState(false)
-
    const appStatusRef = useRef(appStatus)
+   // const [openDialog, setOpenDialog] = useState(false)
 
-   // console.log("appStatus", appStatus)
+   console.log("appStatus", appStatus)
    useEffect(() => {
       setInitialStatus()
 
@@ -34,22 +33,52 @@ const App = () => {
 
       setAppStatus({
          date: formattedDate,
-         phrase: day?.festivity,
-         phraseByChar: day?.festivity.replace(/ /g, '').toUpperCase().split(''),
+         phrase: day?.festivity ? day?.festivity : '',
+         phraseByChar: day?.festivity ? day?.festivity.replace(/ /g, '').toUpperCase().split('') : [],
          answerByChar: [],
          matchsByChar: [],
-         plays: 0,
+         activeSlot: 1,
+         round: 1,
          score: 100,
          paused: false
       } as Status)
    }
    const insertKey = (key: string) => {
       const _answerByChar = appStatusRef.current.answerByChar
-      _answerByChar.push(key.toUpperCase())
+      const _matchsByChar = appStatusRef.current.matchsByChar
+
+      // Set the key at the current active slot.
+      let _activeSlot = 0
+      const _currentSearchIndex = appStatusRef.current.activeSlot - 1
+      _answerByChar[_currentSearchIndex] = key.toUpperCase()
+
+      // Determine the next active slot.
+      // If no plays have been made yet (round === 1), move to the next slot if it's not at the last one.
+      // If plays have been made (round > 1), find the next available slot wheres matches are 'false' marked as false in the previous round.
+      if (appStatusRef.current.round === 1) {
+         const _nextSlotIndex = appStatusRef.current.activeSlot < appStatusRef.current.phraseByChar.length
+
+         if (_nextSlotIndex)
+            _activeSlot = appStatusRef.current.activeSlot + 1
+         else
+            _activeSlot = appStatusRef.current.activeSlot
+      }
+      else {
+         const _nextSlotIndex = appStatusRef.current.matchsByChar.slice(_currentSearchIndex + 1).findIndex((match) => match === false)
+
+         if (_nextSlotIndex === -1) {
+            _activeSlot = appStatusRef.current.activeSlot
+         }
+         else if (_nextSlotIndex >= 0) {
+            _activeSlot = appStatusRef.current.activeSlot + _nextSlotIndex + 1
+         }
+      }
 
       const _status: Status = ({
          ...appStatusRef.current,
-         answerByChar: _answerByChar
+         answerByChar: _answerByChar,
+         matchsByChar: _matchsByChar,
+         activeSlot: _activeSlot
       })
       setAppStatus(_status)
    }
@@ -59,33 +88,34 @@ const App = () => {
 
       setAppStatus({
          ...appStatusRef.current,
-         answerByChar: _answerByChar
-      } as Status)
-   }
-   const resetKeys = () => {
-      setAppStatus({
-         ...appStatusRef.current,
-         answerByChar: []
+         answerByChar: _answerByChar,
+         activeSlot: appStatusRef.current.activeSlot - 1
       } as Status)
    }
    const validateKeys = () => {
-      const _matchsByChar: (boolean | null)[] = []
-      const _plays = appStatusRef.current.plays
+      // Compares phrase and answer length. Only if the answer is typed completely, it can validate it.
+      const _fullAnswer = appStatusRef.current.answerByChar.length === appStatusRef.current.phraseByChar.length
+      if (!_fullAnswer) return
 
       // Compares each character of the user's answer with the corresponding character in the correct phrase.
+      const _matchsByChar: (boolean | null)[] = []
+      let _activeSlot = 1
+
       appStatusRef.current.answerByChar.map((char, index) => {
          const _match = char === appStatusRef.current.phraseByChar[index]
          _matchsByChar.push(_match)
+
+         // If there's wrong answers, set the first as active slot for next round.
+         if (!_match && _activeSlot === 1) _activeSlot = index + 1
       })
 
       const _status: Status = ({
          ...appStatusRef.current,
          matchsByChar: _matchsByChar,
-         plays: _plays + 1,
-         paused: true
+         activeSlot: _activeSlot,
+         round: appStatusRef.current.round + 1,
       })
       setAppStatus(_status)
-      // setOpenDialog(true)
    }
 
    const handleToggleMenu = () => setOpenMenu(!openMenu)
@@ -94,11 +124,10 @@ const App = () => {
 
       const key = typeof event === 'string' ? event : (event as KeyboardEvent).key
       const isChar = /^[A-Za-z]$/.test(key)
-      const slotAvailable = appStatusRef.current.phraseByChar.length >= appStatusRef.current.answerByChar.length + 1
 
-      if (slotAvailable && isChar) insertKey(key)
+      if (isChar) insertKey(key)
       else if (key === 'Backspace') deleteKey()
-      else if (key === 'Enter' && !slotAvailable) validateKeys()
+      else if (key === 'Enter') validateKeys()
    }
 
    return (

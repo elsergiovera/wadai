@@ -7,7 +7,8 @@ export type Status = {
    phraseByChar: string[]
    answerByChar: string[]
    matchsByChar: (boolean | null)[]
-   plays: number
+   activeSlot: number
+   round: number
    score: number
    paused: boolean
 }
@@ -33,7 +34,8 @@ const useStore = create(
                phraseByChar: [],
                answerByChar: [],
                matchsByChar: [],
-               plays: 0,
+               activeSlot: 0,
+               round: 0,
                score: 0,
                paused: false
             } as Status,
