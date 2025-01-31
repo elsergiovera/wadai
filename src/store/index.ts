@@ -5,7 +5,7 @@ export type Status = {
    date: string
    phrase: string
    phraseByChar: string[]
-   answerByChar: string[]
+   answerByChar: (string | null)[]
    matchsByChar: (boolean | null)[]
    activeSlot: number
    round: number

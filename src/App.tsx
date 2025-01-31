@@ -14,7 +14,7 @@ const App = () => {
    const appStatusRef = useRef(appStatus)
    // const [openDialog, setOpenDialog] = useState(false)
 
-   console.log("appStatus", appStatus)
+   // console.log("appStatus", appStatus)
    useEffect(() => {
       setInitialStatus()
 
@@ -35,7 +35,8 @@ const App = () => {
          date: formattedDate,
          phrase: day?.festivity ? day?.festivity : '',
          phraseByChar: day?.festivity ? day?.festivity.replace(/ /g, '').toUpperCase().split('') : [],
-         answerByChar: [],
+         // answerByChar: [],
+         answerByChar: day?.festivity ? day?.festivity.split('').map(char => (char === ' ' ? char : null)) : [],
          matchsByChar: [],
          activeSlot: 1,
          round: 1,
@@ -44,65 +45,82 @@ const App = () => {
       } as Status)
    }
    const insertKey = (key: string) => {
+      const _slotIndex = appStatusRef.current.activeSlot - 1
       const _answerByChar = appStatusRef.current.answerByChar
-      const _matchsByChar = appStatusRef.current.matchsByChar
-
-      // Set the key at the current active slot.
+      const _phraseByChar = appStatusRef.current.phrase.split('')
       let _activeSlot = 0
-      const _currentSearchIndex = appStatusRef.current.activeSlot - 1
-      _answerByChar[_currentSearchIndex] = key.toUpperCase()
 
-      // Determine the next active slot.
-      // If no plays have been made yet (round === 1), move to the next slot if it's not at the last one.
-      // If plays have been made (round > 1), find the next available slot wheres matches are 'false' marked as false in the previous round.
+      // // Set the key at the current active slot.
+      _answerByChar[_slotIndex] = key.toUpperCase()
+
       if (appStatusRef.current.round === 1) {
-         const _nextSlotIndex = appStatusRef.current.activeSlot < appStatusRef.current.phraseByChar.length
+         const _nextSlotAvailable = appStatusRef.current.activeSlot < _phraseByChar.length
 
-         if (_nextSlotIndex)
-            _activeSlot = appStatusRef.current.activeSlot + 1
+         if (_nextSlotAvailable) {
+            const _isNextSlotSpace = _phraseByChar[appStatusRef.current.activeSlot] === ' '
+
+            _activeSlot = (appStatusRef.current.activeSlot + 1) + (_isNextSlotSpace ? 1 : 0)
+         }
          else
             _activeSlot = appStatusRef.current.activeSlot
-      }
-      else {
-         const _nextSlotIndex = appStatusRef.current.matchsByChar.slice(_currentSearchIndex + 1).findIndex((match) => match === false)
-
-         if (_nextSlotIndex === -1) {
-            _activeSlot = appStatusRef.current.activeSlot
-         }
-         else if (_nextSlotIndex >= 0) {
-            _activeSlot = appStatusRef.current.activeSlot + _nextSlotIndex + 1
-         }
       }
 
       const _status: Status = ({
          ...appStatusRef.current,
          answerByChar: _answerByChar,
-         matchsByChar: _matchsByChar,
          activeSlot: _activeSlot
       })
+
       setAppStatus(_status)
    }
    const deleteKey = () => {
+      // If it's the first slot, exits the function.
+      if (appStatusRef.current.activeSlot === 1) return
+
+      const _slotIndex = appStatusRef.current.activeSlot - 1
       const _answerByChar = appStatusRef.current.answerByChar
-      _answerByChar.pop()
+      const _phraseByChar = appStatusRef.current.phrase.split('')
+      const _isPreviousSlotSpace = _phraseByChar[_slotIndex - 1] === ' '
+      const _isLastSlot = appStatusRef.current.activeSlot === _phraseByChar.length
+      let _activeSlot = _slotIndex
+
+      if (_isLastSlot) {
+         // If deleting at the last slot, check if it's empty
+         const _isLastSlotEmpty = _answerByChar[_slotIndex] === null
+
+         // Remove the last character, considering if it's already empty
+         _answerByChar[_slotIndex - (_isLastSlotEmpty ? 1 : 0)] = null
+
+         // Adjust the active slot, skipping an extra space if the last slot i's empty
+         _activeSlot = appStatusRef.current.activeSlot - (_isLastSlotEmpty ? 1 : 0)
+      }
+      else {
+         // If not at the last slot, remove the previous character.
+         // Skips an extra slot if the previous one is a space.
+         _answerByChar[_slotIndex - (_isPreviousSlotSpace ? 2 : 1)] = null
+
+         // Adjust the active slot, skipping an extra space if the previous one is a space.
+         _activeSlot = (appStatusRef.current.activeSlot - 1) - (_isPreviousSlotSpace ? 1 : 0)
+      }
 
       setAppStatus({
          ...appStatusRef.current,
          answerByChar: _answerByChar,
-         activeSlot: appStatusRef.current.activeSlot - 1
+         activeSlot: _activeSlot
       } as Status)
    }
    const validateKeys = () => {
-      // Compares phrase and answer length. Only if the answer is typed completely, it can validate it.
-      const _fullAnswer = appStatusRef.current.answerByChar.length === appStatusRef.current.phraseByChar.length
-      if (!_fullAnswer) return
-
+      // Makes sure that all characters in the answer are filled before validating.
+      const _fullAnswer = appStatusRef.current.answerByChar.includes(null)
+      if (_fullAnswer) return
+      
       // Compares each character of the user's answer with the corresponding character in the correct phrase.
+      const _phraseByChar = appStatusRef.current.phrase.split('')
       const _matchsByChar: (boolean | null)[] = []
       let _activeSlot: number | null = null
 
       appStatusRef.current.answerByChar.map((char, index) => {
-         const _match = char === appStatusRef.current.phraseByChar[index]
+         const _match = char === _phraseByChar[index].toUpperCase()
          _matchsByChar.push(_match)
 
          // If there's wrong answers, set the first as active slot for next round.
