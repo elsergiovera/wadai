@@ -2,7 +2,7 @@ import Slot from '@/components/Slot'
 import useStore from '@/store'
 
 const Board = () => {
-   const { appStatus: { phrase, activeSlot, answerByChar, matchsByChar } } = useStore()
+   const { appStatus: { phrase, activeSlot, answerByChar, matchsByChar, gameOver } } = useStore()
    const slot_bgCcolor_disabled = 'bg-neutral-400'
    const slot_bgCcolor_default = 'bg-white-400'
    const slot_bgCcolor_success = 'bg-green-500'
@@ -21,7 +21,7 @@ const Board = () => {
                   let slot_letter: string | null = null
                   let slot_bgCcolor = slot_bgCcolor_disabled
                   let slot_txtColor = slot_txtColor_played
-                  let slot_active = activeSlot === index + 1
+                    let slot_active = gameOver ? false : activeSlot === index + 1
 
                   if (!_isSpace) {
                      // Determine the slot's letter and background color based on whether it matches the answer.

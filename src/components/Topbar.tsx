@@ -1,6 +1,6 @@
 
-import { AlignJustify } from 'lucide-react'
 const VITE_ENV_APP_NAME = import.meta.env.VITE_ENV_APP_NAME
+import { AlignJustify } from 'lucide-react'
 
 interface TopbarProps {
    handleToggleMenu: () => void

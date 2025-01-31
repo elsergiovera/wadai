@@ -4,13 +4,13 @@ import { persist, devtools, createJSONStorage } from 'zustand/middleware'
 export type Status = {
    date: string
    phrase: string
-   phraseByChar: string[]
    answerByChar: (string | null)[]
    matchsByChar: (boolean | null)[]
    activeSlot: number
    round: number
    score: number
    paused: boolean
+   gameOver: boolean
 }
 export type Day = {
    date: string
@@ -31,13 +31,13 @@ const useStore = create(
             appStatus: {
                date: '',
                phrase: '',
-               phraseByChar: [],
                answerByChar: [],
                matchsByChar: [],
                activeSlot: 0,
                round: 0,
                score: 0,
-               paused: false
+               paused: false,
+               gameOver: false,
             } as Status,
             setAppStatus: (status: Status) => {
                set({ appStatus: status })
