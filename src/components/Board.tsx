@@ -1,15 +1,36 @@
-import Slot from '@/components/Slot'
+import { useEffect } from 'react'
 import useStore from '@/store'
+import Slot from '@/components/Slot'
+import right from '/assets/audio/right.wav'
+import wrong from '/assets/audio/wrong.wav'
+import 'animate.css'
+
+const slot_bgCcolor_disabled = 'bg-neutral-400'
+const slot_bgCcolor_default = 'bg-white-400'
+const slot_bgCcolor_success = 'bg-green-500'
+const slot_bgCcolor_error = 'bg-red-500'
+const slot_txtColor_default = 'text-neutral-500'
+const slot_txtColor_played = 'text-white'
+const slot_animation_succces = 'animate__animated animate__bounce animate__faster'
+const slot_animation_error = 'animate__animated animate__headShake animate__faster animate__delay-1s'
+const rightSound = new Audio(right)
+const wrongSound = new Audio(wrong)
 
 const Board = () => {
-   const { appStatus: { phrase, activeSlot, answerByChar, matchsByChar, gameOver } } = useStore()
-   const slot_bgCcolor_disabled = 'bg-neutral-400'
-   const slot_bgCcolor_default = 'bg-white-400'
-   const slot_bgCcolor_success = 'bg-green-500'
-   const slot_bgCcolor_error = 'bg-red-500'
-   const slot_txtColor_default = 'text-neutral-500'
-   const slot_txtColor_played = 'text-white'
+   const { appStatus: { phrase, activeSlot, answerByChar, matchsByChar, round, paused, gameOver } } = useStore()
    const remainingSlots = 30 - phrase.length
+
+   useEffect(() => {
+      if (matchsByChar.includes(false) && round > 1 && (!paused || !gameOver)) {
+         rightSound.currentTime = 0
+         wrongSound.currentTime = 0
+
+         rightSound.play()
+         setTimeout(() => {
+            wrongSound.play()
+         }, 1000)
+      }
+   }, [matchsByChar])
 
    return (
       <div className='flex justify-center'>
@@ -21,8 +42,8 @@ const Board = () => {
                   let slot_letter: string | null = null
                   let slot_bgCcolor = slot_bgCcolor_disabled
                   let slot_txtColor = slot_txtColor_played
-                    let slot_active = gameOver ? false : activeSlot === index + 1
-
+                  let slot_animation = ''
+                  let slot_active = gameOver ? false : activeSlot === index + 1
                   if (!_isSpace) {
                      // Determine the slot's letter and background color based on whether it matches the answer.
                      const isMatch = matchsByChar[index]
@@ -30,18 +51,40 @@ const Board = () => {
 
                      if (isMatch) {
                         slot_bgCcolor = slot_bgCcolor_success
+                        slot_animation = slot_animation_succces
                      }
                      else if (isMatch === undefined) {
                         slot_bgCcolor = !_isSpace ? slot_bgCcolor_default : slot_bgCcolor_disabled
                         slot_txtColor = slot_txtColor_default
                      }
-                     else slot_bgCcolor = slot_bgCcolor_error
+                     else {
+                        slot_bgCcolor = slot_bgCcolor_error
+                        slot_animation = slot_animation_error
+                     }
                   }
 
-                  return <Slot letter={slot_letter} bgColor={slot_bgCcolor} txtColor={slot_txtColor} active={slot_active} key={'slot-' + index} />
+                  return (
+                     <Slot
+                        letter={slot_letter}
+                        bgColor={slot_bgCcolor}
+                        txtColor={slot_txtColor}
+                        animation={slot_animation}
+                        active={slot_active}
+                        key={`slot-${index}-${performance.now()}`}
+                     />
+                  )
                })
             }
-            {Array.from({ length: remainingSlots }).map((_, index) => <Slot letter={null} bgColor={slot_bgCcolor_disabled} txtColor={slot_txtColor_default} active={false} key={'empty-slot-' + index} />)}
+            {Array.from({ length: remainingSlots }).map((_, index) => (
+               <Slot
+                  letter={null}
+                  bgColor={slot_bgCcolor_disabled}
+                  txtColor={slot_txtColor_default}
+                  animation={''}
+                  active={false}
+                  key={'empty-slot-' + index}
+               />
+            ))}
          </div>
       </div>
    )

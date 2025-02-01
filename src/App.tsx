@@ -9,7 +9,6 @@ import Keyboard from '@/components/Keyboard'
 import Dialog from '@mui/material/Dialog'
 import days from '@/data/2025/en-US.json'
 
-
 const App = () => {
    const { appStatus, setAppStatus } = useStore()
    const [openMenu, setOpenMenu] = useState(false)
@@ -28,39 +27,38 @@ const App = () => {
 
    const setInitialStatus = () => {
       // TODO add try-catch
-      // const _formattedDate: string = '01/16'
-      const _formattedDate = new Date().toLocaleDateString('en-US', { day: '2-digit', month: '2-digit' })
+      const _formattedDate: string = '01/16'
+      // const _formattedDate = new Date().toLocaleDateString('en-US', { day: '2-digit', month: '2-digit' })
       const _day: Day | undefined = lodash.find((days as Day[]), { date: _formattedDate })
-      const _festivity = _day ? _day.festivity : ''
-
+      // const _festivity = _day ? _day.festivity : ''
 
       setAppStatus({
          date: _formattedDate,
          phrase: _day?.festivity ? _day.festivity : '',
-         answerByChar: _day?.festivity ? _day.festivity.split('').map(char => (char === ' ' ? char : null)) : [],
-         // answerByChar: [
-         //    "X",
-         //    "A",
-         //    "R",
-         //    "T",
-         //    "X",
-         //    "N",
-         //    " ",
-         //    "X",
-         //    "U",
-         //    "T",
-         //    "H",
-         //    "E",
-         //    "X",
-         //    " ",
-         //    "K",
-         //    "X",
-         //    "N",
-         //    "G",
-         //    " ",
-         //    "X",
-         //    "X"
-         // ],
+         // answerByChar: _day?.festivity ? _day.festivity.split('').map(char => (char === ' ' ? char : null)) : [],
+         answerByChar: [
+            "X",
+            "A",
+            "R",
+            "T",
+            "X",
+            "N",
+            " ",
+            "X",
+            "U",
+            "T",
+            "H",
+            "E",
+            "X",
+            " ",
+            "K",
+            "X",
+            "N",
+            "G",
+            " ",
+            "X",
+            "X"
+         ],
          matchsByChar: [],
          activeSlot: 1,
          round: 1,
@@ -185,7 +183,7 @@ const App = () => {
          if (!_match && _boardComplete) _boardComplete = false
       })
 
-      // Check if the game is over based on if the board is complete and the available rounds
+      // Determine if the game is over based on whether the board is complete or the maximum number of rounds has been reached
       const _gameOver = ((VITE_ENV_APP_MAX_ROUNDS - round) <= 0) || _boardComplete === true
 
       const _status: Status = ({
@@ -226,23 +224,25 @@ const App = () => {
             </div>
          </div>
 
-         <Dialog
-            fullScreen
-            open={appStatus.gameOver}
-            onClose={() => {}}
-         >
-            <div className='flex place-content-center h-full'>
-               <div className='flex flex-col justify-center w-[450px]'>
-                  <div className='place-content-center h-[300px]'>
-                     <span className='flex justify-center text-5xl font-custom pb-5'>YOU {appStatus.matchsByChar.includes(false) ? 'LOSE' : 'WIN'}</span>
+         {appStatus.gameOver &&
+            <Dialog
+               fullScreen
+               open={appStatus.gameOver}
+               onClose={() => { }}
+            >
+               <div className='flex place-content-center h-full'>
+                  <div className='flex flex-col justify-center w-[450px]'>
+                     <div className='place-content-center h-[300px]'>
+                        <span className='flex justify-center text-5xl font-custom pb-5'>YOU {appStatus.matchsByChar.includes(false) ? 'LOSE' : 'WIN'}</span>
 
-                     {/* <div className='w-[250px]'> */}
+                        {/* <div className='w-[250px]'> */}
                         <Board />
-                     {/* </div> */}
+                        {/* </div> */}
+                     </div>
                   </div>
                </div>
-            </div>
-         </Dialog>
+            </Dialog>
+         }
       </>
    )
 }

@@ -24,6 +24,7 @@ interface StoreProps {
    _hasHydrated: boolean
    setHasHydrated: (status: boolean) => void
 }
+
 const useStore = create(
    devtools(
       persist<StoreProps>(
