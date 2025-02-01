@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import useStore, { Sound } from '@/store'
 import Slot from '@/components/Slot'
-
 const slot_bgCcolor_disabled = 'bg-neutral-400'
 const slot_bgCcolor_default = 'bg-white-400'
 const slot_bgCcolor_success = 'bg-green-500'
@@ -19,7 +18,7 @@ const Board: React.FC<BoardProps> = ({ playSound }) => {
    const _hasSuccesSlots = matchsByChar.includes(true)
    const _hasErrorSlots = matchsByChar.includes(false)
    const remainingSlots = 30 - phrase.length
-
+   
    useEffect(() => {
       if (round > 1 && (!paused || !gameOver)) {
          _hasSuccesSlots && playSound('right')
@@ -39,7 +38,7 @@ const Board: React.FC<BoardProps> = ({ playSound }) => {
                   let slot_letter: string | null = null
                   let slot_bgCcolor = slot_bgCcolor_disabled
                   let slot_txtColor = slot_txtColor_played
-                  let slot_animation = ''
+                  let slot_animation = null
                   let slot_active = gameOver ? false : activeSlot === index + 1
                   
                   if (!_isSpace) {
@@ -68,6 +67,7 @@ const Board: React.FC<BoardProps> = ({ playSound }) => {
                         txtColor={slot_txtColor}
                         animation={slot_animation}
                         active={slot_active}
+                        // key={`slot-${index}`}
                         key={`slot-${index}-${performance.now()}`}
                      />
                   )
@@ -78,7 +78,7 @@ const Board: React.FC<BoardProps> = ({ playSound }) => {
                   letter={null}
                   bgColor={slot_bgCcolor_disabled}
                   txtColor={slot_txtColor_default}
-                  animation={''}
+                  animation={null}
                   active={false}
                   key={'empty-slot-' + index}
                />

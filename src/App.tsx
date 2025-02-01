@@ -1,3 +1,4 @@
+const VITE_ENV_APP_MAX_ROUNDS = import.meta.env.VITE_ENV_APP_MAX_ROUNDS
 import { useState, useEffect, useRef } from 'react'
 import useStore, { Status, Day, Sound } from '@/store'
 import lodash from 'lodash'
@@ -10,17 +11,14 @@ import bumpSound from '/assets/audio/bump.mp3'
 import clickSound from '/assets/audio/click.mp3'
 import rightSound from '/assets/audio/right.mp3'
 import wrongSound from '/assets/audio/wrong.mp3'
-import days from '@/data/2025/en-US.json'
+import data from '@/data/2025/en-US.json'
 import 'animate.css'
-
-const VITE_ENV_APP_MAX_ROUNDS = import.meta.env.VITE_ENV_APP_MAX_ROUNDS
 
 const App = () => {
    const { appStatus, setAppStatus } = useStore()
    const appStatusRef = useRef(appStatus)
    const audioContextRef = useRef<AudioContext | null>(null)
    const audioBuffersRef = useRef<Map<string, AudioBuffer>>(new Map())
-
    const [openMenu, setOpenMenu] = useState(false)
 
    useEffect(() => {
@@ -75,36 +73,36 @@ const App = () => {
       // TODO add try-catch
       const _formattedDate: string = '01/16'
       // const _formattedDate = new Date().toLocaleDateString('en-US', { day: '2-digit', month: '2-digit' })
-      const _day: Day | undefined = lodash.find((days as Day[]), { date: _formattedDate })
-      // const _festivity = _day ? _day.festivity : ''
+      const _day: Day | undefined = lodash.find((data as Day[]), { date: _formattedDate })
+      const _festivity = _day?.festivity ?? ''
 
       setAppStatus({
          date: _formattedDate,
-         phrase: _day?.festivity ? _day.festivity : '',
-         // answerByChar: _day?.festivity ? _day.festivity.split('').map(char => (char === ' ' ? char : null)) : [],
-         answerByChar: [
-            "X",
-            "A",
-            "R",
-            "T",
-            "X",
-            "N",
-            " ",
-            "X",
-            "U",
-            "T",
-            "H",
-            "E",
-            "X",
-            " ",
-            "K",
-            "X",
-            "N",
-            "G",
-            " ",
-            "X",
-            "X"
-         ],
+         phrase: _festivity,
+         answerByChar: _festivity.split('').map(char => (char === ' ' ? char : null)),
+         // answerByChar: [
+         //    "X",
+         //    "A",
+         //    "R",
+         //    "T",
+         //    "X",
+         //    "N",
+         //    " ",
+         //    "X",
+         //    "U",
+         //    "T",
+         //    "H",
+         //    "E",
+         //    "X",
+         //    " ",
+         //    "K",
+         //    "X",
+         //    "N",
+         //    "G",
+         //    " ",
+         //    "X",
+         //    "X"
+         // ],
          matchsByChar: [],
          activeSlot: 1,
          round: 1,

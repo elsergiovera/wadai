@@ -1,2 +1,4 @@
-*  fix Board responsive size.
-*  fix Slot not animate when typing.
++  possibly move answer outside of appStatus so it wont re-render everything? (move answer out of appStatus maybe)
++  fix Slot not animate when typing.
++  fix Board responsive size.
++  check wtf happens if I have more than 30 letters.
