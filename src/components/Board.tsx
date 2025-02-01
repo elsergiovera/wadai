@@ -9,21 +9,23 @@ const slot_bgCcolor_error = 'bg-red-500'
 const slot_txtColor_default = 'text-neutral-500'
 const slot_txtColor_played = 'text-white'
 const slot_animation_succces = 'animate__animated animate__bounce animate__faster'
-const slot_animation_error = 'animate__animated animate__headShake animate__faster animate__delay-1s'
+const slot_animation_error = 'animate__animated animate__headShake animate__faster'
 
 interface BoardProps {
    playSound: (sound: Sound) => void
 }
 const Board: React.FC<BoardProps> = ({ playSound }) => {
    const { appStatus: { phrase, activeSlot, answerByChar, matchsByChar, round, paused, gameOver } } = useStore()
+   const _hasSuccesSlots = matchsByChar.includes(true)
+   const _hasErrorSlots = matchsByChar.includes(false)
    const remainingSlots = 30 - phrase.length
 
    useEffect(() => {
-      if (matchsByChar.includes(false) && round > 1 && (!paused || !gameOver)) {
-         playSound('right')
-         setTimeout(() => {
+      if (round > 1 && (!paused || !gameOver)) {
+         _hasSuccesSlots && playSound('right')
+         _hasErrorSlots && setTimeout(() => {
             playSound('wrong')
-         }, 1000)
+         }, _hasSuccesSlots ? 1000 : 0)
       }
    }, [matchsByChar])
 
@@ -55,7 +57,7 @@ const Board: React.FC<BoardProps> = ({ playSound }) => {
                      }
                      else {
                         slot_bgCcolor = slot_bgCcolor_error
-                        slot_animation = slot_animation_error
+                        slot_animation = slot_animation_error + (_hasSuccesSlots ? ' animate__delay-1s' : '')
                      }
                   }
 

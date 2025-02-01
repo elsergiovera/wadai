@@ -162,7 +162,6 @@ const App = () => {
          if (_nextSlotIndex === -1) {
             _activeSlot = activeSlot
             playSound('bump')
-
          }
          else if (_nextSlotIndex >= 0)
             _activeSlot = activeSlot + _nextSlotIndex + 1
@@ -249,12 +248,12 @@ const App = () => {
       let _boardComplete = true
 
       answerByChar.map((char, index) => {
-         const _match = char === _phraseByChar[index].toUpperCase()
+         const _match = (char !== ' ') ? char === _phraseByChar[index].toUpperCase() : null
          _matchsByChar.push(_match)
 
          // If there's wrong answers, set the first active slot for next round and the board as incomplete.
-         if (!_match && _activeSlot === null) _activeSlot = index + 1
-         if (!_match && _boardComplete) _boardComplete = false
+         if (_match === false && _activeSlot === null) _activeSlot = index + 1
+         if (_match === false && _boardComplete) _boardComplete = false
       })
 
       // Determine if the game is over based on whether the board is complete or the maximum number of rounds has been reached

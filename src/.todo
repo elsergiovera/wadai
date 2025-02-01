@@ -1,1 +1,2 @@
-*  fix deleteKey on last spot. activeSlot should be one less.
+*  fix Board responsive size.
+*  fix Slot not animate when typing.
