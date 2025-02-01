@@ -10,3 +10,8 @@
   font-weight: bold;
   cursor: pointer;
 }
+.hg-button:active {
+  transform: translateY(-4px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: transform 0.1s ease-out;
+}
