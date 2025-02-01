@@ -1,5 +1,6 @@
+import { useEffect, useRef } from 'react'
 import KeyboardReact from 'react-simple-keyboard'
-import click from '/assets/audio/click.mp3'
+import clickSound from '/assets/audio/click.mp3'
 import 'react-simple-keyboard/build/css/index.css'
 import '@/styles/keyboard.css'
 
@@ -7,12 +8,50 @@ interface KeyboardProps {
    handleKeyDown: (event: KeyboardEvent | string) => void
 }
 const Keyboard: React.FC<KeyboardProps> = ({ handleKeyDown }) => {
-   const clickSound = new Audio(click)
+   const audioContextRef = useRef<AudioContext | null>(null)
+   const audioBufferRef = useRef<AudioBuffer | null>(null)
+
+   useEffect(() => {
+      const loadAudio = async () => {
+         const response = await fetch(clickSound)
+         const arrayBuffer = await response.arrayBuffer()
+         const audioBuffer = await audioContextRef.current!.decodeAudioData(arrayBuffer)
+
+         audioBufferRef.current = audioBuffer
+      }
+
+      if (!audioContextRef.current) {
+         audioContextRef.current = new AudioContext()
+      }
+
+      loadAudio()
+
+      // Keep the AudioContext Active (important for mobile).
+      // Mobile browsers pause the AudioContext when inactive, which adds delays.
+      const unlockAudio = () => {
+         if (audioContextRef.current?.state === 'suspended') {
+            audioContextRef.current.resume()
+         }
+      }
+      document.addEventListener('touchstart', unlockAudio)
+      document.addEventListener('click', unlockAudio)
+
+      return () => {
+         document.removeEventListener('touchstart', unlockAudio)
+         document.removeEventListener('click', unlockAudio)
+      }
+   }, [])
+
+   const playClick = () => {
+      if (!audioBufferRef.current) return
+      const source = audioContextRef.current!.createBufferSource()
+      source.buffer = audioBufferRef.current
+      source.connect(audioContextRef.current!.destination)
+      source.start(0)
+   }
 
    const handleKeyPress = (button: string) => {
-      clickSound.currentTime = 0
-      clickSound.play()
-
+      playClick()
       handleKeyDown(button.replace(/[{}]/g, ''))
    }
 

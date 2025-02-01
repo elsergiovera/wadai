@@ -1,8 +1,8 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import useStore from '@/store'
 import Slot from '@/components/Slot'
-import right from '/assets/audio/right.wav'
-import wrong from '/assets/audio/wrong.wav'
+import rightSound from '/assets/audio/right.mp3'
+import wrongSound from '/assets/audio/wrong.mp3'
 import 'animate.css'
 
 const slot_bgCcolor_disabled = 'bg-neutral-400'
@@ -13,24 +13,49 @@ const slot_txtColor_default = 'text-neutral-500'
 const slot_txtColor_played = 'text-white'
 const slot_animation_succces = 'animate__animated animate__bounce animate__faster'
 const slot_animation_error = 'animate__animated animate__headShake animate__faster animate__delay-1s'
-const rightSound = new Audio(right)
-const wrongSound = new Audio(wrong)
 
 const Board = () => {
    const { appStatus: { phrase, activeSlot, answerByChar, matchsByChar, round, paused, gameOver } } = useStore()
+   const audioContextRef = useRef<AudioContext | null>(null)
+   const audioBuffersRef = useRef<Map<string, AudioBuffer>>(new Map())
    const remainingSlots = 30 - phrase.length
 
    useEffect(() => {
-      if (matchsByChar.includes(false) && round > 1 && (!paused || !gameOver)) {
-         rightSound.currentTime = 0
-         wrongSound.currentTime = 0
+      const loadAudio = async (url: string) => {
+         const response = await fetch(url)
+         const arrayBuffer = await response.arrayBuffer()
+         const audioBuffer = await audioContextRef.current!.decodeAudioData(arrayBuffer)
 
-         rightSound.play()
+         audioBuffersRef.current.set(url, audioBuffer)
+      }
+
+      const initializeAudio = async () => {
+         if (!audioContextRef.current) {
+            audioContextRef.current = new AudioContext()
+         }
+         await Promise.all([loadAudio(rightSound), loadAudio(wrongSound)])
+      }
+      initializeAudio()
+   }, [])
+
+   useEffect(() => {
+      if (matchsByChar.includes(false) && round > 1 && (!paused || !gameOver)) {
+         playSound(rightSound)
          setTimeout(() => {
-            wrongSound.play()
+            playSound(wrongSound)
          }, 1000)
       }
    }, [matchsByChar])
+
+
+   const playSound = (url: string) => {
+      if (!audioBuffersRef.current.has(url)) return
+      const source = audioContextRef.current!.createBufferSource()
+
+      source.buffer = audioBuffersRef.current.get(url)!
+      source.connect(audioContextRef.current!.destination)
+      source.start(0)
+   }
 
    return (
       <div className='flex justify-center'>
