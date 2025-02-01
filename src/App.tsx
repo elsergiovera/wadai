@@ -1,4 +1,3 @@
-const VITE_ENV_APP_MAX_ROUNDS = import.meta.env.VITE_ENV_APP_MAX_ROUNDS
 import { useState, useEffect, useRef } from 'react'
 import useStore, { Status, Day } from '@/store'
 import lodash from 'lodash'
@@ -7,18 +6,58 @@ import Topbar from '@/components/Topbar'
 import Board from '@/components/Board'
 import Keyboard from '@/components/Keyboard'
 import Dialog from '@mui/material/Dialog'
+import bumpSound from '/assets/audio/bump.mp3'
 import days from '@/data/2025/en-US.json'
+
+const VITE_ENV_APP_MAX_ROUNDS = import.meta.env.VITE_ENV_APP_MAX_ROUNDS
 
 const App = () => {
    const { appStatus, setAppStatus } = useStore()
-   const [openMenu, setOpenMenu] = useState(false)
    const appStatusRef = useRef(appStatus)
+   const audioContextRef = useRef<AudioContext | null>(null)
+   const audioBuffersRef = useRef<Map<string, AudioBuffer>>(new Map())
+
+   const [openMenu, setOpenMenu] = useState(false)
 
    useEffect(() => {
       setInitialStatus()
 
+      // Optimized playback audio functions.
+      const loadAudio = async (url: string) => {
+         const response = await fetch(url)
+         const arrayBuffer = await response.arrayBuffer()
+         const audioBuffer = await audioContextRef.current!.decodeAudioData(arrayBuffer)
+
+         audioBuffersRef.current.set(url, audioBuffer)
+      }
+      const initializeAudio = async () => {
+         if (!audioContextRef.current) {
+            audioContextRef.current = new AudioContext()
+         }
+         await Promise.all([
+            loadAudio(bumpSound)
+         ])
+      }
+      initializeAudio()
+
+      // Keep the AudioContext Active (important for mobile).
+      // Mobile browsers pause the AudioContext when inactive, which adds delays.
+      const unlockAudio = () => {
+         if (audioContextRef.current?.state === 'suspended') {
+            audioContextRef.current.resume()
+         }
+      }
+      
+      // Add Event Listeners and their respectives cleanup function.
       window.addEventListener('keydown', handleKeyDown)
-      return () => window.removeEventListener('keydown', handleKeyDown)
+      window.addEventListener('touchstart', unlockAudio)
+      window.addEventListener('click', unlockAudio)
+
+      return () => {
+         window.removeEventListener('keydown', handleKeyDown)
+         window.removeEventListener('touchstart', unlockAudio)
+         window.removeEventListener('click', unlockAudio)
+      }
    }, [])
    useEffect(() => {
       appStatusRef.current = appStatus
@@ -35,30 +74,30 @@ const App = () => {
       setAppStatus({
          date: _formattedDate,
          phrase: _day?.festivity ? _day.festivity : '',
-         // answerByChar: _day?.festivity ? _day.festivity.split('').map(char => (char === ' ' ? char : null)) : [],
-         answerByChar: [
-            "X",
-            "A",
-            "R",
-            "T",
-            "X",
-            "N",
-            " ",
-            "X",
-            "U",
-            "T",
-            "H",
-            "E",
-            "X",
-            " ",
-            "K",
-            "X",
-            "N",
-            "G",
-            " ",
-            "X",
-            "X"
-         ],
+         answerByChar: _day?.festivity ? _day.festivity.split('').map(char => (char === ' ' ? char : null)) : [],
+         // answerByChar: [
+         //    "X",
+         //    "A",
+         //    "R",
+         //    "T",
+         //    "X",
+         //    "N",
+         //    " ",
+         //    "X",
+         //    "U",
+         //    "T",
+         //    "H",
+         //    "E",
+         //    "X",
+         //    " ",
+         //    "K",
+         //    "X",
+         //    "N",
+         //    "G",
+         //    " ",
+         //    "X",
+         //    "X"
+         // ],
          matchsByChar: [],
          activeSlot: 1,
          round: 1,
@@ -66,6 +105,14 @@ const App = () => {
          paused: false,
          gameOver: false
       } as Status)
+   }
+   const playSound = (url: string) => {
+      if (!audioBuffersRef.current.has(url)) return
+      const source = audioContextRef.current!.createBufferSource()
+
+      source.buffer = audioBuffersRef.current.get(url)!
+      source.connect(audioContextRef.current!.destination)
+      source.start(0)
    }
    const insertKey = (status: Status, key: string) => {
       const { phrase, answerByChar, matchsByChar, activeSlot, round } = status
@@ -85,17 +132,21 @@ const App = () => {
 
          if (_nextSlotAvailable) {
             const _isNextSlotSpace = _phraseByChar[activeSlot] === ' '
-
             _activeSlot = (activeSlot + 1) + (_isNextSlotSpace ? 1 : 0)
          }
-         else
+         else {
             _activeSlot = activeSlot
+            playSound(bumpSound)
+         }
       }
       else {
          const _nextSlotIndex = matchsByChar.slice(activeSlot).findIndex((match) => match === false)
 
-         if (_nextSlotIndex === -1)
+         if (_nextSlotIndex === -1) {
             _activeSlot = activeSlot
+            playSound(bumpSound)
+
+         }
          else if (_nextSlotIndex >= 0)
             _activeSlot = activeSlot + _nextSlotIndex + 1
       }
@@ -120,8 +171,11 @@ const App = () => {
       // If no plays have been made yet (round === 1), move to the previous slot if it's not at the first one.
       // If plays have been made (round > 1), find the previous available slot wheres matches are marked as 'false' in the previous round.
       if (round === 1) {
-         // If it's the first slot, exits the function.
-         if (activeSlot === 1) return
+         // If it's the first slot, plays the sound and exits the function.
+         if (_activeSlot === 0) {
+            playSound(bumpSound)
+            return
+         }
 
          const _isLastSlot = activeSlot === _phraseByChar.length
          if (_isLastSlot) {
@@ -150,9 +204,12 @@ const App = () => {
          else {
             // Remove the previous character and skips an extra slot if the previous one is a space.
             const _nextSlotIndex = matchsByChar.slice(0, activeSlot - 1).lastIndexOf(false)
+            const _isFirstSlot = _nextSlotIndex === -1
 
             _answerByChar[_slotIndex] = null
-            _activeSlot = (_nextSlotIndex === - 1) ? _activeSlot = activeSlot : _nextSlotIndex + 1
+            _activeSlot = (_isFirstSlot) ? _activeSlot = activeSlot : _nextSlotIndex + 1
+
+            if (_isFirstSlot) playSound(bumpSound)
          }
       }
 

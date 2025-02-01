@@ -20,26 +20,8 @@ const Keyboard: React.FC<KeyboardProps> = ({ handleKeyDown }) => {
          audioBufferRef.current = audioBuffer
       }
 
-      if (!audioContextRef.current) {
-         audioContextRef.current = new AudioContext()
-      }
-
+      if (!audioContextRef.current) audioContextRef.current = new AudioContext()
       loadAudio()
-
-      // Keep the AudioContext Active (important for mobile).
-      // Mobile browsers pause the AudioContext when inactive, which adds delays.
-      const unlockAudio = () => {
-         if (audioContextRef.current?.state === 'suspended') {
-            audioContextRef.current.resume()
-         }
-      }
-      document.addEventListener('touchstart', unlockAudio)
-      document.addEventListener('click', unlockAudio)
-
-      return () => {
-         document.removeEventListener('touchstart', unlockAudio)
-         document.removeEventListener('click', unlockAudio)
-      }
    }, [])
 
    const playClick = () => {

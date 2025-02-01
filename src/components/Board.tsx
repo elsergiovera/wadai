@@ -33,7 +33,10 @@ const Board = () => {
          if (!audioContextRef.current) {
             audioContextRef.current = new AudioContext()
          }
-         await Promise.all([loadAudio(rightSound), loadAudio(wrongSound)])
+         await Promise.all([
+            loadAudio(rightSound),
+            loadAudio(wrongSound)
+         ])
       }
       initializeAudio()
    }, [])
@@ -46,7 +49,6 @@ const Board = () => {
          }, 1000)
       }
    }, [matchsByChar])
-
 
    const playSound = (url: string) => {
       if (!audioBuffersRef.current.has(url)) return
