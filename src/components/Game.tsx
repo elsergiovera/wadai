@@ -1,7 +1,6 @@
 const VITE_ENV_APP_MAX_ROUNDS = import.meta.env.VITE_ENV_APP_MAX_ROUNDS
 import { useEffect, useRef } from 'react'
 import useStore, { Status, Day, Sound } from '@/store'
-import lodash from 'lodash'
 import Board from '@/components/Board'
 import Keyboard from '@/components/Keyboard'
 import Dialog from '@mui/material/Dialog'
@@ -10,6 +9,7 @@ import clickSound from '/assets/audio/click.mp3'
 import rightSound from '/assets/audio/right.mp3'
 import wrongSound from '/assets/audio/wrong.mp3'
 import data from '@/data/2025/en-US.json'
+import lodash from 'lodash'
 import 'animate.css'
 
 const App = () => {
@@ -67,7 +67,6 @@ const App = () => {
    }, [appStatus])
 
    const setInitialStatus = () => {
-      // TODO add try-catch
       const _formattedDate: string = '01/16'
       // const _formattedDate = new Date().toLocaleDateString('en-US', { day: '2-digit', month: '2-digit' })
       const _day: Day | undefined = lodash.find((data as Day[]), { date: _formattedDate })
@@ -77,29 +76,7 @@ const App = () => {
          date: _formattedDate,
          phrase: _festivity,
          answerByChar: _festivity.split('').map(char => (char === ' ' ? char : null)),
-         // answerByChar: [
-         //    "X",
-         //    "A",
-         //    "R",
-         //    "T",
-         //    "X",
-         //    "N",
-         //    " ",
-         //    "X",
-         //    "U",
-         //    "T",
-         //    "H",
-         //    "E",
-         //    "X",
-         //    " ",
-         //    "K",
-         //    "X",
-         //    "N",
-         //    "G",
-         //    " ",
-         //    "X",
-         //    "X"
-         // ],
+         // answerByChar: ["X","A","R","T","X","N"," ","X","U","T","H","E","X"," ","K","X","N","G"," ","X","X"],
          matchsByChar: [],
          activeSlot: 1,
          round: 1,
@@ -265,7 +242,7 @@ const App = () => {
       setAppStatus(_status)
    }
    const handleStatusUpdate = (status: Status) => {
-      console.log("--- status updated ---", status)
+      // console.log("--- status updated ---", status)
    }
    const handleKeyDown = (event: KeyboardEvent | string) => {
       if (appStatusRef.current.paused) return
@@ -291,7 +268,7 @@ const App = () => {
             <Dialog
                fullScreen
                open={appStatus.gameOver}
-               onClose={() => { }}
+               onClose={() => {}}
             >
                <div className='flex place-content-center h-full'>
                   <div className='flex flex-col justify-center w-[450px]'>
