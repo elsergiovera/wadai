@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import useStore, { Status, Day } from '@/store'
+import useStore, { Status, Day, Sound } from '@/store'
 import lodash from 'lodash'
 import Menu from '@/components/Menu'
 import Topbar from '@/components/Topbar'
@@ -7,7 +7,11 @@ import Board from '@/components/Board'
 import Keyboard from '@/components/Keyboard'
 import Dialog from '@mui/material/Dialog'
 import bumpSound from '/assets/audio/bump.mp3'
+import clickSound from '/assets/audio/click.mp3'
+import rightSound from '/assets/audio/right.mp3'
+import wrongSound from '/assets/audio/wrong.mp3'
 import days from '@/data/2025/en-US.json'
+import 'animate.css'
 
 const VITE_ENV_APP_MAX_ROUNDS = import.meta.env.VITE_ENV_APP_MAX_ROUNDS
 
@@ -35,7 +39,10 @@ const App = () => {
             audioContextRef.current = new AudioContext()
          }
          await Promise.all([
-            loadAudio(bumpSound)
+            loadAudio(bumpSound),
+            loadAudio(clickSound),
+            loadAudio(rightSound),
+            loadAudio(wrongSound)
          ])
       }
       initializeAudio()
@@ -74,30 +81,30 @@ const App = () => {
       setAppStatus({
          date: _formattedDate,
          phrase: _day?.festivity ? _day.festivity : '',
-         answerByChar: _day?.festivity ? _day.festivity.split('').map(char => (char === ' ' ? char : null)) : [],
-         // answerByChar: [
-         //    "X",
-         //    "A",
-         //    "R",
-         //    "T",
-         //    "X",
-         //    "N",
-         //    " ",
-         //    "X",
-         //    "U",
-         //    "T",
-         //    "H",
-         //    "E",
-         //    "X",
-         //    " ",
-         //    "K",
-         //    "X",
-         //    "N",
-         //    "G",
-         //    " ",
-         //    "X",
-         //    "X"
-         // ],
+         // answerByChar: _day?.festivity ? _day.festivity.split('').map(char => (char === ' ' ? char : null)) : [],
+         answerByChar: [
+            "X",
+            "A",
+            "R",
+            "T",
+            "X",
+            "N",
+            " ",
+            "X",
+            "U",
+            "T",
+            "H",
+            "E",
+            "X",
+            " ",
+            "K",
+            "X",
+            "N",
+            "G",
+            " ",
+            "X",
+            "X"
+         ],
          matchsByChar: [],
          activeSlot: 1,
          round: 1,
@@ -106,13 +113,23 @@ const App = () => {
          gameOver: false
       } as Status)
    }
-   const playSound = (url: string) => {
-      if (!audioBuffersRef.current.has(url)) return
-      const source = audioContextRef.current!.createBufferSource()
+   const playSound = (sound: Sound) => {
+      const _source = audioContextRef.current!.createBufferSource()
+      const _url = (() => {
+         switch (sound) {
+            case 'bump': return bumpSound
+            case 'click': return clickSound
+            case 'right': return rightSound
+            case 'wrong': return wrongSound
+         }
+      })()
 
-      source.buffer = audioBuffersRef.current.get(url)!
-      source.connect(audioContextRef.current!.destination)
-      source.start(0)
+      // Check if the audio buffer has been loaded.
+      if (!audioBuffersRef.current.has(_url)) return
+
+      _source.buffer = audioBuffersRef.current.get(_url)!
+      _source.connect(audioContextRef.current!.destination)
+      _source.start(0)
    }
    const insertKey = (status: Status, key: string) => {
       const { phrase, answerByChar, matchsByChar, activeSlot, round } = status
@@ -136,7 +153,7 @@ const App = () => {
          }
          else {
             _activeSlot = activeSlot
-            playSound(bumpSound)
+            playSound('bump')
          }
       }
       else {
@@ -144,7 +161,7 @@ const App = () => {
 
          if (_nextSlotIndex === -1) {
             _activeSlot = activeSlot
-            playSound(bumpSound)
+            playSound('bump')
 
          }
          else if (_nextSlotIndex >= 0)
@@ -173,7 +190,7 @@ const App = () => {
       if (round === 1) {
          // If it's the first slot, plays the sound and exits the function.
          if (_activeSlot === 0) {
-            playSound(bumpSound)
+            playSound('bump')
             return
          }
 
@@ -209,7 +226,7 @@ const App = () => {
             _answerByChar[_slotIndex] = null
             _activeSlot = (_isFirstSlot) ? _activeSlot = activeSlot : _nextSlotIndex + 1
 
-            if (_isFirstSlot) playSound(bumpSound)
+            if (_isFirstSlot) playSound('bump')
          }
       }
 
@@ -275,8 +292,8 @@ const App = () => {
             <Topbar handleToggleMenu={handleToggleMenu} />
             <div className='flex justify-center'>
                <div className='flex flex-col justify-between w-[450px] h-[600px]'>
-                  <Board />
-                  <Keyboard handleKeyDown={handleKeyDown} />
+                  <Board playSound={playSound} />
+                  <Keyboard handleKeyDown={handleKeyDown} playSound={playSound} />
                </div>
             </div>
          </div>
@@ -293,7 +310,7 @@ const App = () => {
                         <span className='flex justify-center text-5xl font-custom pb-5'>YOU {appStatus.matchsByChar.includes(false) ? 'LOSE' : 'WIN'}</span>
 
                         {/* <div className='w-[250px]'> */}
-                        <Board />
+                        <Board playSound={() => {}}/>
                         {/* </div> */}
                      </div>
                   </div>

@@ -1,39 +1,15 @@
-import { useEffect, useRef } from 'react'
+import { Sound } from '@/store'
 import KeyboardReact from 'react-simple-keyboard'
-import clickSound from '/assets/audio/click.mp3'
 import 'react-simple-keyboard/build/css/index.css'
 import '@/styles/keyboard.css'
 
 interface KeyboardProps {
    handleKeyDown: (event: KeyboardEvent | string) => void
+   playSound: (sound: Sound) => void
 }
-const Keyboard: React.FC<KeyboardProps> = ({ handleKeyDown }) => {
-   const audioContextRef = useRef<AudioContext | null>(null)
-   const audioBufferRef = useRef<AudioBuffer | null>(null)
-
-   useEffect(() => {
-      const loadAudio = async () => {
-         const response = await fetch(clickSound)
-         const arrayBuffer = await response.arrayBuffer()
-         const audioBuffer = await audioContextRef.current!.decodeAudioData(arrayBuffer)
-
-         audioBufferRef.current = audioBuffer
-      }
-
-      if (!audioContextRef.current) audioContextRef.current = new AudioContext()
-      loadAudio()
-   }, [])
-
-   const playClick = () => {
-      if (!audioBufferRef.current) return
-      const source = audioContextRef.current!.createBufferSource()
-      source.buffer = audioBufferRef.current
-      source.connect(audioContextRef.current!.destination)
-      source.start(0)
-   }
-
+const Keyboard: React.FC<KeyboardProps> = ({ handleKeyDown, playSound }) => {
    const handleKeyPress = (button: string) => {
-      playClick()
+      playSound('click')
       handleKeyDown(button.replace(/[{}]/g, ''))
    }
 

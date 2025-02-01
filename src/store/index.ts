@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { persist, devtools, createJSONStorage } from 'zustand/middleware'
 
+export type Sound = 'bump' | 'click' | 'right' | 'wrong'
 export type Status = {
    date: string
    phrase: string

@@ -1,9 +1,6 @@
-import { useEffect, useRef } from 'react'
-import useStore from '@/store'
+import { useEffect } from 'react'
+import useStore, { Sound } from '@/store'
 import Slot from '@/components/Slot'
-import rightSound from '/assets/audio/right.mp3'
-import wrongSound from '/assets/audio/wrong.mp3'
-import 'animate.css'
 
 const slot_bgCcolor_disabled = 'bg-neutral-400'
 const slot_bgCcolor_default = 'bg-white-400'
@@ -14,50 +11,21 @@ const slot_txtColor_played = 'text-white'
 const slot_animation_succces = 'animate__animated animate__bounce animate__faster'
 const slot_animation_error = 'animate__animated animate__headShake animate__faster animate__delay-1s'
 
-const Board = () => {
+interface BoardProps {
+   playSound: (sound: Sound) => void
+}
+const Board: React.FC<BoardProps> = ({ playSound }) => {
    const { appStatus: { phrase, activeSlot, answerByChar, matchsByChar, round, paused, gameOver } } = useStore()
-   const audioContextRef = useRef<AudioContext | null>(null)
-   const audioBuffersRef = useRef<Map<string, AudioBuffer>>(new Map())
    const remainingSlots = 30 - phrase.length
 
    useEffect(() => {
-      const loadAudio = async (url: string) => {
-         const response = await fetch(url)
-         const arrayBuffer = await response.arrayBuffer()
-         const audioBuffer = await audioContextRef.current!.decodeAudioData(arrayBuffer)
-
-         audioBuffersRef.current.set(url, audioBuffer)
-      }
-
-      const initializeAudio = async () => {
-         if (!audioContextRef.current) {
-            audioContextRef.current = new AudioContext()
-         }
-         await Promise.all([
-            loadAudio(rightSound),
-            loadAudio(wrongSound)
-         ])
-      }
-      initializeAudio()
-   }, [])
-
-   useEffect(() => {
       if (matchsByChar.includes(false) && round > 1 && (!paused || !gameOver)) {
-         playSound(rightSound)
+         playSound('right')
          setTimeout(() => {
-            playSound(wrongSound)
+            playSound('wrong')
          }, 1000)
       }
    }, [matchsByChar])
-
-   const playSound = (url: string) => {
-      if (!audioBuffersRef.current.has(url)) return
-      const source = audioContextRef.current!.createBufferSource()
-
-      source.buffer = audioBuffersRef.current.get(url)!
-      source.connect(audioContextRef.current!.destination)
-      source.start(0)
-   }
 
    return (
       <div className='flex justify-center'>
@@ -71,6 +39,7 @@ const Board = () => {
                   let slot_txtColor = slot_txtColor_played
                   let slot_animation = ''
                   let slot_active = gameOver ? false : activeSlot === index + 1
+                  
                   if (!_isSpace) {
                      // Determine the slot's letter and background color based on whether it matches the answer.
                      const isMatch = matchsByChar[index]
