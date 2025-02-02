@@ -67,16 +67,16 @@ const App = () => {
    }, [appStatus])
 
    const setInitialStatus = () => {
-      const _formattedDate: string = '01/16'
-      // const _formattedDate = new Date().toLocaleDateString('en-US', { day: '2-digit', month: '2-digit' })
-      const _day: Day | undefined = lodash.find((data as Day[]), { date: _formattedDate })
-      const _festivity = _day?.festivity ?? ''
+      const formattedDate: string = '01/16'
+      // const formattedDate = new Date().toLocaleDateString('en-US', { day: '2-digit', month: '2-digit' })
+      const day: Day | undefined = lodash.find((data as Day[]), { date: formattedDate })
+      const _festivity = day?.festivity ?? ''
 
       setAppStatus({
-         date: _formattedDate,
+         date: formattedDate,
          phrase: _festivity,
-         answerByChar: _festivity.split('').map(char => (char === ' ' ? char : null)),
-         // answerByChar: ["X","A","R","T","X","N"," ","X","U","T","H","E","X"," ","K","X","N","G"," ","X","X"],
+         // answerByChar: _festivity.split('').map(char => (char === ' ' ? char : null)),
+         answerByChar: ["X","A","R","T","X","N"," ","X","U","T","H","E","X"," ","K","X","N","G"," ","X","X"],
          matchsByChar: [],
          activeSlot: 1,
          round: 1,
@@ -86,8 +86,8 @@ const App = () => {
       } as Status)
    }
    const playSound = (sound: Sound) => {
-      const _source = audioContextRef.current!.createBufferSource()
-      const _url = (() => {
+      const source = audioContextRef.current!.createBufferSource()
+      const url = (() => {
          switch (sound) {
             case 'bump': return bumpSound
             case 'click': return clickSound
@@ -97,21 +97,21 @@ const App = () => {
       })()
 
       // Check if the audio buffer has been loaded.
-      if (!audioBuffersRef.current.has(_url)) return
+      if (!audioBuffersRef.current.has(url)) return
 
-      _source.buffer = audioBuffersRef.current.get(_url)!
-      _source.connect(audioContextRef.current!.destination)
-      _source.start(0)
+      source.buffer = audioBuffersRef.current.get(url)!
+      source.connect(audioContextRef.current!.destination)
+      source.start(0)
    }
    const insertKey = (status: Status, key: string) => {
       const { phrase, answerByChar, matchsByChar, activeSlot, round } = status
-      const _slotIndex = activeSlot - 1
+      const slotIndex = activeSlot - 1
       const _answerByChar = answerByChar
       const _phraseByChar = phrase.split('')
       let _activeSlot = 0
 
       // Set the key at the current active slot.
-      _answerByChar[_slotIndex] = key.toUpperCase()
+      _answerByChar[slotIndex] = key.toUpperCase()
 
       // Determine the next active slot.
       // If no plays have been made yet (round === 1), move to the next slot if it's not at the last one.
@@ -149,11 +149,11 @@ const App = () => {
    }
    const deleteKey = (status: Status) => {
       const { phrase, answerByChar, matchsByChar, activeSlot, round } = status
-      const _slotIndex = activeSlot - 1
+      const slotIndex = activeSlot - 1
       const _answerByChar = answerByChar
       const _phraseByChar = phrase.split('')
-      const _isPreviousSlotSpace = _phraseByChar[_slotIndex - 1] === ' '
-      let _activeSlot = _slotIndex
+      const _isPreviousSlotSpace = _phraseByChar[slotIndex - 1] === ' '
+      let _activeSlot = slotIndex
 
       // Determine the next active slot.
       // If no plays have been made yet (round === 1), move to the previous slot if it's not at the first one.
@@ -168,14 +168,14 @@ const App = () => {
          const _isLastSlot = activeSlot === _phraseByChar.length
          if (_isLastSlot) {
             // Check if the last slot and removes it, considering it's not already empty
-            const _isLastSlotEmpty = _answerByChar[_slotIndex] === null
+            const _isLastSlotEmpty = _answerByChar[slotIndex] === null
 
-            _answerByChar[_slotIndex - (_isLastSlotEmpty ? 1 : 0)] = null
+            _answerByChar[slotIndex - (_isLastSlotEmpty ? 1 : 0)] = null
             _activeSlot = activeSlot - (_isLastSlotEmpty ? 1 : 0)
          }
          else {
             // Remove the previous character and skips an extra slot if the previous one is a space.
-            _answerByChar[_slotIndex - (_isPreviousSlotSpace ? 2 : 1)] = null
+            _answerByChar[slotIndex - (_isPreviousSlotSpace ? 2 : 1)] = null
             _activeSlot = (activeSlot - 1) - (_isPreviousSlotSpace ? 1 : 0)
          }
       }
@@ -183,7 +183,7 @@ const App = () => {
          const _isLastSlot = activeSlot === matchsByChar.lastIndexOf(false) + 1
          if (_isLastSlot) {
             // Check if the last slot and removes it, considering it's not already empty
-            const _isLastSlotEmpty = _answerByChar[_slotIndex] === null
+            const _isLastSlotEmpty = _answerByChar[slotIndex] === null
             const _nextSlotIndex = matchsByChar.slice(0, activeSlot - 1).lastIndexOf(false)
 
             _answerByChar[activeSlot - 1] = null
@@ -194,7 +194,7 @@ const App = () => {
             const _nextSlotIndex = matchsByChar.slice(0, activeSlot - 1).lastIndexOf(false)
             const _isFirstSlot = _nextSlotIndex === -1
 
-            _answerByChar[_slotIndex] = null
+            _answerByChar[slotIndex] = null
             _activeSlot = (_isFirstSlot) ? _activeSlot = activeSlot : _nextSlotIndex + 1
 
             if (_isFirstSlot) playSound('bump')
