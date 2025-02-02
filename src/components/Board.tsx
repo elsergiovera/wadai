@@ -10,6 +10,30 @@ const slot_txtColor_played = 'text-white'
 const slot_animation_success = 'animate__bounce animate__faster'
 const slot_animation_error = 'animate__headShake animate__faster'
 
+const getSlotProps = (isLetterMatch: boolean | null, isLetterSpace: boolean, hasRoundChanged: boolean, hasSuccesSlots: boolean) => {
+   let slot_bgCcolor = slot_bgCcolor_disabled
+   let slot_txtColor = slot_txtColor_played
+   let slot_animation: string | null = null
+   
+   // Determine the slot's letter, background color and animation based on whether it matches the answer and round increasement.
+   if (!isLetterSpace) {
+      if (isLetterMatch) {
+         slot_bgCcolor = slot_bgCcolor_success
+         slot_animation = hasRoundChanged ? slot_animation_success : null
+      }
+      else if (isLetterMatch === undefined) {
+         slot_bgCcolor = slot_bgCcolor_default
+         slot_txtColor = slot_txtColor_default
+      }
+      else {
+         slot_bgCcolor = slot_bgCcolor_error
+         slot_animation = hasRoundChanged ? (slot_animation_error + (hasSuccesSlots ? ' animate__delay-1s' : '')) : null
+      }
+   }
+
+   return { slot_bgCcolor, slot_txtColor, slot_animation }
+}
+
 interface BoardProps {
    playSound: (sound: Sound) => void
 }
@@ -23,37 +47,14 @@ const Board: React.FC<BoardProps> = ({ playSound }) => {
 
    useEffect(() => {
       previousRoundRef.current = round
-      if (!paused || !gameOver) playBoardSounds()
+      if (!paused || !gameOver) playBoardSounds(hasSuccesSlots, hasErrorSlots)
    }, [round])
 
-   const playBoardSounds = () => {
+   const playBoardSounds = (hasSuccesSlots: boolean, hasErrorSlots: boolean) => {
       hasSuccesSlots && playSound('right')
       hasErrorSlots && setTimeout(() => {
          playSound('wrong')
       }, hasSuccesSlots ? 1000 : 0)
-   }
-   const getSlotProps = (isLetterMatch: boolean | null, isLetterSpace: boolean, hasRoundChanged: boolean, hasSuccesSlots: boolean) => {
-      let slot_bgCcolor = slot_bgCcolor_disabled
-      let slot_txtColor = slot_txtColor_played
-      let slot_animation: string | null = null
-      
-      // Determine the slot's letter, background color and animation based on whether it matches the answer and round increasement.
-      if (!isLetterSpace) {
-         if (isLetterMatch) {
-            slot_bgCcolor = slot_bgCcolor_success
-            slot_animation = hasRoundChanged ? slot_animation_success : 'NOT'
-         }
-         else if (isLetterMatch === undefined) {
-            slot_bgCcolor = slot_bgCcolor_default
-            slot_txtColor = slot_txtColor_default
-         }
-         else {
-            slot_bgCcolor = slot_bgCcolor_error
-            slot_animation = hasRoundChanged ? (slot_animation_error + (hasSuccesSlots ? ' animate__delay-1s' : '')) : 'NOT'
-         }
-      }
-
-      return { slot_bgCcolor, slot_txtColor, slot_animation }
    }
 
    return (
