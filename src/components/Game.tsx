@@ -76,7 +76,7 @@ const App = () => {
          date: formattedDate,
          phrase: _festivity,
          // answerByChar: _festivity.split('').map(char => (char === ' ' ? char : null)),
-         answerByChar: ["X","A","R","T","X","N"," ","X","U","T","H","E","X"," ","K","X","N","G"," ","X","X"],
+         answerByChar: ["X", "A", "R", "T", "X", "N", " ", "X", "U", "T", "H", "E", "X", " ", "K", "X", "N", "G", " ", "X", "X"],
          matchsByChar: [],
          activeSlot: 1,
          round: 1,
@@ -153,14 +153,14 @@ const App = () => {
       const _answerByChar = answerByChar
       const _phraseByChar = phrase.split('')
       const _isPreviousSlotSpace = _phraseByChar[slotIndex - 1] === ' '
-      let _activeSlot = slotIndex
+      let _activeSlot = 0
 
       // Determine the next active slot.
       // If no plays have been made yet (round === 1), move to the previous slot if it's not at the first one.
       // If plays have been made (round > 1), find the previous available slot wheres matches are marked as 'false' in the previous round.
       if (round === 1) {
          // If it's the first slot, plays the sound and exits the function.
-         if (_activeSlot === 0) {
+         if (slotIndex === 0) {
             playSound('bump')
             return
          }
@@ -176,29 +176,23 @@ const App = () => {
          else {
             // Remove the previous character and skips an extra slot if the previous one is a space.
             _answerByChar[slotIndex - (_isPreviousSlotSpace ? 2 : 1)] = null
-            _activeSlot = (activeSlot - 1) - (_isPreviousSlotSpace ? 1 : 0)
+            _activeSlot = slotIndex - (_isPreviousSlotSpace ? 1 : 0)
          }
       }
       else {
-         const _isLastSlot = activeSlot === matchsByChar.lastIndexOf(false) + 1
-         if (_isLastSlot) {
-            // Check if the last slot and removes it, considering it's not already empty
-            const _isLastSlotEmpty = _answerByChar[slotIndex] === null
-            const _nextSlotIndex = matchsByChar.slice(0, activeSlot - 1).lastIndexOf(false)
+         const _nextSlotIndex = matchsByChar.slice(0, slotIndex).lastIndexOf(false)
+         const _isFirstSlot = _nextSlotIndex === -1
+         const _isLastSlot = slotIndex === matchsByChar.lastIndexOf(false)
+         const _isLastSlotEmpty = _answerByChar[slotIndex] === null
+         _answerByChar[slotIndex] = null
+         
+         // Set activeSlot based on the current position and conditions.
+         // If it's the first available slot or if it's the last available slot and it's not empty, sets it to the actual activeSlot. 
+         // Otherwise, move to the next available slot.
+         // Note: A slot can be first and last at the same time, if it's the only one available in the board.
+         _activeSlot = ((_isLastSlot && !_isLastSlotEmpty) || _isFirstSlot) ? activeSlot : _nextSlotIndex + 1
 
-            _answerByChar[activeSlot - 1] = null
-            _activeSlot = _isLastSlotEmpty ? _nextSlotIndex + 1 : activeSlot
-         }
-         else {
-            // Remove the previous character and skips an extra slot if the previous one is a space.
-            const _nextSlotIndex = matchsByChar.slice(0, activeSlot - 1).lastIndexOf(false)
-            const _isFirstSlot = _nextSlotIndex === -1
-
-            _answerByChar[slotIndex] = null
-            _activeSlot = (_isFirstSlot) ? _activeSlot = activeSlot : _nextSlotIndex + 1
-
-            if (_isFirstSlot) playSound('bump')
-         }
+         if (_isFirstSlot) playSound('bump')
       }
 
       setAppStatus({
@@ -268,7 +262,7 @@ const App = () => {
             <Dialog
                fullScreen
                open={appStatus.gameOver}
-               onClose={() => {}}
+               onClose={() => { }}
             >
                <div className='flex place-content-center h-full'>
                   <div className='flex flex-col justify-center w-[450px]'>
