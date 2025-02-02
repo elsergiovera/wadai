@@ -9,3 +9,8 @@
    font-style: normal;
    font-display: swap;
 }
+
+.outlined-text {
+   color: #ef4444;
+   -webkit-text-stroke: 2px white;
+ }
