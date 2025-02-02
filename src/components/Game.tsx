@@ -104,39 +104,29 @@ const App = () => {
       source.start(0)
    }
    const insertKey = (status: Status, key: string) => {
-      const { phrase, answerByChar, matchsByChar, activeSlot, round } = status
-      const slotIndex = activeSlot - 1
+      const { answerByChar, matchsByChar, activeSlot, round } = status
       const _answerByChar = answerByChar
-      const _phraseByChar = phrase.split('')
+      let _nextSlotAvailable
       let _activeSlot = 0
 
       // Set the key at the current active slot.
-      _answerByChar[slotIndex] = key.toUpperCase()
+      _answerByChar[activeSlot - 1] = key.toUpperCase()
 
       // Determine the next active slot.
       // If no plays have been made yet (round === 1), move to the next slot if it's not at the last one.
       // If plays have been made (round > 1), find the next available slot wheres matches are marked as 'false' in the previous round.
       if (round === 1) {
-         const _nextSlotAvailable = activeSlot < _phraseByChar.length
-
-         if (_nextSlotAvailable) {
-            const _isNextSlotSpace = _phraseByChar[activeSlot] === ' '
-            _activeSlot = (activeSlot + 1) + (_isNextSlotSpace ? 1 : 0)
-         }
-         else {
-            _activeSlot = activeSlot
-            playSound('bump')
-         }
+         const _isNextSlotSpace = _answerByChar[activeSlot] === ' '
+         _nextSlotAvailable = activeSlot < _answerByChar.length         
+         _activeSlot = activeSlot + (_nextSlotAvailable ? 1 + (_isNextSlotSpace ? 1 : 0) : 0)
+         
+         !_nextSlotAvailable && playSound('bump')
       }
       else {
-         const _nextSlotIndex = matchsByChar.slice(activeSlot).findIndex((match) => match === false)
+         _nextSlotAvailable = matchsByChar.slice(activeSlot).findIndex((match) => match === false) + 1
+         _activeSlot = activeSlot + (_nextSlotAvailable >= 1 ? _nextSlotAvailable : 0)
 
-         if (_nextSlotIndex === -1) {
-            _activeSlot = activeSlot
-            playSound('bump')
-         }
-         else if (_nextSlotIndex >= 0)
-            _activeSlot = activeSlot + _nextSlotIndex + 1
+         if (_nextSlotAvailable === 0) playSound('bump')
       }
 
       const _status: Status = ({
