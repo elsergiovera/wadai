@@ -59,7 +59,7 @@ const Board: React.FC<BoardProps> = ({ playSound }) => {
 
    return (
       <div className='flex justify-center'>
-         <div className={'grid grid-cols-6 gap-1 text-center'}>
+         <div className={'grid grid-cols-6 gap-1 text-center w-[90%]'}>
             {
                phrase.split('').map((letter, index) => {
                   letter = letter.toUpperCase()

@@ -11,11 +11,12 @@ const Slot: React.FC<LetterProps> = ({ letter, bgColor, txtColor, animation, act
    return (
       <div className={`
          ${bgColor} 
+         ${txtColor} 
          animate__animated ${animation ?? ''} 
          ${active ? 'border-neutral-900' : 'border-neutral-400'} 
-         w-[3.5rem] h-[3.5rem] place-content-center text-[1.8rem] font-bold border border-2
+         w-full h-full aspect-square text-[1.8rem] place-content-center font-bold border border-2
       `}>
-         <a className={txtColor} >{letter}</a>
+         {letter}
       </div>
    )
 }

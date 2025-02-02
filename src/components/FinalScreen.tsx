@@ -21,14 +21,13 @@ const FinalScreen: React.FC<FinalScreenProps> = ({ playSound }) => {
          onClose={() => { }}
       >
          <div className='flex place-content-center h-full'>
-            <div className='flex flex-col justify-center w-[450px]'>
-               <div className='place-content-center h-[300px]'>
-                  <span className='flex justify-center text-5xl font-custom pb-5'>YOU {isBoardComplete ? 'LOSE' : 'WIN'}</span>
-
-                  {/* <div className='w-[250px]'> */}
-                  <Board playSound={() => {}} />
-                  {/* </div> */}
-               </div>
+            <div className='flex flex-col justify-center items-center space-y-5 w-[450px]'>
+                  <div className='text-4xl font-custom animate__animated'>
+                     YOU {isBoardComplete ? 'LOSE' : 'WIN'}
+                  </div>
+                  <div className='w-[80%]'>
+                     <Board playSound={() => { }} />
+                  </div>
             </div>
          </div>
       </Dialog>

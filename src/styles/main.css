@@ -11,6 +11,6 @@
 }
 
 .outlined-text {
-   color: #ef4444;
+   @apply text-red-500;
    -webkit-text-stroke: 2px white;
  }

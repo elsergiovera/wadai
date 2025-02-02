@@ -90,6 +90,8 @@ const App = () => {
       } as Status)
    }
    const playSound = (sound: Sound) => {
+      if (!audioContextRef.current) return
+      
       const source = audioContextRef.current!.createBufferSource()
       const url = (() => {
          switch (sound) {

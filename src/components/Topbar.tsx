@@ -21,6 +21,7 @@ const Topbar = () => {
                   VITE_ENV_APP_NAME.split('').map((letter: string, index: number) => {
                      return (
                         <span
+                           key={`key-${index}`}
                            className={`text-white animate__animated ${index + 1 >= round ? '' : 'animate__flash outlined-text'}`}>
                            {letter}
                         </span>
