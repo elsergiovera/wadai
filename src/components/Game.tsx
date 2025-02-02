@@ -75,8 +75,8 @@ const App = () => {
       setAppStatus({
          date: formattedDate,
          phrase: _festivity,
-         // answerByChar: _festivity.split('').map(char => (char === ' ' ? char : null)),
-         answerByChar: ["X", "A", "R", "T", "X", "N", " ", "X", "U", "T", "H", "E", "X", " ", "K", "X", "N", "G", " ", "X", "X"],
+         answerByChar: _festivity.split('').map(char => (char === ' ' ? char : null)),
+         // answerByChar: ["X", "A", "R", "T", "X", "N", " ", "X", "U", "T", "H", "E", "X", " ", "K", "X", "N", "G", " ", "X", "X"],
          matchsByChar: [],
          activeSlot: 1,
          round: 1,
@@ -149,48 +149,48 @@ const App = () => {
    }
    const deleteKey = (status: Status) => {
       const { phrase, answerByChar, matchsByChar, activeSlot, round } = status
-      const slotIndex = activeSlot - 1
+      const activeSlotIndex = activeSlot - 1
       const _answerByChar = answerByChar
       const _phraseByChar = phrase.split('')
-      const _isPreviousSlotSpace = _phraseByChar[slotIndex - 1] === ' '
+      const _isPreviousSlotSpace = _phraseByChar[activeSlotIndex - 1] === ' '
+      const _isSlotEmpty = _answerByChar[activeSlotIndex] === null
       let _activeSlot = 0
 
-      // Determine the next active slot.
-      // If no plays have been made yet (round === 1), move to the previous slot if it's not at the first one.
+      // Removes the corresponding key and determines the next active slot.
+      // If no plays have been made yet (round === 1), moves to the previous slot if it's not at the first one already.
       // If plays have been made (round > 1), find the previous available slot wheres matches are marked as 'false' in the previous round.
       if (round === 1) {
          // If it's the first slot, plays the sound and exits the function.
-         if (slotIndex === 0) {
+         if (activeSlotIndex === 0) {
             playSound('bump')
             return
          }
 
+         // Set activeSlot based on the current position and conditions.
+         // If it's the last slot available in the board, and it's not empty, it removes the key and sets the activeSlot to itself.
+         // Oherwise, moves to the next available slot.
          const _isLastSlot = activeSlot === _phraseByChar.length
-         if (_isLastSlot) {
-            // Check if the last slot and removes it, considering it's not already empty
-            const _isLastSlotEmpty = _answerByChar[slotIndex] === null
 
-            _answerByChar[slotIndex - (_isLastSlotEmpty ? 1 : 0)] = null
-            _activeSlot = activeSlot - (_isLastSlotEmpty ? 1 : 0)
+         if (_isLastSlot) {
+            _answerByChar[activeSlotIndex - (_isSlotEmpty ? 1 : 0)] = null
+            _activeSlot = activeSlot - (_isSlotEmpty ? 1 : 0)
          }
          else {
-            // Remove the previous character and skips an extra slot if the previous one is a space.
-            _answerByChar[slotIndex - (_isPreviousSlotSpace ? 2 : 1)] = null
-            _activeSlot = slotIndex - (_isPreviousSlotSpace ? 1 : 0)
+            _answerByChar[activeSlotIndex - (_isPreviousSlotSpace ? 2 : 1)] = null
+            _activeSlot = (activeSlot - 1) - (_isPreviousSlotSpace ? 1 : 0)
          }
       }
       else {
-         const _nextSlotIndex = matchsByChar.slice(0, slotIndex).lastIndexOf(false)
+         const _nextSlotIndex = matchsByChar.slice(0, activeSlotIndex).lastIndexOf(false)
          const _isFirstSlot = _nextSlotIndex === -1
-         const _isLastSlot = slotIndex === matchsByChar.lastIndexOf(false)
-         const _isLastSlotEmpty = _answerByChar[slotIndex] === null
-         _answerByChar[slotIndex] = null
-         
+         const _isLastSlot = activeSlotIndex === matchsByChar.lastIndexOf(false)
+         _answerByChar[activeSlotIndex] = null
+
          // Set activeSlot based on the current position and conditions.
-         // If it's the first available slot or if it's the last available slot and it's not empty, sets it to the actual activeSlot. 
-         // Otherwise, move to the next available slot.
+         // If it's the first available slot or if it's the last available slot and it's not empty, sets the activeSlot to itself. 
+         // Otherwise, moves to the next available slot.
          // Note: A slot can be first and last at the same time, if it's the only one available in the board.
-         _activeSlot = ((_isLastSlot && !_isLastSlotEmpty) || _isFirstSlot) ? activeSlot : _nextSlotIndex + 1
+         _activeSlot = ((_isLastSlot && !_isSlotEmpty) || _isFirstSlot) ? activeSlot : _nextSlotIndex + 1
 
          if (_isFirstSlot) playSound('bump')
       }
@@ -203,8 +203,8 @@ const App = () => {
    }
    const validateKeys = (status: Status) => {
       // Makes sure there's no slots left empty before validating.
-      const _slotsAvailable = status.answerByChar.includes(null)
-      if (_slotsAvailable) return
+      const slotsAvailable = status.answerByChar.includes(null)
+      if (slotsAvailable) return
 
       // Compares each character of the user's answer with the corresponding character in the correct phrase.
       const { phrase, answerByChar, round } = status
