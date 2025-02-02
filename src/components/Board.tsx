@@ -76,8 +76,7 @@ const Board: React.FC<BoardProps> = ({ playSound }) => {
                         txtColor={slot_txtColor}
                         animation={slot_animation}
                         active={slot_active}
-                        // key={`slot-${index}`}
-                        key={`slot-${index}-${performance.now}`}
+                        key={`slot-${index}`}
                      />
                   )
                })
@@ -89,7 +88,7 @@ const Board: React.FC<BoardProps> = ({ playSound }) => {
                   txtColor={slot_txtColor_default}
                   animation={null}
                   active={false}
-                  key={'empty-slot-' + index}
+                  key={`inactive-slot-${index}`}
                />
             ))}
          </div>
