@@ -3,11 +3,13 @@ import { useEffect, useRef } from 'react'
 import useStore, { Status, Day, Sound } from '@/store'
 import Board from '@/components/Board'
 import Keyboard from '@/components/Keyboard'
-import Dialog from '@mui/material/Dialog'
+import FinalScreen from '@/components/FinalScreen'
 import bumpSound from '/assets/audio/bump.mp3'
 import clickSound from '/assets/audio/click.mp3'
 import rightSound from '/assets/audio/right.mp3'
 import wrongSound from '/assets/audio/wrong.mp3'
+import winSound from '/assets/audio/win.mp3'
+import loseSound from '/assets/audio/lose.mp3'
 import data from '@/data/2025/en-US.json'
 import lodash from 'lodash'
 import 'animate.css'
@@ -37,7 +39,9 @@ const App = () => {
             loadAudio(bumpSound),
             loadAudio(clickSound),
             loadAudio(rightSound),
-            loadAudio(wrongSound)
+            loadAudio(wrongSound),
+            loadAudio(winSound),
+            loadAudio(loseSound)
          ])
       }
       initializeAudio()
@@ -93,6 +97,8 @@ const App = () => {
             case 'click': return clickSound
             case 'right': return rightSound
             case 'wrong': return wrongSound
+            case 'win': return winSound
+            case 'lose': return loseSound
          }
       })()
 
@@ -254,23 +260,7 @@ const App = () => {
          </div>
 
          {appStatus.gameOver &&
-            <Dialog
-               fullScreen
-               open={appStatus.gameOver}
-               onClose={() => { }}
-            >
-               <div className='flex place-content-center h-full'>
-                  <div className='flex flex-col justify-center w-[450px]'>
-                     <div className='place-content-center h-[300px]'>
-                        <span className='flex justify-center text-5xl font-custom pb-5'>YOU {appStatus.matchsByChar.includes(false) ? 'LOSE' : 'WIN'}</span>
-
-                        {/* <div className='w-[250px]'> */}
-                        <Board playSound={() => { }} />
-                        {/* </div> */}
-                     </div>
-                  </div>
-               </div>
-            </Dialog>
+            <FinalScreen playSound={playSound} />
          }
       </>
    )

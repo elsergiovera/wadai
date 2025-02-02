@@ -1,4 +1,2 @@
-+  fix Slot not animate when typing. // done (?)
-+  fix animate after not typing key (status not updating, hence not nulling animation in Slot)
 +  fix Board responsive size.
 +  check wtf happens if I have more than 30 letters.
