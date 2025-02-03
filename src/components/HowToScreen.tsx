@@ -1,7 +1,7 @@
+import { XIcon } from 'lucide-react'
 import Dialog from '@mui/material/Dialog'
 import example_rounds from '@/assets/img/example_rounds.png'
 import example_board from '@/assets/img/example_board.png'
-// import board from '@/assets/img'
 
 interface HowToProps {
    isOpen: boolean
@@ -12,13 +12,13 @@ const HowTo: React.FC<HowToProps> = ({ isOpen, handleToggleHowTo }) => {
       <Dialog
          open={isOpen}
          onClose={handleToggleHowTo}
-         fullWidth={true}
+         fullWidth={false}
          maxWidth={false}
          slotProps={{
             transition: { timeout: 400 },
             backdrop: {
                sx: {
-                  backgroundColor: 'rgba(0, 0, 0, 0)'
+                  backgroundColor: 'rgba(0, 0, 0, 0.3)'
                }
             },
             container: {
@@ -28,21 +28,27 @@ const HowTo: React.FC<HowToProps> = ({ isOpen, handleToggleHowTo }) => {
             },
             paper: {
                sx: {
-                  width: '100%',
-                  height: '100%',
+                  width: '340px',
+                  minWidth: '340px',
+                  height: '400px',
+                  minHeight: '400px',
                   maxWidth: 'none',
                   maxHeight: 'none',
                   margin: '60px 0 0',
-                  borderRadius: '20px 20px 0 0',
-                  boxShadow: '0px -5px 50px rgba(0, 0, 0, 0.5)'
+                  borderRadius: '20px',
+                  boxShadow: '0px -5px 50px rgba(0, 0, 0, 0)'
                },
             },
          }}
       >
-         <div className='flex justify-center place-content-center'>
-            <div className='w-[450px] p-6 grid grid-col gap-5'>
-               <div className='font-custom text-center outlined-text-reverse text-[1.5em]'>HOW TO PLAY</div>
-                  <ul className='text-sm tracking-wide list-disc pl-5 space-y-3'>
+         <>
+            <div className='flex justify-end pt-3 pb-1 px-4'>
+               <XIcon className='text-gray-300 cursor-pointer' onClick={handleToggleHowTo} />
+            </div>
+            <div className='flex justify-center place-content-center'>
+               <div className='grid grid-col gap-5 p-4 pt-0'>
+                  <div className='font-custom text-center outlined-text-reverse text-[1.5em]'>HOW TO PLAY</div>
+                  <ul className='list-disc text-sm tracking-wide whitespace-nowrap pl-4 space-y-2'>
                      <li>
                         Guess the <strong>daily festivity</strong> around the world.
                      </li>
@@ -51,15 +57,16 @@ const HowTo: React.FC<HowToProps> = ({ isOpen, handleToggleHowTo }) => {
                      </li>
                      <li>
                         The <strong>rounds count</strong> is represented at the top.
-                        <img src={example_rounds} width={'40%'} height={'40%'} className='mx-auto pt-3' />
                      </li>
+                     <img src={example_rounds} width={'120px'} className='ml-[80px]' />
                      <li>
-                        <strong>After a play</strong> you'll see ther round results.
-                        <img src={example_board} width={'50%'} height={'50%'} className='mx-auto pt-2' />
+                        <strong>After a play</strong> you'll see the round results.
                      </li>
+                     <img src={example_board} width={'140px'} className='ml-[70px]' />
                   </ul>
+               </div>
             </div>
-         </div>
+         </>
       </Dialog>
    )
 }
