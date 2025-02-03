@@ -1,11 +1,11 @@
 
 const VITE_ENV_APP_NAME = import.meta.env.VITE_ENV_APP_NAME
 import { useState } from 'react'
-import useStore from '@/store'
+import useStore, { AppSound } from '@/store'
 import HowToScreen from '@/components/HowToScreen'
 import { MenuIcon } from 'lucide-react'
 
-const Topbar = () => {
+const Topbar: React.FC<AppSound> = ({ playSound }) => {
    const round = useStore((state) => state.appStatus.round)
    const [howToScreen, setHowToScreen] = useState(false)
    const toggleHowToScreen = () => setHowToScreen((prev: boolean) => !prev)

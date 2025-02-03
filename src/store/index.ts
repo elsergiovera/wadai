@@ -19,6 +19,9 @@ export type Day = {
    festivity_int: string | null
    region: string
 }
+export interface AppSound {
+   playSound: (sound: Sound) => void
+}
 interface StoreProps {
    appStatus: Status
    setAppStatus: (status: Status) => void

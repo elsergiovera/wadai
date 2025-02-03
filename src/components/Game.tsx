@@ -1,68 +1,23 @@
 const VITE_ENV_APP_MAX_ROUNDS = import.meta.env.VITE_ENV_APP_MAX_ROUNDS
 import { useEffect, useRef } from 'react'
-import useStore, { Status, Day, Sound } from '@/store'
+import useStore, { Status, Day, AppSound } from '@/store'
 import Board from '@/components/Board'
 import Keyboard from '@/components/Keyboard'
 import FinalScreen from '@/components/FinalScreen'
-import bumpSound from '@/assets/audio/bump.mp3'
-import clickSound from '@/assets/audio/click.mp3'
-import rightSound from '@/assets/audio/right.mp3'
-import wrongSound from '@/assets/audio/wrong.mp3'
-import winSound from '@/assets/audio/win.mp3'
-import loseSound from '@/assets/audio/lose.mp3'
 import data from '@/data/2025/en-US.json'
 import lodash from 'lodash'
 import 'animate.css'
 
-const App = () => {
+const Game: React.FC<AppSound> = ({ playSound }) => {
    const { appStatus, setAppStatus } = useStore()
    const appStatusRef = useRef(appStatus)
-   const audioContextRef = useRef<AudioContext | null>(null)
-   const audioBuffersRef = useRef<Map<string, AudioBuffer>>(new Map())
 
    useEffect(() => {
       setInitialStatus()
 
-      // Optimized playback audio functions.
-      const loadAudio = async (url: string) => {
-         const response = await fetch(url)
-         const arrayBuffer = await response.arrayBuffer()
-         const audioBuffer = await audioContextRef.current!.decodeAudioData(arrayBuffer)
-
-         audioBuffersRef.current.set(url, audioBuffer)
-      }
-      const initializeAudio = async () => {
-         if (!audioContextRef.current) {
-            audioContextRef.current = new AudioContext()
-         }
-         await Promise.all([
-            loadAudio(bumpSound),
-            loadAudio(clickSound),
-            loadAudio(rightSound),
-            loadAudio(wrongSound),
-            loadAudio(winSound),
-            loadAudio(loseSound)
-         ])
-      }
-      initializeAudio()
-
-      // Keep the AudioContext Active (important for mobile).
-      // Mobile browsers pause the AudioContext when inactive, which adds delays.
-      const unlockAudio = () => {
-         if (audioContextRef.current?.state === 'suspended') {
-            audioContextRef.current.resume()
-         }
-      }
-
-      // Add Event Listeners and their respectives cleanup function.
       window.addEventListener('keydown', handleKeyDown)
-      window.addEventListener('touchstart', unlockAudio)
-      window.addEventListener('click', unlockAudio)
-
       return () => {
          window.removeEventListener('keydown', handleKeyDown)
-         window.removeEventListener('touchstart', unlockAudio)
-         window.removeEventListener('click', unlockAudio)
       }
    }, [])
    useEffect(() => {
@@ -88,28 +43,6 @@ const App = () => {
          paused: false,
          gameOver: false
       } as Status)
-   }
-   const playSound = (sound: Sound) => {
-      if (!audioContextRef.current) return
-      
-      const source = audioContextRef.current!.createBufferSource()
-      const url = (() => {
-         switch (sound) {
-            case 'bump': return bumpSound
-            case 'click': return clickSound
-            case 'right': return rightSound
-            case 'wrong': return wrongSound
-            case 'win': return winSound
-            case 'lose': return loseSound
-         }
-      })()
-
-      // Check if the audio buffer has been loaded.
-      if (!audioBuffersRef.current.has(url)) return
-
-      source.buffer = audioBuffersRef.current.get(url)!
-      source.connect(audioContextRef.current!.destination)
-      source.start(0)
    }
    const insertKey = (status: Status, key: string) => {
       const { answerByChar, matchsByChar, activeSlot, round } = status
@@ -268,4 +201,4 @@ const App = () => {
    )
 }
 
-export default App
+export default Game
