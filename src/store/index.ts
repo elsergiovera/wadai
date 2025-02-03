@@ -22,6 +22,8 @@ export type Day = {
 interface StoreProps {
    appStatus: Status
    setAppStatus: (status: Status) => void
+   // howToScreen: boolean
+   // toggleHowToScreen: () => void
    _hasHydrated: boolean
    setHasHydrated: (status: boolean) => void
 }
@@ -29,7 +31,7 @@ interface StoreProps {
 const useStore = create(
    devtools(
       persist<StoreProps>(
-         (set) => ({
+         (set, get) => ({
             appStatus: {
                date: '',
                phrase: '',
@@ -41,9 +43,9 @@ const useStore = create(
                paused: false,
                gameOver: false,
             } as Status,
-            setAppStatus: (status: Status) => {
-               set({ appStatus: status })
-            },
+            setAppStatus: (status: Status) => set({ appStatus: status }),
+            // howToScreen: true,
+            // toggleHowToScreen: () => !get().howToScreen,
             _hasHydrated: false,
             setHasHydrated: (status: boolean) => set({ _hasHydrated: status })
          }),
