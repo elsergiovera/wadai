@@ -22,7 +22,7 @@ const FinalScreen: React.FC<FinalScreenProps> = ({ playSound }) => {
       >
          <div className='flex place-content-center h-full'>
             <div className='flex flex-col justify-center items-center space-y-5 w-[450px]'>
-                  <div className='text-4xl font-custom'>
+                  <div className='text-4xl font-title'>
                      YOU <span className={isBoardComplete ? 'lose-text' : 'win-text'}>{isBoardComplete ? 'LOSE' : 'WIN'}</span>
                   </div>
                   <div className='w-[80%]'>

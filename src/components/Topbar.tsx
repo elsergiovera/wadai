@@ -7,7 +7,6 @@ import { MenuIcon } from 'lucide-react'
 
 const Topbar = () => {
    const round = useStore((state) => state.appStatus.round)
-   // const { howToScreen, toggleHowToScreen } = useStore()
    const [howToScreen, setHowToScreen] = useState(false)
    const toggleHowToScreen = () => setHowToScreen((prev: boolean) => !prev)
 
@@ -15,7 +14,7 @@ const Topbar = () => {
       <>
          <div className='w-full min-h-[50px] grid grid-cols-3 bg-red-500 text-white'>
             <div className='place-content-center pl-2'><MenuIcon onClick={toggleHowToScreen} /></div>
-            <div className='place-content-center text-center text-3xl font-custom'>
+            <div className='place-content-center text-center text-3xl font-title'>
                {
                   VITE_ENV_APP_NAME.split('').map((letter: string, index: number) => {
                      return (

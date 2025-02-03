@@ -3,7 +3,7 @@ export default {
    theme: {
       extend: {
          fontFamily: {
-            custom: ['Title', 'sans-serif'],
+            title: ['Title', 'sans-serif']
          },
       },
    },

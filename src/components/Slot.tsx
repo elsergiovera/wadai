@@ -14,7 +14,7 @@ const Slot: React.FC<LetterProps> = ({ letter, bgColor, txtColor, animation, act
          ${txtColor} 
          animate__animated ${animation ?? ''} 
          ${active ? 'border-neutral-900' : 'border-neutral-400'} 
-         w-full h-full aspect-square text-[1.8rem] place-content-center font-bold border border-2
+         w-full h-full aspect-square text-[1.8rem] place-content-center font-bold border-2
       `}>
          {letter}
       </div>
