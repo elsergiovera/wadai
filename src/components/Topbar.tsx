@@ -2,7 +2,7 @@
 const VITE_ENV_APP_NAME = import.meta.env.VITE_ENV_APP_NAME
 import { useState } from 'react'
 import useStore from '@/store'
-import HowTo from '@/components/HowTo'
+import HowToScreen from '@/components/HowToScreen'
 import { MenuIcon } from 'lucide-react'
 
 const Topbar = () => {
@@ -31,7 +31,7 @@ const Topbar = () => {
             <div></div>
          </div>
 
-         <HowTo isOpen={howToScreen} handleToggleHowTo={toggleHowToScreen} />
+         <HowToScreen isOpen={howToScreen} handleToggleHowTo={toggleHowToScreen} />
       </>
    )
 }

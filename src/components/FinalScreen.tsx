@@ -7,7 +7,7 @@ interface FinalScreenProps {
    playSound: (sound: Sound) => void
 }
 const FinalScreen: React.FC<FinalScreenProps> = ({ playSound }) => {
-   const { appStatus: { matchsByChar } } = useStore()
+   const { appStatus: { matchsByChar, gameOver } } = useStore()
    const isBoardComplete = matchsByChar.includes(false)
 
    useEffect(() => {
@@ -17,13 +17,13 @@ const FinalScreen: React.FC<FinalScreenProps> = ({ playSound }) => {
    return (
       <Dialog
          fullScreen
-         open={true}
-         onClose={() => { }}
+         open={gameOver}
+         onClose={() => {}}
       >
          <div className='flex place-content-center h-full'>
             <div className='flex flex-col justify-center items-center space-y-5 w-[450px]'>
-                  <div className='text-4xl font-custom animate__animated'>
-                     YOU {isBoardComplete ? 'LOSE' : 'WIN'}
+                  <div className='text-4xl font-custom'>
+                     YOU <span className={isBoardComplete ? 'lose-text' : 'win-text'}>{isBoardComplete ? 'LOSE' : 'WIN'}</span>
                   </div>
                   <div className='w-[80%]'>
                      <Board playSound={() => { }} />
