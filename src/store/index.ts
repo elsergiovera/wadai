@@ -25,8 +25,6 @@ export interface AppSound {
 interface StoreProps {
    appStatus: Status
    setAppStatus: (status: Status) => void
-   // howToScreen: boolean
-   // toggleHowToScreen: () => void
    _hasHydrated: boolean
    setHasHydrated: (status: boolean) => void
 }
@@ -34,7 +32,7 @@ interface StoreProps {
 const useStore = create(
    devtools(
       persist<StoreProps>(
-         (set, get) => ({
+         (set) => ({
             appStatus: {
                date: '',
                phrase: '',
@@ -47,8 +45,6 @@ const useStore = create(
                gameOver: false,
             } as Status,
             setAppStatus: (status: Status) => set({ appStatus: status }),
-            // howToScreen: true,
-            // toggleHowToScreen: () => !get().howToScreen,
             _hasHydrated: false,
             setHasHydrated: (status: boolean) => set({ _hasHydrated: status })
          }),

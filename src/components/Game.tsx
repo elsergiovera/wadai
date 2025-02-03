@@ -188,7 +188,7 @@ const Game: React.FC<AppSound> = ({ playSound }) => {
    return (
       <>
          <div className='flex justify-center'>
-            <div className='flex flex-col justify-between w-[450px] h-[600px]'>
+            <div className={`flex flex-col justify-between w-app min-w-app h-[600px]`}>
                <Board playSound={playSound} />
                <Keyboard handleKeyDown={handleKeyDown} playSound={playSound} />
             </div>

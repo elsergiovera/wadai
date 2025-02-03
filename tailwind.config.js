@@ -2,6 +2,8 @@
 export default {
    theme: {
       extend: {
+         width: { app: '400px' },
+         minWidth: { app: '400px' },
          fontFamily: {
             title: ['Title', 'sans-serif']
          },
