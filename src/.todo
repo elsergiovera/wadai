@@ -1,2 +1,4 @@
-+  bump only sound when last slot is not empty?
++  pause game when How To is open (move state?).
++  style Final Screen.
++  move playAudio.
 +  check wtf happens if I have more than 30 letters.
