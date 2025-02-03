@@ -4,6 +4,9 @@ export default {
       extend: {
          width: { app: '400px' },
          minWidth: { app: '400px' },
+         screens: {
+            xxs: '300px'
+         },
          fontFamily: {
             title: ['Title', 'sans-serif']
          },

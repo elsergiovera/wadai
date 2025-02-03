@@ -3,7 +3,7 @@ const VITE_ENV_APP_NAME = import.meta.env.VITE_ENV_APP_NAME
 import { useEffect, useState } from 'react'
 import useStore, { AppSound } from '@/store'
 import HowToScreen from '@/components/HowToScreen'
-import { MenuIcon } from 'lucide-react'
+import { CircleHelpIcon, MenuIcon } from 'lucide-react'
 
 const Topbar: React.FC<AppSound> = ({ playSound }) => {
    const round = useStore((state) => state.appStatus.round)
@@ -19,8 +19,8 @@ const Topbar: React.FC<AppSound> = ({ playSound }) => {
 
    return (
       <>
-         <div className='w-full min-h-[50px] grid grid-cols-3 bg-red-500 text-white'>
-            <div className='place-content-center pl-2'><MenuIcon onClick={toggleHowToScreen} /></div>
+         <div className='w-full min-w-app min-h-[50px] grid grid-cols-3 bg-red-500 text-white'>
+            <div></div>
             <div className='place-content-center text-center text-3xl font-title'>
                {
                   VITE_ENV_APP_NAME.split('').map((letter: string, index: number) => {
@@ -34,7 +34,7 @@ const Topbar: React.FC<AppSound> = ({ playSound }) => {
                   })
                }
             </div>
-            <div></div>
+            <div className='flex justify-end items-center pr-2'><CircleHelpIcon className='cursor-pointer hidden xxs:block' onClick={toggleHowToScreen} /></div>
          </div>
 
          <HowToScreen isOpen={howToScreen} handleToggleScreen={toggleHowToScreen} />
