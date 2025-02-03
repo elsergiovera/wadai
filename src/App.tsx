@@ -3,6 +3,7 @@ import Topbar from '@/components/Topbar'
 import Game from '@/components/Game'
 import bumpSound from '@/assets/audio/bump.mp3'
 import clickSound from '@/assets/audio/click.mp3'
+import messageSound from '@/assets/audio/message.mp3'
 import rightSound from '@/assets/audio/right.mp3'
 import wrongSound from '@/assets/audio/wrong.mp3'
 import winSound from '@/assets/audio/win.mp3'
@@ -29,6 +30,7 @@ const App = () => {
          await Promise.all([
             loadAudio(bumpSound),
             loadAudio(clickSound),
+            loadAudio(messageSound),
             loadAudio(rightSound),
             loadAudio(wrongSound),
             loadAudio(winSound),
@@ -65,14 +67,16 @@ const App = () => {
          switch (sound) {
             case 'bump': return bumpSound
             case 'click': return clickSound
+            case 'message': return messageSound
             case 'right': return rightSound
             case 'wrong': return wrongSound
             case 'win': return winSound
             case 'lose': return loseSound
+            default: return ''
          }
       })()
 
-      // Check if the audio buffer has been loaded.
+      if (!url || !audioBuffersRef.current.has(url)) return
       if (!audioBuffersRef.current.has(url)) return
 
       source.buffer = audioBuffersRef.current.get(url)!

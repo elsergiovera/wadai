@@ -5,13 +5,13 @@ import { XIcon } from 'lucide-react'
 
 interface HowToProps {
    isOpen: boolean
-   handleToggleHowTo: () => void
+   handleToggleScreen: () => void
 }
-const HowTo: React.FC<HowToProps> = ({ isOpen, handleToggleHowTo }) => {
+const HowTo: React.FC<HowToProps> = ({ isOpen, handleToggleScreen }) => {
    return (
       <Dialog
          open={isOpen}
-         onClose={handleToggleHowTo}
+         onClose={handleToggleScreen}
          fullWidth={false}
          maxWidth={false}
          slotProps={{
@@ -28,24 +28,24 @@ const HowTo: React.FC<HowToProps> = ({ isOpen, handleToggleHowTo }) => {
             },
             paper: {
                sx: {
-                  width: '340px',
-                  minWidth: '340px',
-                  height: '380px',
-                  minHeight: '380px',
+                  width: '320px',
+                  minWidth: '320px',
+                  height: '400px',
+                  minHeight: '400px',
                   maxWidth: 'none',
                   maxHeight: 'none',
                   margin: '60px 0 0',
-                  borderRadius: '0'
+                  borderRadius: '20px'
                },
             },
          }}
       >
          <>
-            <div className='flex justify-end pt-3 px-3'>
-               <XIcon className='w-4 h-4 text-gray-400 cursor-pointer' onClick={handleToggleHowTo} />
+            <div className='flex justify-end pt-4 px-4'>
+               <XIcon className='w-5 h-5 text-gray-300 cursor-pointer' onClick={handleToggleScreen} />
             </div>
             <div className='flex justify-center place-content-center'>
-               <div className='grid grid-col gap-5 p-4 pt-0'>
+               <div className='grid grid-col gap-5 pt-1'>
                   <div className='font-title text-center outlined-text-reverse text-[1.5em]'>HOW TO PLAY</div>
                   <ul className='list-disc text-sm tracking-tight whitespace-nowrap pl-4 space-y-2'>
                      <li>

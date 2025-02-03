@@ -8,7 +8,11 @@ import { MenuIcon } from 'lucide-react'
 const Topbar: React.FC<AppSound> = ({ playSound }) => {
    const round = useStore((state) => state.appStatus.round)
    const [howToScreen, setHowToScreen] = useState(false)
-   const toggleHowToScreen = () => setHowToScreen((prev: boolean) => !prev)
+
+   const toggleHowToScreen = () => {
+      playSound('message')
+      setHowToScreen((prev: boolean) => !prev)
+   }
 
    return (
       <>
@@ -30,7 +34,7 @@ const Topbar: React.FC<AppSound> = ({ playSound }) => {
             <div></div>
          </div>
 
-         <HowToScreen isOpen={howToScreen} handleToggleHowTo={toggleHowToScreen} />
+         <HowToScreen isOpen={howToScreen} handleToggleScreen={toggleHowToScreen} />
       </>
    )
 }
