@@ -48,12 +48,10 @@ const App = () => {
       }
 
       // Add Event Listeners and their respectives cleanup function.
-      // window.addEventListener('keydown', handleKeyDown)
       window.addEventListener('touchstart', unlockAudio)
       window.addEventListener('click', unlockAudio)
 
       return () => {
-         // window.removeEventListener('keydown', handleKeyDown)
          window.removeEventListener('touchstart', unlockAudio)
          window.removeEventListener('click', unlockAudio)
       }

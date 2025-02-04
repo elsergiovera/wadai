@@ -15,6 +15,7 @@ const Game: React.FC<AppSound> = ({ playSound }) => {
    useEffect(() => {
       setInitialStatus()
 
+      // Add Event Listener and it respective cleanup to handle key functions.
       window.addEventListener('keydown', handleKeyDown)
       return () => {
          window.removeEventListener('keydown', handleKeyDown)
@@ -177,7 +178,11 @@ const Game: React.FC<AppSound> = ({ playSound }) => {
    const handleKeyDown = (event: KeyboardEvent | string) => {
       if (appStatusRef.current.paused) return
 
+      // Extract the key from the event. If 'event' is a string, it comes directly from the Virtual Keyboard 
+      // Otherwise, it's a KeyboardEvent coming from the device keyboard and gets the 'key' property.
       const key = typeof event === 'string' ? event : (event as KeyboardEvent).key
+
+      // Makes sure only one letter is matched and if the key is a single alphabetic character (A-Z or a-z).
       const isChar = /^[A-Za-z]$/.test(key)
 
       if (isChar) insertKey(appStatusRef.current, key)
