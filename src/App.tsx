@@ -1,4 +1,4 @@
-import { Sound } from '@/store'
+import useStore, { Sound } from '@/store'
 import { useEffect, useRef } from 'react'
 import Topbar from '@/components/Topbar'
 import Game from '@/components/Game'
@@ -12,10 +12,14 @@ import loseSound from '@/assets/audio/lose.mp3'
 import 'animate.css'
 
 const App = () => {
+   const resetDailyState = useStore((state) => state.resetDailyState)
    const audioContextRef = useRef<AudioContext | null>(null)
    const audioBuffersRef = useRef<Map<string, AudioBuffer>>(new Map())
 
    useEffect(() => {
+      // Checks and reset App Status if necessary.
+      resetDailyState()
+
       // Playback audio functions.
       const loadAudio = async (url: string) => {
          const response = await fetch(url)

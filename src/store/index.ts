@@ -1,5 +1,7 @@
 import { create } from 'zustand'
 import { persist, devtools, createJSONStorage } from 'zustand/middleware'
+import lodash from 'lodash'
+import data from '@/data/2025/en-US.json'
 
 export type Sound = 'bump' | 'click' | 'message' | 'right' | 'wrong' | 'win' | 'lose'
 export type Status = {
@@ -12,6 +14,7 @@ export type Status = {
    score: number
    paused: boolean
    gameOver: boolean
+   startedAt: Date
 }
 export type Day = {
    date: string
@@ -26,25 +29,39 @@ interface StoreProps {
    appStatus: Status
    setAppStatus: (status: Status) => void
    setTogglePause: () => void
+   resetDailyState: () => void
    _hasHydrated: boolean
    setHasHydrated: (status: boolean) => void
+}
+
+const getFormattedDate = (): string => {
+   return new Date().toLocaleDateString('en-US', { day: '2-digit', month: '2-digit' })
+}
+const getInitialStatus = (): Status => {
+   // const formattedDate = getFormattedDate()
+   const formattedDate: string = '01/16'
+   const day: Day | undefined = lodash.find((data as Day[]), { date: formattedDate })
+   const _festivity = day?.festivity ?? ''
+
+   return {
+      date: formattedDate,
+      phrase: _festivity,
+      answerByChar: _festivity.split('').map(char => (char === ' ' ? char : null)),
+      matchsByChar: [],
+      activeSlot: 1,
+      round: 1,
+      score: 100,
+      paused: false,
+      gameOver: false,
+      startedAt: new Date()
+   }
 }
 
 const useStore = create(
    devtools(
       persist<StoreProps>(
          (set, get) => ({
-            appStatus: {
-               date: '',
-               phrase: '',
-               answerByChar: [],
-               matchsByChar: [],
-               activeSlot: 0,
-               round: 0,
-               score: 0,
-               paused: false,
-               gameOver: false,
-            } as Status,
+            appStatus: getInitialStatus(),
             setAppStatus: (status: Status) => set({ appStatus: status }),
             setTogglePause: () => {
                const prev = get().appStatus
@@ -54,14 +71,34 @@ const useStore = create(
                   paused: !prev.paused
                })
             },
+            resetDailyState: () => {
+               const today = getFormattedDate()
+               const date = get().appStatus.date
+               const startedAt = get().appStatus.startedAt
+
+               const _startedAtMinute = new Date(startedAt).toLocaleTimeString('en-US', { minute: '2-digit' })
+               const _nowMinute = new Date().toLocaleTimeString('en-US', { minute: '2-digit' })
+
+               // console.log("_startedAtMinute", _startedAtMinute)
+               // console.log("_nowMinute", _nowMinute)
+
+               // console.log("today", today)
+               // console.log("date", date)
+
+               // if (date !== today) set({ appStatus: getInitialStatus() })
+               // if (_startedAtMinute !== _nowMinute) set({ appStatus: getInitialStatus() })
+            },
             _hasHydrated: false,
             setHasHydrated: (status: boolean) => set({ _hasHydrated: status })
          }),
          {
             name: "appStore",
-            storage: createJSONStorage(() => sessionStorage),
+            storage: createJSONStorage(() => localStorage),
             onRehydrateStorage: (state) => {
-               return () => state.setHasHydrated(true)
+               return () => {
+                  // state.resetDailyState()
+                  state.setHasHydrated(true)
+               }
             }
          }
       )

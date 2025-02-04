@@ -1,19 +1,15 @@
 const VITE_ENV_APP_MAX_ROUNDS = import.meta.env.VITE_ENV_APP_MAX_ROUNDS
 import { useEffect, useRef } from 'react'
-import useStore, { Status, Day, AppSound } from '@/store'
+import useStore, { Status, AppSound } from '@/store'
 import Board from '@/components/Board'
 import Keyboard from '@/components/Keyboard'
 import FinalScreen from '@/components/FinalScreen'
-import data from '@/data/2025/en-US.json'
-import lodash from 'lodash'
 
 const Game: React.FC<AppSound> = ({ playSound }) => {
    const { appStatus, setAppStatus } = useStore()
    const appStatusRef = useRef(appStatus)
 
    useEffect(() => {
-      setInitialStatus()
-
       // Add Event Listener and it respective cleanup to handle key functions.
       window.addEventListener('keydown', handleKeyDown)
       return () => {
@@ -25,25 +21,6 @@ const Game: React.FC<AppSound> = ({ playSound }) => {
       appStatusRef.current = appStatus
    }, [appStatus])
 
-   const setInitialStatus = () => {
-      const formattedDate: string = '01/16'
-      // const formattedDate = new Date().toLocaleDateString('en-US', { day: '2-digit', month: '2-digit' })
-      const day: Day | undefined = lodash.find((data as Day[]), { date: formattedDate })
-      const _festivity = day?.festivity ?? ''
-
-      setAppStatus({
-         date: formattedDate,
-         phrase: _festivity,
-         answerByChar: _festivity.split('').map(char => (char === ' ' ? char : null)),
-         // answerByChar: ["X", "A", "R", "T", "X", "N", " ", "X", "U", "T", "H", "E", "X", " ", "K", "X", "N", "G", " ", "X", "X"],
-         matchsByChar: [],
-         activeSlot: 1,
-         round: 1,
-         score: 100,
-         paused: false,
-         gameOver: false
-      } as Status)
-   }
    const insertKey = (status: Status, key: string) => {
       const { answerByChar, matchsByChar, activeSlot, round } = status
       const _answerByChar = answerByChar
