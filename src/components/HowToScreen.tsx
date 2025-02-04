@@ -30,18 +30,18 @@ const HowTo: React.FC<HowToProps> = ({ isOpen, handleToggleScreen }) => {
                sx: {
                   width: '320px',
                   minWidth: '320px',
-                  height: '400px',
-                  minHeight: '400px',
+                  height: '410px',
+                  minHeight: '410px',
                   maxWidth: 'none',
                   maxHeight: 'none',
                   margin: '60px 0 0',
-                  borderRadius: '20px'
+                  borderRadius: '0'
                },
             },
          }}
       >
          <>
-            <div className='flex justify-end pt-4 px-4'>
+            <div className='flex justify-end pt-2 px-2'>
                <XIcon className='w-5 h-5 text-gray-300 cursor-pointer' onClick={handleToggleScreen} />
             </div>
             <div className='flex justify-center place-content-center'>
@@ -49,7 +49,10 @@ const HowTo: React.FC<HowToProps> = ({ isOpen, handleToggleScreen }) => {
                   <div className='font-title text-center outlined-text-reverse text-[1.5em]'>HOW TO PLAY</div>
                   <ul className='list-disc text-sm tracking-tight whitespace-nowrap pl-4 space-y-2'>
                      <li>
-                        Guess the <strong>daily festivity</strong> around the world.
+                        Guess the <strong>Daily Festivity</strong> around the world.
+                     </li>
+                     <li>
+                        <strong>You can only play one time per day</strong>.
                      </li>
                      <li>
                         You have <strong>5 rounds</strong> to play.
@@ -59,7 +62,7 @@ const HowTo: React.FC<HowToProps> = ({ isOpen, handleToggleScreen }) => {
                      </li>
                      <img src={example_rounds} width={'120px'} className='ml-[65px]' />
                      <li>
-                        <strong>After every play</strong> you'll see the round results.
+                        The results are displayed <strong>after every round</strong>.
                      </li>
                      <img src={example_board} width={'140px'} className='ml-[55px]' />
                   </ul>

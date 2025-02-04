@@ -3,13 +3,15 @@ const VITE_ENV_APP_NAME = import.meta.env.VITE_ENV_APP_NAME
 import { useEffect, useState } from 'react'
 import useStore, { AppSound } from '@/store'
 import HowToScreen from '@/components/HowToScreen'
-import { CircleHelpIcon, MenuIcon } from 'lucide-react'
+import { CircleHelpIcon } from 'lucide-react'
 
 const Topbar: React.FC<AppSound> = ({ playSound }) => {
-   const round = useStore((state) => state.appStatus.round)
    const [howToScreen, setHowToScreen] = useState(false)
+   const round = useStore((state) => state.appStatus.round)
+   const setTogglePause = useStore((state) => state.setTogglePause)
 
    useEffect(() => {
+      setTogglePause()
       if (howToScreen) playSound('message')
    }, [howToScreen])
 

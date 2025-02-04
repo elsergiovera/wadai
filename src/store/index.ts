@@ -25,6 +25,7 @@ export interface AppSound {
 interface StoreProps {
    appStatus: Status
    setAppStatus: (status: Status) => void
+   setTogglePause: () => void
    _hasHydrated: boolean
    setHasHydrated: (status: boolean) => void
 }
@@ -32,7 +33,7 @@ interface StoreProps {
 const useStore = create(
    devtools(
       persist<StoreProps>(
-         (set) => ({
+         (set, get) => ({
             appStatus: {
                date: '',
                phrase: '',
@@ -45,6 +46,14 @@ const useStore = create(
                gameOver: false,
             } as Status,
             setAppStatus: (status: Status) => set({ appStatus: status }),
+            setTogglePause: () => {
+               const prev = get().appStatus
+
+               get().setAppStatus({
+                  ...get().appStatus,
+                  paused: !prev.paused
+               })
+            },
             _hasHydrated: false,
             setHasHydrated: (status: boolean) => set({ _hasHydrated: status })
          }),

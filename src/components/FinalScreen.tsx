@@ -18,16 +18,16 @@ const FinalScreen: React.FC<FinalScreenProps> = ({ playSound }) => {
       <Dialog
          fullScreen
          open={gameOver}
-         onClose={() => {}}
+         onClose={() => { }}
       >
          <div className='flex place-content-center h-full'>
             <div className='flex flex-col justify-center items-center space-y-5 w-app min-w-app'>
-                  <div className='text-4xl font-title'>
-                     YOU <span className={isBoardComplete ? 'lose-text' : 'win-text'}>{isBoardComplete ? 'LOSE' : 'WIN'}</span>
-                  </div>
-                  <div className='w-[80%]'>
-                     <Board playSound={() => { }} />
-                  </div>
+               <div className='text-4xl font-title'>
+                  <span className={isBoardComplete ? 'lose-text' : 'win-text'}>YOU {isBoardComplete ? 'LOSE' : 'WIN'}</span>
+               </div>
+               <div className='w-[80%]'>
+                  <Board playSound={() => { }} />
+               </div>
             </div>
          </div>
       </Dialog>
