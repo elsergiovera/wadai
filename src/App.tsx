@@ -1,3 +1,4 @@
+import { Sound } from '@/store'
 import { useEffect, useRef } from 'react'
 import Topbar from '@/components/Topbar'
 import Game from '@/components/Game'
@@ -8,14 +9,14 @@ import rightSound from '@/assets/audio/right.mp3'
 import wrongSound from '@/assets/audio/wrong.mp3'
 import winSound from '@/assets/audio/win.mp3'
 import loseSound from '@/assets/audio/lose.mp3'
-import { Sound } from '@/store'
+import 'animate.css'
 
 const App = () => {
    const audioContextRef = useRef<AudioContext | null>(null)
    const audioBuffersRef = useRef<Map<string, AudioBuffer>>(new Map())
 
    useEffect(() => {
-      // Optimized playback audio functions.
+      // Playback audio functions.
       const loadAudio = async (url: string) => {
          const response = await fetch(url)
          const arrayBuffer = await response.arrayBuffer()

@@ -6,7 +6,6 @@ import Keyboard from '@/components/Keyboard'
 import FinalScreen from '@/components/FinalScreen'
 import data from '@/data/2025/en-US.json'
 import lodash from 'lodash'
-import 'animate.css'
 
 const Game: React.FC<AppSound> = ({ playSound }) => {
    const { appStatus, setAppStatus } = useStore()
@@ -54,7 +53,7 @@ const Game: React.FC<AppSound> = ({ playSound }) => {
       // Set the key at the current active slot.
       _answerByChar[activeSlot - 1] = key.toUpperCase()
 
-      // Determine the next active slot.
+      // Determines the next active slot.
       // If no plays have been made yet (round === 1), move to the next slot if it's not at the last one.
       // If plays have been made (round > 1), find the next available slot wheres matches are marked as 'false' in the previous round.
       if (round === 1) {
@@ -90,7 +89,7 @@ const Game: React.FC<AppSound> = ({ playSound }) => {
 
       // Removes the corresponding key and determines the next active slot.
       // If no plays have been made yet (round === 1), moves to the previous slot if it's not at the first one already.
-      // If plays have been made (round > 1), find the previous available slot wheres matches are marked as 'false' in the previous round.
+      // If plays have been made (round > 1), find the previous available slot where match was marked as 'false' in the previous round.
       if (round === 1) {
          // If it's the first slot, plays the sound and exits the function.
          if (activeSlotIndex === 0) {
@@ -137,7 +136,7 @@ const Game: React.FC<AppSound> = ({ playSound }) => {
       const { phrase, answerByChar, matchsByChar, activeSlot, round } = status
 
       // Makes sure there's no slots left empty before validating and that the active slot is the last slot available in the board.
-      // To make sure it's getting the actual last available slot in the board,it checks if it's the final character in round 1 or the last unmatched character in subsequent rounds.  
+      // To make sure it's getting the actual last available slot in the board, it checks if it's the final character in round 1 or the last unmatched character in subsequent rounds.  
       const _areEmptySlots = answerByChar.includes(null)
       const _isLastSlot = activeSlot === (round === 1 ? phrase.length : matchsByChar.lastIndexOf(false) + 1)
       const validate = !_areEmptySlots && _isLastSlot
@@ -182,7 +181,7 @@ const Game: React.FC<AppSound> = ({ playSound }) => {
       // Otherwise, it's a KeyboardEvent coming from the device keyboard and gets the 'key' property.
       const key = typeof event === 'string' ? event : (event as KeyboardEvent).key
 
-      // Makes sure only one letter is matched and if the key is a single alphabetic character (A-Z or a-z).
+      // Makes sure the key is a single alphabetic character (A-Z or a-z).
       const isChar = /^[A-Za-z]$/.test(key)
 
       if (isChar) insertKey(appStatusRef.current, key)

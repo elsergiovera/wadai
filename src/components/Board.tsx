@@ -11,27 +11,27 @@ const slot_animation_success = 'animate__bounce animate__faster'
 const slot_animation_error = 'animate__headShake animate__faster'
 
 const getSlotProps = (isLetterMatch: boolean | null, isLetterSpace: boolean, hasRoundChanged: boolean, hasSuccesSlots: boolean) => {
-   let slot_bgCcolor = slot_bgCcolor_disabled
+   let slot_bgColor = slot_bgCcolor_disabled
    let slot_txtColor = slot_txtColor_played
    let slot_animation: string | null = null
    
-   // Determine the slot's letter, background color and animation based on whether it matches the answer and round increasement.
+   // Determine the slot's letter, background color and animation based on whether it matches the answer and round count.
    if (!isLetterSpace) {
       if (isLetterMatch) {
-         slot_bgCcolor = slot_bgCcolor_success
+         slot_bgColor = slot_bgCcolor_success
          slot_animation = hasRoundChanged ? slot_animation_success : null
       }
       else if (isLetterMatch === undefined) {
-         slot_bgCcolor = slot_bgCcolor_default
+         slot_bgColor = slot_bgCcolor_default
          slot_txtColor = slot_txtColor_default
       }
       else {
-         slot_bgCcolor = slot_bgCcolor_error
+         slot_bgColor = slot_bgCcolor_error
          slot_animation = hasRoundChanged ? (slot_animation_error + (hasSuccesSlots ? ' animate__delay-1s' : '')) : null
       }
    }
 
-   return { slot_bgCcolor, slot_txtColor, slot_animation }
+   return { slot_bgColor, slot_txtColor, slot_animation }
 }
 
 interface BoardProps {
@@ -67,12 +67,12 @@ const Board: React.FC<BoardProps> = ({ playSound }) => {
                   const isLetterSpace = /^\s*$/.test(letter)
                   const slot_letter = answerByChar[index]
                   const slot_active = gameOver ? false : activeSlot === index + 1
-                  const { slot_bgCcolor, slot_txtColor, slot_animation } = getSlotProps(isLetterMatch, isLetterSpace, hasRoundChanged, hasSuccesSlots)
+                  const { slot_bgColor, slot_txtColor, slot_animation } = getSlotProps(isLetterMatch, isLetterSpace, hasRoundChanged, hasSuccesSlots)
 
                   return (
                      <Slot
                         letter={slot_letter}
-                        bgColor={slot_bgCcolor}
+                        bgColor={slot_bgColor}
                         txtColor={slot_txtColor}
                         animation={slot_animation}
                         active={slot_active}
