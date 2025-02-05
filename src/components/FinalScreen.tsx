@@ -26,7 +26,7 @@ const FinalScreen: React.FC<FinalScreenProps> = ({ playSound }) => {
                <div className='text-3xl font-title'>
                   <Rating name='score' max={3} value={isBoardComplete ? 0 : 3} size='large' />
                </div>
-               <div className={`text-2xl font-title animate__animated animate__infinite ${isBoardComplete ? 'animate__headShake' : 'animate__bounce'}`}>
+               <div className={`text-2xl font-title animate__animated animate__infinite animate__delay-1s ${isBoardComplete ? 'animate__headShake' : 'animate__bounce'}`}>
                   YOU {isBoardComplete ? 'LOSE' : 'WIN'}
                </div>
                <div className='w-[80%]'>
