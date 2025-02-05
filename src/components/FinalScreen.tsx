@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import useStore, { Sound } from '@/store'
 import Dialog from '@mui/material/Dialog'
+import Rating from '@mui/material/Rating'
 import Board from '@/components/Board'
 
 interface FinalScreenProps {
@@ -21,9 +22,12 @@ const FinalScreen: React.FC<FinalScreenProps> = ({ playSound }) => {
          onClose={() => { }}
       >
          <div className='flex place-content-center h-full'>
-            <div className='flex flex-col justify-center items-center space-y-5 w-app min-w-app'>
-               <div className='text-4xl font-title'>
-                  <span className={isBoardComplete ? 'lose-text' : 'win-text'}>YOU {isBoardComplete ? 'LOSE' : 'WIN'}</span>
+            <div className='flex flex-col justify-center items-center space-y-6 w-app min-w-app'>
+               <div className='text-3xl font-title'>
+                  <Rating name='score' max={3} value={isBoardComplete ? 0 : 3} size='large' />
+               </div>
+               <div className={`text-2xl font-title animate__animated animate__infinite ${isBoardComplete ? 'animate__headShake' : 'animate__bounce'}`}>
+                  YOU {isBoardComplete ? 'LOSE' : 'WIN'}
                </div>
                <div className='w-[80%]'>
                   <Board playSound={() => { }} />

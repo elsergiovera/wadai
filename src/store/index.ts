@@ -67,7 +67,7 @@ const useStore = create(
                const prev = get().appStatus
 
                get().setAppStatus({
-                  ...get().appStatus,
+                  ...prev,
                   paused: !prev.paused
                })
             },
