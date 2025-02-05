@@ -1,1 +1,2 @@
++  after round 1, if theres only letter wrong slot, it wont activate animations if the letter is not changed and you press enter (theres no re-render before).
 +  check wtf happens if I have more than 30 letters.

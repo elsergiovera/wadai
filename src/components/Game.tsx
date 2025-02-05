@@ -17,7 +17,7 @@ const Game: React.FC<AppSound> = ({ playSound }) => {
       }
    }, [])
    useEffect(() => {
-      console.log("--- appStatus updated ---", appStatus)
+      // console.log("--- appStatus updated ---", appStatus)
       appStatusRef.current = appStatus
    }, [appStatus])
 

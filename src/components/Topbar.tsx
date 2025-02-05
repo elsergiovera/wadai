@@ -1,23 +1,18 @@
 const VITE_ENV_APP_NAME = import.meta.env.VITE_ENV_APP_NAME
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import useStore, { AppSound } from '@/store'
 import HowToPlay from '@/components/HowToPlay'
 import { MessageSquareWarningIcon } from 'lucide-react'
 
 const Topbar: React.FC<AppSound> = ({ playSound }) => {
-   const [howToPlay, setHowToScreen] = useState(false)
+   const howToPlay = useStore((state) => state.howToPlay)
    const round = useStore((state) => state.appStatus.round)
-   const setTogglePause = useStore((state) => state.setTogglePause)
-
+   const toggleHowToPlay = useStore((state) => state.toggleHowToPlay)
+   
    useEffect(() => {
-      setTogglePause()
       if (howToPlay) playSound('message')
    }, [howToPlay])
-
-   const toggleHowToScreen = () => {
-      setHowToScreen((prev: boolean) => !prev)
-   }
-
+   
    return (
       <>
          <div className='w-full min-w-app min-h-[50px] grid grid-cols-3 bg-red-500 text-white'>
@@ -35,10 +30,10 @@ const Topbar: React.FC<AppSound> = ({ playSound }) => {
                   })
                }
             </div>
-            <div className='flex justify-end items-center pr-2'><MessageSquareWarningIcon className='cursor-pointer scale-x-[-1]' onClick={toggleHowToScreen} /></div>
+            <div className='flex justify-end items-center pr-2'><MessageSquareWarningIcon className='cursor-pointer scale-x-[-1]' onClick={toggleHowToPlay} /></div>
          </div>
 
-         <HowToPlay isOpen={howToPlay} handleToggleScreen={toggleHowToScreen} />
+         <HowToPlay isOpen={howToPlay} handleToggle={toggleHowToPlay} />
       </>
    )
 }

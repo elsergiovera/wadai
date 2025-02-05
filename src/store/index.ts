@@ -31,6 +31,8 @@ interface StoreProps {
    setAppStatus: (status: Status) => void
    setTogglePause: () => void
    resetDailyState: () => void
+   howToPlay: boolean
+   toggleHowToPlay: () => void
    _hasHydrated: boolean
    setHasHydrated: (status: boolean) => void
 }
@@ -54,7 +56,7 @@ const getInitialStatus = (): Status => {
       activeSlot: 1,
       round: 1,
       score: 100,
-      paused: false,
+      paused: true,
       gameOver: false,
       startedAt: new Date()
    }
@@ -75,11 +77,19 @@ const useStore = create(
                })
             },
             resetDailyState: () => {
-               // const startedAt = new Date(get().appStatus.startedAt).toLocaleDateString('en-US', { day: '2-digit', month: '2-digit', year: '2-digit' })
-               // const today = new Date().toLocaleDateString('en-US', { day: '2-digit', month: '2-digit', year: '2-digit' })
+               const startedAt = new Date(get().appStatus.startedAt).toLocaleDateString('en-US', { day: '2-digit', month: '2-digit', year: '2-digit' })
+               const today = new Date().toLocaleDateString('en-US', { day: '2-digit', month: '2-digit', year: '2-digit' })
 
-               // if (startedAt !== today) set({ appStatus: getInitialStatus() })
-               set({ appStatus: getInitialStatus() })
+               if (startedAt !== today) {
+                  set({ appStatus: getInitialStatus() })
+                  set({ howToPlay: true })
+               }
+               // set({ appStatus: getInitialStatus() })
+            },
+            howToPlay: true,
+            toggleHowToPlay: () => {
+               set({ howToPlay: !get().howToPlay })
+               get().setTogglePause()
             },
             _hasHydrated: false,
             setHasHydrated: (status: boolean) => set({ _hasHydrated: status })

@@ -31,7 +31,7 @@ const FinalScreen: React.FC<FinalScreenProps> = ({ playSound }) => {
                <div className={`text-2xl font-title animate__animated animate__infinite animate__delay-1s ${isBoardComplete ? 'animate__headShake' : 'animate__bounce'}`}>
                   YOU {isBoardComplete ? 'LOSE' : 'WIN'}
                </div>
-               <div className='w-9/12 space-y-4'>
+               <div className='w-10/12 space-y-4'>
                   <Board playSound={() => { }} />
 
                   <div className='flex mx-5'>

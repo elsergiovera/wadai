@@ -5,13 +5,13 @@ import { XIcon } from 'lucide-react'
 
 interface HowToProps {
    isOpen: boolean
-   handleToggleScreen: () => void
+   handleToggle: () => void
 }
-const HowToPlay: React.FC<HowToProps> = ({ isOpen, handleToggleScreen }) => {
+const HowToPlay: React.FC<HowToProps> = ({ isOpen, handleToggle }) => {
    return (
       <Dialog
          open={isOpen}
-         onClose={handleToggleScreen}
+         onClose={handleToggle}
          fullWidth={false}
          maxWidth={false}
          slotProps={{
@@ -41,7 +41,7 @@ const HowToPlay: React.FC<HowToProps> = ({ isOpen, handleToggleScreen }) => {
          }}
       >
          <div className='flex justify-end pt-2 px-2'>
-            <XIcon className='w-5 h-5 text-gray-300 cursor-pointer' onClick={handleToggleScreen} />
+            <XIcon className='w-5 h-5 text-gray-300 cursor-pointer' onClick={handleToggle} />
          </div>
          <div className='flex justify-center place-content-center overflow-hidden'>
             <div className='grid grid-col gap-5'>
