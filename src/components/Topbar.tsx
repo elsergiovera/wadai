@@ -2,7 +2,7 @@ const VITE_ENV_APP_NAME = import.meta.env.VITE_ENV_APP_NAME
 import { useEffect, useState } from 'react'
 import useStore, { AppSound } from '@/store'
 import HowToPlay from '@/components/HowToPlay'
-import { CircleHelpIcon } from 'lucide-react'
+import { MessageSquareWarningIcon } from 'lucide-react'
 
 const Topbar: React.FC<AppSound> = ({ playSound }) => {
    const [howToPlay, setHowToScreen] = useState(false)
@@ -35,7 +35,7 @@ const Topbar: React.FC<AppSound> = ({ playSound }) => {
                   })
                }
             </div>
-            <div className='flex justify-end items-center pr-2'><CircleHelpIcon className='cursor-pointer hidden xxs:block' onClick={toggleHowToScreen} /></div>
+            <div className='flex justify-end items-center pr-2'><MessageSquareWarningIcon className='cursor-pointer scale-x-[-1]' onClick={toggleHowToScreen} /></div>
          </div>
 
          <HowToPlay isOpen={howToPlay} handleToggleScreen={toggleHowToScreen} />
