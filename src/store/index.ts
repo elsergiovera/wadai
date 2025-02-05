@@ -1,12 +1,13 @@
 import { create } from 'zustand'
 import { persist, devtools, createJSONStorage } from 'zustand/middleware'
 import lodash from 'lodash'
-import data from '@/data/2025/en-US.json'
+import data from '@/data/data.json'
 
 export type Sound = 'bump' | 'click' | 'message' | 'right' | 'wrong' | 'win' | 'lose'
 export type Status = {
    date: string
    phrase: string
+   description: string
    answerByChar: (string | null)[]
    matchsByChar: (boolean | null)[]
    activeSlot: number
@@ -19,8 +20,8 @@ export type Status = {
 export type Day = {
    date: string
    festivity: string
-   festivity_int: string | null
    region: string
+   description: string
 }
 export interface AppSound {
    playSound: (sound: Sound) => void
@@ -35,17 +36,19 @@ interface StoreProps {
 }
 
 const getFormattedDate = (): string => {
-   return new Date().toLocaleDateString('en-US', { day: '2-digit', month: '2-digit' })
+   return new Date().toLocaleDateString('en-US', { day: '2-digit' })
 }
 const getInitialStatus = (): Status => {
-   // const formattedDate = getFormattedDate()
-   const formattedDate: string = '01/16'
+   const formattedDate = getFormattedDate()
+   // const formattedDate: string = '02'
    const day: Day | undefined = lodash.find((data as Day[]), { date: formattedDate })
    const _festivity = day?.festivity ?? ''
+   const _description = day?.description ?? ''
 
    return {
       date: formattedDate,
       phrase: _festivity,
+      description: _description,
       answerByChar: _festivity.split('').map(char => (char === ' ' ? char : null)),
       matchsByChar: [],
       activeSlot: 1,

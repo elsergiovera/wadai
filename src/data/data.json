@@ -1,0 +1,189 @@
+[
+      {
+        "date": "01",
+        "festivity": "New Year",
+        "region": null,
+        "description": "Celebration of the start of the new calendar year, marked with fireworks, parties, and various cultural traditions worldwide."
+      },
+      {
+        "date": "02",
+        "festivity": "Groundhog",
+        "region": "en-US",
+        "description": "A North American tradition where a groundhog predicts the weather for the coming weeks. Celebrated with festivities and media coverage."
+      },
+      {
+        "date": "03",
+        "festivity": "Setsubun",
+        "region": "jp-JP",
+        "description": "A Japanese festival marking the beginning of spring, where people throw beans to drive away evil spirits."
+      },
+      {
+        "date": "04",
+        "festivity": "World Cancer",
+        "region": null,
+        "description": "A global event to raise awareness about cancer, promote prevention, and encourage research and treatment efforts."
+      },
+      {
+        "date": "05",
+        "festivity": "Mexico Constitution",
+        "region": "mx-MX",
+        "description": "A Mexican national holiday that commemorates the enactment of the country's constitution in 1917."
+      },
+      {
+        "date": "06",
+        "festivity": "Three Kings",
+        "region": null,
+        "description": "A Christian holiday celebrating the visit of the three wise men to the baby Jesus. It's celebrated in many countries, especially in Spain and Latin America."
+      },
+      {
+        "date": "07",
+        "festivity": "Orthodox Christmas",
+        "region": "ru-RU",
+        "description": "Celebrated by Orthodox Christians, it marks the birth of Jesus Christ, following the Julian calendar."
+      },
+      {
+        "date": "08",
+        "festivity": "Womens Day",
+        "region": null,
+        "description": "A global celebration of the achievements and contributions of women, advocating for gender equality."
+      },
+      {
+        "date": "09",
+        "festivity": "Pizza Day",
+        "region": "en-US",
+        "description": "A fun day to celebrate and enjoy the beloved dish of pizza, with special deals and promotions in many restaurants."
+      },
+      {
+        "date": "10",
+        "festivity": "World Pulses",
+        "region": null,
+        "description": "A day to promote the nutritional benefits of pulses (legumes), highlighting their role in sustainable food systems."
+      },
+      {
+        "date": "11",
+        "festivity": "Women and Girls in Science",
+        "region": null,
+        "description": "A day dedicated to promoting gender equality in science and encouraging the participation of women and girls in scientific fields."
+      },
+      {
+        "date": "12",
+        "festivity": "Columbus Day",
+        "region": "us-US",
+        "description": "A holiday in the Americas recognizing Christopher Columbus' arrival and the heritage of indigenous peoples."
+      },
+      {
+        "date": "13",
+        "festivity": "World Radio",
+        "region": null,
+        "description": "A day to celebrate the role of radio in promoting freedom of expression, diversity, and access to information."
+      },
+      {
+        "date": "14",
+        "festivity": "Valentines Day",
+        "region": null,
+        "description": "A celebration of love and affection between partners, family, and friends, often with gifts, cards, and romantic gestures."
+      },
+      {
+        "date": "15",
+        "festivity": "Childhood Cancer",
+        "region": null,
+        "description": "A day to raise awareness and promote advocacy for children with cancer, highlighting the need for research and support."
+      },
+      {
+        "date": "16",
+        "festivity": "Lithuanias National Day",
+        "region": "lt-LT",
+        "description": "Commemorates Lithuania's declaration of independence from the Russian Empire in 1918."
+      },
+      {
+        "date": "17",
+        "festivity": "St Patricks Day",
+        "region": "ie-IE",
+        "description": "An Irish celebration of Saint Patrick, featuring parades, wearing green, and cultural festivities to honor Ireland’s patron saint."
+      },
+      {
+        "date": "18",
+        "festivity": "Womens in Arts",
+        "region": null,
+        "description": "A celebration of the contributions of women in the arts, highlighting female artists and their impact on culture."
+      },
+      {
+        "date": "19",
+        "festivity": "Fathers Day",
+        "region": "es-ES",
+        "description": "A day to celebrate fathers and father figures, often with gifts, meals, and family gatherings."
+      },
+      {
+        "date": "20",
+        "festivity": "Happiness Day",
+        "region": null,
+        "description": "A day to focus on promoting happiness and well-being for all people around the world."
+      },
+      {
+        "date": "21",
+        "festivity": "Peace Day",
+        "region": null,
+        "description": "A day dedicated to promoting peace, ceasefire, and the recognition of peacebuilding efforts worldwide."
+      },
+      {
+        "date": "22",
+        "festivity": "Thanksgiving Day",
+        "region": "us-US",
+        "description": "A day for families to gather, give thanks, and enjoy a meal, especially celebrated in the United States and Canada."
+      },
+      {
+        "date": "23",
+        "festivity": "Book Day",
+        "region": "ru-RU",
+        "description": "A celebration of books and reading, with events and special promotions to encourage literacy and education."
+      },
+      {
+        "date": "24",
+        "festivity": "Venezuela Independence",
+        "region": "ve-VE",
+        "description": "Commemorates Venezuela's declaration of independence from Spain in 1811."
+      },
+      {
+        "date": "25",
+        "festivity": "Christmas Day",
+        "region": null,
+        "description": "A Christian holiday celebrating the birth of Jesus Christ, marked by family gatherings, gift-giving, and festive meals."
+      },
+      {
+        "date": "26",
+        "festivity": "Boxing Day",
+        "region": "gb-GB",
+        "description": "A day after Christmas celebrated in the UK, Canada, and Australia with sales, sports, and charitable giving."
+      },
+      {
+        "date": "27",
+        "festivity": "World Tourism",
+        "region": null,
+        "description": "A day to celebrate global tourism and its importance to economic growth and cultural exchange."
+      },
+      {
+        "date": "28",
+        "festivity": "Innocents Day",
+        "region": "es-ES",
+        "description": "Similar to April Fools' Day, this day is marked by pranks and jokes in Spain and Latin America."
+      },
+      {
+        "date": "29",
+        "festivity": "Hanukkah",
+        "region": "il-IL",
+        "description": "A Jewish holiday commemorating the rededication of the Second Temple in Jerusalem, marked by lighting candles and family celebrations."
+      },
+      {
+        "date": "30",
+        "festivity": "Friendship Day",
+        "region": null,
+        "description": "A day to recognize the importance of friendships and encourage people to strengthen their social bonds."
+      },
+      {
+        "date": "31",
+        "festivity": "Halloween",
+        "region": "us-US",
+        "description": "A celebration of spooky fun with costumes, trick-or-treating, and parties, followed by the Christian observance of All Saints' Day."
+      }
+    ]
+    
