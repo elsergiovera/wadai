@@ -72,21 +72,10 @@ const useStore = create(
                })
             },
             resetDailyState: () => {
-               const today = getFormattedDate()
-               const date = get().appStatus.date
-               const startedAt = get().appStatus.startedAt
+               const startedAt = new Date(get().appStatus.startedAt).toLocaleDateString('en-US', { day: '2-digit', month: '2-digit', year: '2-digit' })
+               const today = new Date().toLocaleDateString('en-US', { day: '2-digit', month: '2-digit', year: '2-digit' })
 
-               const _startedAtMinute = new Date(startedAt).toLocaleTimeString('en-US', { minute: '2-digit' })
-               const _nowMinute = new Date().toLocaleTimeString('en-US', { minute: '2-digit' })
-
-               // console.log("_startedAtMinute", _startedAtMinute)
-               // console.log("_nowMinute", _nowMinute)
-
-               // console.log("today", today)
-               // console.log("date", date)
-
-               // if (date !== today) set({ appStatus: getInitialStatus() })
-               // if (_startedAtMinute !== _nowMinute) set({ appStatus: getInitialStatus() })
+               if (startedAt !== today) set({ appStatus: getInitialStatus() })
             },
             _hasHydrated: false,
             setHasHydrated: (status: boolean) => set({ _hasHydrated: status })
