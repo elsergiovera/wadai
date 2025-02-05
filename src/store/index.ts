@@ -72,10 +72,11 @@ const useStore = create(
                })
             },
             resetDailyState: () => {
-               const startedAt = new Date(get().appStatus.startedAt).toLocaleDateString('en-US', { day: '2-digit', month: '2-digit', year: '2-digit' })
-               const today = new Date().toLocaleDateString('en-US', { day: '2-digit', month: '2-digit', year: '2-digit' })
+               // const startedAt = new Date(get().appStatus.startedAt).toLocaleDateString('en-US', { day: '2-digit', month: '2-digit', year: '2-digit' })
+               // const today = new Date().toLocaleDateString('en-US', { day: '2-digit', month: '2-digit', year: '2-digit' })
 
-               if (startedAt !== today) set({ appStatus: getInitialStatus() })
+               // if (startedAt !== today) set({ appStatus: getInitialStatus() })
+               set({ appStatus: getInitialStatus() })
             },
             _hasHydrated: false,
             setHasHydrated: (status: boolean) => set({ _hasHydrated: status })

@@ -8,7 +8,8 @@ export default {
             xxs: '300px'
          },
          fontFamily: {
-            title: ['Title', 'sans-serif']
+            title: ['Title', 'sans-serif'],
+            text: ['Text', 'sans-serif']
          },
       },
    },
