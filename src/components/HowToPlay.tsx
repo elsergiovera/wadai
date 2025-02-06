@@ -30,8 +30,8 @@ const HowToPlay: React.FC<HowToProps> = ({ isOpen, handleToggle }) => {
                sx: {
                   width: '380px',
                   minWidth: '380px',
-                  height: '400px',
-                  minHeight: '400px',
+                  height: '450px',
+                  minHeight: '450px',
                   maxWidth: 'none',
                   maxHeight: 'none',
                   margin: '60px 0 0',
@@ -44,9 +44,13 @@ const HowToPlay: React.FC<HowToProps> = ({ isOpen, handleToggle }) => {
             <XIcon className='w-5 h-5 text-gray-300 cursor-pointer' onClick={handleToggle} />
          </div>
          <div className='flex justify-center place-content-center overflow-hidden'>
-            <div className='grid grid-col gap-5'>
-               <div className='font-title text-center outlined-text-reverse text-[24px]'>HOW TO PLAY</div>
-               <ul className='list-disc list-inside font-text text-[12px] tracking-tighter whitespace-nowrap space-y-2'>
+            <div className='grid grid-col gap-3'>
+               <div className='font-title text-center text-white bg-red-500 text-[20px]'>HOW TO PLAY</div>
+               <div className='font-text italic tracking-wider text-center text-[10px]'>
+                  Everyday is a festivity.<br />
+                  Do you know what day is today?
+               </div>
+               <ul className='list-disc list-inside font-text text-[12px] tracking-tighter whitespace-nowrap space-y-2 pt-2'>
                   <li>
                      Guess the <strong>Daily Festivity</strong> around the world.
                   </li>
