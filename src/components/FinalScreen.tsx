@@ -3,7 +3,7 @@ import useStore, { Sound } from '@/store'
 import Dialog from '@mui/material/Dialog'
 import Rating from '@mui/material/Rating'
 import Board from '@/components/Board'
-import { LightbulbIcon } from 'lucide-react'
+import lightbulb from '@/assets/img/lightbulb.png'
 
 interface FinalScreenProps {
    playSound: (sound: Sound) => void
@@ -35,10 +35,10 @@ const FinalScreen: React.FC<FinalScreenProps> = ({ playSound }) => {
                   <Board playSound={() => { }} />
 
                   <div className='flex mx-5'>
-                     <div className='grid justify-center items-start bg-slate-100 p-1'>
-                        <LightbulbIcon className='w-4' />
+                     <div className='grid justify-center items-start bg-gray-200 p-1'>
+                        <img src={lightbulb} />
                      </div>
-                     <div className='font-text bg-slate-50 p-1'>
+                     <div className='font-text bg-gray-100 p-1'>
                         <p className='font-bold text-[14px]'>{formattedDate}</p>
                         <p className='text-[12px]'>{description}</p>
                      </div>
