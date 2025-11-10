@@ -1,50 +1,19 @@
-# React + TypeScript + Vite
+# WADAI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![WADAI Screenshot](/public/cover.png)
 
-Currently, two official plugins are available:
+## :closed_book: Introduction
+Welcome to **WADAI**, a daily word-guessing game with a global twist.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Each day, the game selects a festivity celebrated somewhere in the world on that date. Your challenge is to guess it in five tries.
 
-## Expanding the ESLint configuration
+Whether it’s Christmas, Diwali, 18 de Septiembre, or a national holiday you’ve never heard of, **WADAI** turns cultural discovery into a daily puzzle.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## :rocket: Features
+- **Festivity-based Words**: Every day’s word comes from a real celebration or cultural event happening somewhere around the world..
+- **Wordle-style Gameplay**: You have *5 attempts* (represented by the letters WADAI) to guess the festivity of the day.
+- **Global Awareness**: Learn about holidays, traditions, and events across different cultures.
+- **One Game per Day**: A new festivity unlocks every 24 hours!
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## :red_circle: Demo
+You can find a live demo here: **[wadai.veraserg.io](https://wadai.veraserg.io)**
