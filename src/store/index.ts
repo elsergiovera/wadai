@@ -7,6 +7,8 @@ export type Sound = 'bump' | 'click' | 'message' | 'right' | 'wrong' | 'win' | '
 export type Status = {
    date: string
    phrase: string
+   region: string | null
+   level: number
    description: string
    answerByChar: (string | null)[]
    matchsByChar: (boolean | null)[]
@@ -21,6 +23,7 @@ export type Day = {
    date: string
    phrase: string
    region: string
+   level: number
    description: string
 }
 export interface AppSound {
@@ -45,14 +48,18 @@ const getFormattedDate = (): string => {
 }
 const getInitialStatus = (): Status => {
    const formattedDate = getFormattedDate()
-   // const formattedDate: string = '1229'
+   // const formattedDate: string = '0329'
    const day: Day | undefined = lodash.find((data as Day[]), { date: formattedDate })
    const _phrase = day?.phrase ?? ''
+   const _region = day?.region ?? null
+   const _level = day?.level ?? 0
    const _description = day?.description ?? ''
 
    return {
       date: formattedDate,
       phrase: _phrase,
+      region: _region,
+      level: _level,
       description: _description,
       answerByChar: _phrase.split('').map(char => (char === ' ' ? char : null)),
       matchsByChar: [],

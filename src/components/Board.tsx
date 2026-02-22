@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import useStore, { Sound } from '@/store'
 import Slot from '@/components/Slot'
+import Indicators from '@/components/Indicators'
 const slot_bgCcolor_disabled = 'bg-neutral-400'
 const slot_bgCcolor_default = 'bg-white-400'
 const slot_bgCcolor_success = 'bg-green-500'
@@ -91,6 +92,7 @@ const Board: React.FC<BoardProps> = ({ playSound }) => {
                   key={`inactive-slot-${index}`}
                />
             ))}
+            <Indicators />
          </div>
       </div>
    )
