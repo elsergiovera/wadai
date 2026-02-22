@@ -3,6 +3,8 @@ import example_rounds from '@/assets/img/example_rounds.png'
 import example_board from '@/assets/img/example_board.png'
 import { XIcon } from 'lucide-react'
 
+const SHOW_INDICATORS = import.meta.env.VITE_ENV_FLAG_SHOW_INDICATORS === 'true'
+
 interface HowToProps {
    isOpen: boolean
    handleToggle: () => void
@@ -65,21 +67,23 @@ const HowToPlay: React.FC<HowToProps> = ({ isOpen, handleToggle }) => {
                      The <strong>rounds count</strong> is represented at the top:
                   </li>
                   <img src={example_rounds} width={'120px'} className='ml-[90px]' />
-                  <li>
-                     Below the board, <strong>two indicators</strong> show:
-                  </li>
-                  <ul className='list-none ml-4 space-y-1 whitespace-normal'>
+                  {SHOW_INDICATORS && (<>
                      <li>
-                        <span style={{ display: 'inline-block', width: 8, height: 8, background: '#facc15', marginRight: 4, verticalAlign: 'middle' }} />
-                        <strong>Difficulty</strong>: Easy, Medium, Hard.
+                        Below the board, <strong>two indicators</strong> show:
                      </li>
-                     <li>
-                        <span style={{ display: 'inline-block', width: 12, height: 8, verticalAlign: 'middle', marginRight: 4, overflow: 'hidden' }}>
-                           <img src='https://flagcdn.com/w20/un.png' alt='flag' style={{ height: 8, width: 'auto' }} />
-                        </span>
-                        <strong>Origin</strong>: country or region.
-                     </li>
-                  </ul>
+                     <ul className='list-none ml-4 space-y-1 whitespace-normal'>
+                        <li>
+                           <span style={{ display: 'inline-block', width: 8, height: 8, background: '#facc15', marginRight: 4, verticalAlign: 'middle' }} />
+                           <strong>Difficulty</strong>: Easy, Medium, Hard.
+                        </li>
+                        <li>
+                           <span style={{ display: 'inline-block', width: 12, height: 8, verticalAlign: 'middle', marginRight: 4, overflow: 'hidden' }}>
+                              <img src='https://flagcdn.com/w20/un.png' alt='flag' style={{ height: 8, width: 'auto' }} />
+                           </span>
+                           <strong>Origin</strong>: country or region.
+                        </li>
+                     </ul>
+                  </>)}
                   <li>
                      The results are displayed <strong>after every round</strong>:
                   </li>
