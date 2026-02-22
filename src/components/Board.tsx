@@ -92,7 +92,7 @@ const Board: React.FC<BoardProps> = ({ playSound }) => {
                   key={`inactive-slot-${index}`}
                />
             ))}
-            <Indicators />
+            <Indicators playSound={playSound} />
          </div>
       </div>
    )

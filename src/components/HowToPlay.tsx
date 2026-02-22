@@ -2,6 +2,8 @@ import Dialog from '@mui/material/Dialog'
 import example_rounds from '@/assets/img/example_rounds.png'
 import example_board from '@/assets/img/example_board.png'
 import { XIcon } from 'lucide-react'
+import { levelIndicatorStyle, getLevelInfo, getCountryCode, EMOJI_URL } from '@/components/Indicators'
+import useStore from '@/store'
 
 const SHOW_INDICATORS = import.meta.env.VITE_ENV_FLAG_SHOW_INDICATORS === 'true'
 
@@ -10,6 +12,10 @@ interface HowToProps {
    handleToggle: () => void
 }
 const HowToPlay: React.FC<HowToProps> = ({ isOpen, handleToggle }) => {
+   const { appStatus: { level, region } } = useStore()
+   const levelInfo = getLevelInfo(level)
+   const countryCode = getCountryCode(region)
+
    return (
       <Dialog
          open={isOpen}
@@ -38,7 +44,9 @@ const HowToPlay: React.FC<HowToProps> = ({ isOpen, handleToggle }) => {
                   maxHeight: 'none !important',
                   overflow: 'visible',
                   margin: '60px 0 0',
-                  borderRadius: '0'
+                  borderRadius: '0',
+                  background: '#fff',
+                  border: '1px solid #ddd'
                },
             },
          }}
@@ -69,18 +77,16 @@ const HowToPlay: React.FC<HowToProps> = ({ isOpen, handleToggle }) => {
                   <img src={example_rounds} width={'120px'} className='ml-[90px]' />
                   {SHOW_INDICATORS && (<>
                      <li>
-                        Below the board, <strong>two indicators</strong> show:
+                        Below the board, <strong>the indicators</strong> show:
                      </li>
                      <ul className='list-none ml-4 space-y-1 whitespace-normal'>
-                        <li>
-                           <span style={{ display: 'inline-block', width: 8, height: 8, background: '#facc15', marginRight: 4, verticalAlign: 'middle' }} />
-                           <strong>Difficulty</strong>: Easy, Medium, Hard.
+                        <li className='flex items-center gap-1'>
+                           <span style={{ ...levelIndicatorStyle, background: levelInfo.color }}>{levelInfo.label[0]}</span>
+                           <span><strong>Difficulty</strong>: Easy, Medium or Hard.</span>
                         </li>
-                        <li>
-                           <span style={{ display: 'inline-block', width: 12, height: 8, verticalAlign: 'middle', marginRight: 4, overflow: 'hidden' }}>
-                              <img src='https://flagcdn.com/w20/un.png' alt='flag' style={{ height: 8, width: 'auto' }} />
-                           </span>
-                           <strong>Origin</strong>: country or region.
+                        <li className='flex items-center gap-1'>
+                           <img src={`${EMOJI_URL}/${countryCode ?? 'un'}.png`} alt='flag' style={{ height: 11, width: 'auto', flexShrink: 0 }} />
+                           <span><strong>Origin</strong>: where the festivity comes from.</span>
                         </li>
                      </ul>
                   </>)}
