@@ -20,24 +20,15 @@ const getCountryCode = (region: string | null): string | null => {
 }
 
 const LevelIndicator = ({ color }: { color: string }) => (
-   <>
-      <style>{`
-         @keyframes led-pulse {
-            0%, 100% { opacity: 0.95; box-shadow: 0 0 3px ${color}, 0 0 1px ${color}; }
-            50% { opacity: 0.55; box-shadow: 0 0 1px ${color}; }
-         }
-      `}</style>
-      <div
-         style={{
-            width: 9,
-            height: 9,
-            borderRadius: 0,
-            background: color,
-            boxShadow: `0 0 3px ${color}, 0 0 1px ${color}`,
-            animation: 'led-pulse 3s ease-in-out infinite',
-         }}
-      />
-   </>
+   <div
+      style={{
+         height: 11,
+         width: 11,
+         borderRadius: 0,
+         background: color,
+         opacity: 0.6,
+      }}
+   />
 )
 
 const Indicators = () => {
