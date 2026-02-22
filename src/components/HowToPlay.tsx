@@ -90,7 +90,7 @@ const HowToPlay: React.FC<HowToProps> = ({ isOpen, handleToggle }) => {
                         </li>
                         <li className='flex items-center gap-1'>
                            <img src={`${EMOJI_URL}/${countryCode ?? 'un'}.png`} alt='flag' style={{ height: 11, width: 'auto', flexShrink: 0 }} />
-                           <span><strong>Origin</strong>: where the festivity comes from.</span>
+                           <span><strong>Origin</strong>: Where the festivity comes from.</span>
                         </li>
                      </ul>
                   </>)}
