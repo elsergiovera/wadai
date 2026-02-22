@@ -75,6 +75,10 @@ const HowToPlay: React.FC<HowToProps> = ({ isOpen, handleToggle }) => {
                      The <strong>rounds count</strong> is represented at the top:
                   </li>
                   <img src={example_rounds} width={'120px'} className='ml-[90px]' />
+                  <li>
+                     The results are displayed <strong>after every round</strong>:
+                  </li>
+                  <img src={example_board} width={'140px'} className='ml-[80px]' />
                   {SHOW_INDICATORS && (<>
                      <li>
                         Below the board, <strong>the indicators</strong> show:
@@ -90,10 +94,6 @@ const HowToPlay: React.FC<HowToProps> = ({ isOpen, handleToggle }) => {
                         </li>
                      </ul>
                   </>)}
-                  <li>
-                     The results are displayed <strong>after every round</strong>:
-                  </li>
-                  <img src={example_board} width={'140px'} className='ml-[80px]' />
                </ul>
             </div>
          </div>
