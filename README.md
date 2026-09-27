@@ -15,5 +15,8 @@ Whether it’s Christmas, Diwali, 18 de Septiembre, or a national holiday you’
 - **Global Awareness**: Learn about holidays, traditions, and events across different cultures.
 - **One Game per Day**: A new festivity unlocks every 24 hours!
 
+## :link: Festivities
+You can find the list of daily festivities: **[here](https://github.com/elsergiovera/wadai/blob/main/src/data/full_data.json)**
+
 ## :red_circle: Demo
 You can find a live demo here: **[wadai.veraserg.io](https://wadai.veraserg.io)**
