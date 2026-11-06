@@ -1,101 +1,72 @@
-import { useEffect, useRef } from 'react'
-import useStore, { Sound } from '@/store'
-import Slot from '@/components/Slot'
-import Indicators from '@/components/Indicators'
-const slot_bgCcolor_disabled = 'bg-neutral-400'
-const slot_bgCcolor_default = 'bg-white-400'
-const slot_bgCcolor_success = 'bg-green-500'
-const slot_bgCcolor_error = 'bg-red-500'
-const slot_txtColor_default = 'text-neutral-500'
-const slot_txtColor_played = 'text-white'
-const slot_animation_success = 'animate__bounce animate__faster'
-const slot_animation_error = 'animate__headShake animate__faster'
+import { CSSProperties, memo } from 'react'
+import { Theme } from '@/store'
 
-const getSlotProps = (isLetterMatch: boolean | null, isLetterSpace: boolean, hasRoundChanged: boolean, hasSuccesSlots: boolean) => {
-   let slot_bgColor = slot_bgCcolor_disabled
-   let slot_txtColor = slot_txtColor_played
-   let slot_animation: string | null = null
-   
-   // Determine the slot's letter, background color and animation based on whether it matches the answer and round count.
-   if (!isLetterSpace) {
-      if (isLetterMatch) {
-         slot_bgColor = slot_bgCcolor_success
-         slot_animation = hasRoundChanged ? slot_animation_success : null
-      }
-      else if (isLetterMatch === undefined) {
-         slot_bgColor = slot_bgCcolor_default
-         slot_txtColor = slot_txtColor_default
-      }
-      else {
-         slot_bgColor = slot_bgCcolor_error
-         slot_animation = hasRoundChanged ? (slot_animation_error + (hasSuccesSlots ? ' animate__delay-1s' : '')) : null
-      }
-   }
+// How a tile looks: filler, empty letter slot, given word, fixed character, right, wrong or revealed hint.
+export type TileKind = 'f' | 'slot' | 'giv' | 'fx' | 'g' | 'r' | 'hint'
 
-   return { slot_bgColor, slot_txtColor, slot_animation }
+export type TileView = {
+   kind: TileKind
+   char?: string | null
+   // Wrong letter from the last round, shown until the player types over it.
+   faded?: boolean
+   active?: boolean
+   anim?: 'bounce' | 'shake' | 'pop'
+   delay?: number
+   index?: number
 }
 
-interface BoardProps {
-   playSound: (sound: Sound) => void
-}
-const Board: React.FC<BoardProps> = ({ playSound }) => {
-   const { appStatus: { phrase, activeSlot, answerByChar, matchsByChar, round, paused, gameOver } } = useStore()
-   const previousRoundRef = useRef<number>(0)
-   const hasRoundChanged = previousRoundRef.current < round
-   const hasSuccesSlots = matchsByChar.includes(true)
-   const hasErrorSlots = matchsByChar.includes(false)
-   const unusedSlots = 30 - phrase.length
-
-   useEffect(() => {
-      previousRoundRef.current = round
-      if (!paused || !gameOver) playBoardSounds(hasSuccesSlots, hasErrorSlots)
-   }, [round])
-
-   const playBoardSounds = (hasSuccesSlots: boolean, hasErrorSlots: boolean) => {
-      hasSuccesSlots && playSound('right')
-      hasErrorSlots && setTimeout(() => {
-         playSound('wrong')
-      }, hasSuccesSlots ? 1000 : 0)
-   }
-
-   return (
-      <div className='flex justify-center'>
-         <div className={'grid grid-cols-6 gap-1 text-center w-[90%]'}>
-            {
-               phrase.split('').map((letter, index) => {
-                  letter = letter.toUpperCase()
-                  const isLetterMatch = matchsByChar[index]
-                  const isLetterSpace = /^\s*$/.test(letter)
-                  const slot_letter = answerByChar[index]
-                  const slot_active = gameOver ? false : activeSlot === index + 1
-                  const { slot_bgColor, slot_txtColor, slot_animation } = getSlotProps(isLetterMatch, isLetterSpace, hasRoundChanged, hasSuccesSlots)
-
-                  return (
-                     <Slot
-                        letter={slot_letter}
-                        bgColor={slot_bgColor}
-                        txtColor={slot_txtColor}
-                        animation={slot_animation}
-                        active={slot_active}
-                        key={`slot-${index}`}
-                     />
-                  )
-               })
-            }
-            {Array.from({ length: unusedSlots }).map((_, index) => (
-               <Slot
-                  letter={null}
-                  bgColor={slot_bgCcolor_disabled}
-                  txtColor={slot_txtColor_default}
-                  animation={null}
-                  active={false}
-                  key={`inactive-slot-${index}`}
-               />
-            ))}
-            <Indicators playSound={playSound} />
-         </div>
+export const Housing = ({ theme, children }: { theme: Theme, children: React.ReactNode }) => {
+   if (theme === 'arcade') return (
+      <div className='hous-arcade'>
+         <span className='led' aria-hidden='true' />
+         <div className='lcd'>{children}</div>
+         <div className='brand' aria-hidden='true'>WADAI <i>·</i> POCKET</div>
       </div>
    )
+   if (theme === 'calendar') return (
+      <div className='hous-calendar'>
+         <div className='ch' aria-hidden='true'><span className='holes'><i /><i /></span></div>
+         <div className='cb'>{children}</div>
+      </div>
+   )
+   return <div className='hous-classic'>{children}</div>
 }
+
+const Tile = memo(({ tile, onPick }: { tile: TileView, onPick?: (index: number) => void }) => {
+   const classes = ['tile', tile.kind, tile.active && 'act', tile.anim, tile.kind === 'slot' || tile.faded ? 'slot' : '']
+   const style = tile.delay ? { animationDelay: `${tile.delay}ms` } : undefined
+   const pick = onPick && tile.index !== undefined && (tile.kind === 'slot' || tile.faded) ? () => onPick(tile.index!) : undefined
+
+   return (
+      <div className={classes.filter(Boolean).join(' ')} style={style} onPointerDown={pick} aria-hidden='true'>
+         {tile.char && (tile.faded ? <span style={{ opacity: .6 }}>{tile.char}</span> : <span key={tile.char}>{tile.char}</span>)}
+      </div>
+   )
+})
+
+type BoardProps = {
+   theme: Theme
+   cols: number
+   tiles: TileView[]
+   size: number
+   gap: number
+   label: string
+   nope?: boolean
+   onPick?: (index: number) => void
+}
+
+// A fixed grid of tiles inside the theme's housing.
+const Board = ({ theme, cols, tiles, size, gap, label, nope, onPick }: BoardProps) => (
+   <Housing theme={theme}>
+      <div
+         className={`grid ${nope ? 'nope' : ''}`}
+         role='img'
+         aria-label={label}
+         style={{ gridTemplateColumns: `repeat(${cols}, var(--t))`, gap, '--t': `${size}px` } as CSSProperties}
+      >
+         {tiles.map((tile, i) => <Tile key={i} tile={tile} onPick={onPick} />)}
+      </div>
+   </Housing>
+)
 
 export default Board

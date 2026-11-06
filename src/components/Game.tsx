@@ -1,183 +1,220 @@
-const VITE_ENV_APP_MAX_ROUNDS = import.meta.env.VITE_ENV_APP_MAX_ROUNDS
-import { useEffect, useRef } from 'react'
-import useStore, { Status, AppSound } from '@/store'
-import Board from '@/components/Board'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import useStore from '@/store'
+import { ClueKey, Day, allSlots, buildWords, puzzleNumber } from '@/lib/puzzle'
+import { GameState, GameView, fitsPuzzle, isComplete, newGame, submitGuess, viewGame } from '@/lib/game'
+import { HOUSING_CHROME, fitBoard } from '@/lib/board'
+import { CALENDAR } from '@/data/calendar'
+import { PlaySound } from '@/hooks/useSounds'
+import useElementSize from '@/hooks/useElementSize'
+import Board, { TileView } from '@/components/Board'
+import ClueChips from '@/components/ClueChips'
+import DateHeader from '@/components/DateHeader'
 import Keyboard from '@/components/Keyboard'
-import FinalScreen from '@/components/FinalScreen'
 
-const Game: React.FC<AppSound> = ({ playSound }) => {
-   const { appStatus, setAppStatus } = useStore()
-   const appStatusRef = useRef(appStatus)
+type GameProps = {
+   day: Day
+   todayKey: string
+   // A panel is open on top, so physical keys must not reach the board.
+   blocked: boolean
+   playSound: PlaySound
+   onFinished: () => void
+   onShowResult: () => void
+   onToday: () => void
+}
+
+// Last scored round, kept for a moment so the new colours can animate.
+type Scored = { round: number, fresh: ClueKey | null }
+
+const Game = ({ day, todayKey, blocked, playSound, onFinished, onShowResult, onToday }: GameProps) => {
+   const date = day.date
+   const theme = useStore(state => state.settings.theme)
+   const saved = useStore(state => state.games[date])
+   const saveGame = useStore(state => state.saveGame)
+   const addResult = useStore(state => state.addResult)
+
+   const words = useMemo(() => buildWords(day), [day])
+   const game: GameState = useMemo(() => saved && fitsPuzzle(words, saved) ? saved : newGame(words), [saved, words])
+   const view: GameView = useMemo(() => viewGame(words, game), [words, game])
+   const slots = useMemo(() => allSlots(words), [words])
+
+   const [cursor, setCursor] = useState<number | null>(null)
+   const [scored, setScored] = useState<Scored | null>(null)
+   const [nope, setNope] = useState(false)
+
+   // The active slot: where the player put it, else the first empty one.
+   const fallback = view.editable.find(i => !view.current[i]) ?? view.editable[view.editable.length - 1] ?? null
+   const active = cursor !== null && view.editable.includes(cursor) ? cursor : fallback
+
+   useEffect(() => { setCursor(null); setScored(null) }, [date])
 
    useEffect(() => {
-      // Add Event Listener and it respective cleanup to handle key functions.
-      window.addEventListener('keydown', handleKeyDown)
-      return () => {
-         window.removeEventListener('keydown', handleKeyDown)
-      }
-   }, [])
-   useEffect(() => {
-      // console.log("--- appStatus updated ---", appStatus)
-      appStatusRef.current = appStatus
-   }, [appStatus])
+      if (!scored) return
+      const timer = window.setTimeout(() => setScored(null), 1800)
+      return () => window.clearTimeout(timer)
+   }, [scored])
 
-   const insertKey = (status: Status, key: string) => {
-      const { answerByChar, matchsByChar, activeSlot, round } = status
-      const _answerByChar = answerByChar
-      let _nextSlotAvailable
-      let _activeSlot = 0
+   const bump = useCallback(() => {
+      playSound('bump')
+      setNope(true)
+      window.setTimeout(() => setNope(false), 500)
+   }, [playSound])
 
-      // Set the key at the current active slot.
-      _answerByChar[activeSlot - 1] = key.toUpperCase()
-
-      // Determines the next active slot.
-      // If no plays have been made yet (round === 1), move to the next slot if it's not at the last one.
-      // If plays have been made (round > 1), find the next available slot wheres matches are marked as 'false' in the previous round.
-      if (round === 1) {
-         const _isNextSlotSpace = _answerByChar[activeSlot] === ' '
-         _nextSlotAvailable = activeSlot < _answerByChar.length
-         _activeSlot = activeSlot + (_nextSlotAvailable ? 1 + (_isNextSlotSpace ? 1 : 0) : 0)
-
-         !_nextSlotAvailable && playSound('bump')
-      }
-      else {
-         _nextSlotAvailable = matchsByChar.slice(activeSlot).findIndex((match) => match === false) + 1
-         _activeSlot = activeSlot + (_nextSlotAvailable >= 1 ? _nextSlotAvailable : 0)
-
-         if (_nextSlotAvailable === 0) playSound('bump')
-      }
-
-      const _status: Status = ({
-         ...status,
-         answerByChar: _answerByChar,
-         activeSlot: _activeSlot
-      })
-
-      setAppStatus(_status)
+   const setDraft = (index: number, char: string | null) => {
+      const draft = [...game.draft]
+      draft[index] = char
+      saveGame(date, { ...game, draft })
    }
-   const deleteKey = (status: Status) => {
-      const { phrase, answerByChar, matchsByChar, activeSlot, round } = status
-      const activeSlotIndex = activeSlot - 1
-      const _answerByChar = answerByChar
-      const _phraseByChar = phrase.split('')
-      const _isPreviousSlotSpace = _phraseByChar[activeSlotIndex - 1] === ' '
-      const _isSlotEmpty = _answerByChar[activeSlotIndex] === null
-      let _activeSlot = 0
 
-      // Removes the corresponding key and determines the next active slot.
-      // If no plays have been made yet (round === 1), moves to the previous slot if it's not at the first one already.
-      // If plays have been made (round > 1), find the previous available slot where match was marked as 'false' in the previous round.
-      if (round === 1) {
-         // If it's the first slot, plays the sound and exits the function.
-         if (activeSlotIndex === 0) {
-            playSound('bump')
-            return
-         }
+   const submit = () => {
+      if (!isComplete(view)) return bump()
 
-         // Set activeSlot based on the current position and conditions.
-         // If it's the last slot available in the board, and it's not empty, it removes the key and sets the activeSlot to itself.
-         // Oherwise, moves to the next available slot.
-         const _isLastSlot = activeSlot === _phraseByChar.length
+      const next = submitGuess(words, game, view)
+      const score = next.guesses.length ? viewGame(words, next).scores[next.guesses.length - 1] : []
+      saveGame(date, next)
+      setCursor(null)
 
-         if (_isLastSlot) {
-            _answerByChar[activeSlotIndex - (_isSlotEmpty ? 1 : 0)] = null
-            _activeSlot = activeSlot - (_isSlotEmpty ? 1 : 0)
-         }
-         else {
-            _answerByChar[activeSlotIndex - (_isPreviousSlotSpace ? 2 : 1)] = null
-            _activeSlot = (activeSlot - 1) - (_isPreviousSlotSpace ? 1 : 0)
-         }
-      }
-      else {
-         const _nextSlotIndex = matchsByChar.slice(0, activeSlotIndex).lastIndexOf(false)
-         const _isFirstSlot = _nextSlotIndex === -1
-         const _isLastSlot = activeSlotIndex === matchsByChar.lastIndexOf(false)
-         _answerByChar[activeSlotIndex] = null
+      const newlyRight = slots.some(slot => slot.kind === 'letter' && score[slot.index] && !view.locked.has(slot.index))
+      const wrong = slots.some(slot => slot.kind === 'letter' && !score[slot.index])
+      const nextView = viewGame(words, next)
+      const fresh = next.finished ? null : nextView.clues.find(clue => !view.clues.includes(clue)) ?? null
+      setScored({ round: next.guesses.length, fresh })
 
-         // Set activeSlot based on the current position and conditions.
-         // If it's the first available slot or if it's the last available slot and it's not empty, sets the activeSlot to itself. 
-         // Otherwise, moves to the next available slot.
-         // Note: A slot can be first and last at the same time, if it's the only one available in the board.
-         _activeSlot = ((_isLastSlot && !_isSlotEmpty) || _isFirstSlot) ? activeSlot : _nextSlotIndex + 1
-
-         if (_isFirstSlot) playSound('bump')
-      }
-
-      setAppStatus({
-         ...status,
-         answerByChar: _answerByChar,
-         activeSlot: _activeSlot
-      } as Status)
-   }
-   const validateKeys = (status: Status) => {
-      const { phrase, answerByChar, matchsByChar, activeSlot, round } = status
-
-      // Makes sure there's no slots left empty before validating and that the active slot is the last slot available in the board.
-      // To make sure it's getting the actual last available slot in the board, it checks if it's the final character in round 1 or the last unmatched character in subsequent rounds.  
-      const _areEmptySlots = answerByChar.includes(null)
-      const _isLastSlot = activeSlot === (round === 1 ? phrase.length : matchsByChar.lastIndexOf(false) + 1)
-      const validate = !_areEmptySlots && _isLastSlot
-
-      if (!validate) {
-         playSound('bump')
+      if (next.finished) {
+         addResult({ date, solvedIn: next.solvedIn, archive: date !== todayKey, region: day.region })
+         if (newlyRight) playSound('right')
+         window.setTimeout(() => {
+            playSound(next.solvedIn ? 'win' : 'lose')
+            onFinished()
+         }, 1400)
          return
       }
-
-      // If it's ok to validate, it compares each character of the user's answer with the corresponding character in the correct phrase.
-      const _phraseByChar = phrase.split('')
-      const _matchsByChar: (boolean | null)[] = []
-      let _activeSlot: number | null = null
-      let _boardComplete = true
-
-      answerByChar.map((char, index) => {
-         const _match = (char !== ' ') ? char === _phraseByChar[index].toUpperCase() : null
-         _matchsByChar.push(_match)
-
-         // If there's wrong answers, set the first active slot for next round and the board as incomplete.
-         if (_match === false && _activeSlot === null) _activeSlot = index + 1
-         if (_match === false && _boardComplete) _boardComplete = false
-      })
-
-      // Determine if the game is over based on whether the board is complete or the maximum number of rounds has been reached.
-      const _gameOver = ((VITE_ENV_APP_MAX_ROUNDS - round) <= 0) || _boardComplete === true
-
-      const _status: Status = ({
-         ...status,
-         matchsByChar: _matchsByChar,
-         activeSlot: _activeSlot ?? 1,
-         round: status.round + 1,
-         paused: _gameOver,
-         gameOver: _gameOver
-      })
-      setAppStatus(_status)
+      if (newlyRight) playSound('right')
+      if (wrong) window.setTimeout(() => playSound('wrong'), newlyRight ? 900 : 0)
    }
-   const handleKeyDown = (event: KeyboardEvent | string) => {
-      if (appStatusRef.current.paused) return
 
-      // Extract the key from the event. If 'event' is a string, it comes directly from the Virtual Keyboard 
-      // Otherwise, it's a KeyboardEvent coming from the device keyboard and gets the 'key' property.
-      const key = typeof event === 'string' ? event : (event as KeyboardEvent).key
+   const handleKey = (key: string) => {
+      if (game.finished) return
+      if (key === 'Enter') return submit()
 
-      // Makes sure the key is a single alphabetic character (A-Z or a-z).
-      const isChar = /^[A-Za-z]$/.test(key)
+      const position = active === null ? -1 : view.editable.indexOf(active)
+      if (key === 'Backspace') {
+         if (active === null) return bump()
+         if (game.draft[active]) return setDraft(active, null)
+         if (position <= 0) return bump()
+         const previous = view.editable[position - 1]
+         setCursor(previous)
+         return setDraft(previous, null)
+      }
 
-      if (isChar) insertKey(appStatusRef.current, key)
-      else if (key === 'Backspace') deleteKey(appStatusRef.current)
-      else if (key === 'Enter') validateKeys(appStatusRef.current)
+      if (/^[a-z]$/i.test(key)) {
+         if (active === null) return bump()
+         const isLast = position === view.editable.length - 1
+         if (isLast && game.draft[active]) playSound('bump')
+         setDraft(active, key.toUpperCase())
+         if (!isLast) setCursor(view.editable[position + 1])
+      }
    }
+
+   // Physical keyboard. The latest handler is kept in a ref so the listener is attached once.
+   const handleKeyRef = useRef(handleKey)
+   handleKeyRef.current = handleKey
+   const onVirtualKey = useCallback((key: string) => {
+      playSound('click')
+      handleKeyRef.current(key)
+   }, [playSound])
+   useEffect(() => {
+      const onKeyDown = (event: KeyboardEvent) => {
+         if (blocked || event.ctrlKey || event.metaKey || event.altKey) return
+         const target = event.target as HTMLElement | null
+         if (event.key === 'Enter' && target?.closest('button, a, input, textarea')) return
+         if (event.key === 'Enter' || event.key === 'Backspace' || /^[a-z]$/i.test(event.key)) {
+            event.preventDefault()
+            handleKeyRef.current(event.key)
+         }
+      }
+      window.addEventListener('keydown', onKeyDown)
+      return () => window.removeEventListener('keydown', onKeyDown)
+   }, [blocked])
+
+   // ----- board -----
+   const areaRef = useRef<HTMLDivElement>(null)
+   const area = useElementSize(areaRef)
+   const { layout, size, gap } = useMemo(
+      () => fitBoard(words, theme === 'calendar' ? 3 : 4, area.width - 20, area.height - 16, HOUSING_CHROME[theme]),
+      [words, theme, area.width, area.height],
+   )
+
+   const lastScore = view.scores[view.scores.length - 1]
+   const lastGuess = game.guesses[game.guesses.length - 1]
+   const animating = scored !== null && scored.round === game.guesses.length
+
+   const tiles: TileView[] = layout.cells.map((slot, cellIndex) => {
+      if (!slot) return { kind: 'f' }
+      if (slot.kind === 'given') return { kind: 'giv', char: slot.char }
+      if (slot.kind === 'fixed') return { kind: 'fx', char: slot.char }
+
+      const i = slot.index
+      const col = cellIndex % layout.cols
+      const delay = col * 70
+
+      if (game.finished) {
+         const ok = lastScore?.[i]
+         const anim = animating ? (ok ? 'bounce' : 'shake') : undefined
+         return { kind: ok ? 'g' : 'r', char: lastGuess?.[i] ?? slot.char, anim, delay: anim ? delay : 0 }
+      }
+      if (view.locked.has(i)) {
+         const fresh = animating && !(view.scores.slice(0, -1).some(score => score[i]))
+         return { kind: 'g', char: slot.char, anim: fresh ? 'bounce' : undefined, delay: fresh ? delay : 0 }
+      }
+      if (view.revealed.has(i)) return { kind: 'hint', char: slot.char, index: i }
+
+      const typed = game.draft[i]
+      if (typed) return { kind: 'slot', char: typed, active: active === i, anim: 'pop', index: i }
+
+      // Wrong in the last round: stays red with the old letter until the player types over it.
+      if (lastScore && !lastScore[i]) {
+         const anim = animating ? 'shake' : undefined
+         return { kind: 'r', char: lastGuess?.[i], faded: true, active: active === i, anim, delay: anim ? delay + 300 : 0, index: i }
+      }
+      return { kind: 'slot', char: null, active: active === i, index: i }
+   })
+
+   const label = game.finished
+      ? `Board: ${day.phrase.toUpperCase()}, ${game.solvedIn ? `solved in round ${game.solvedIn}` : 'not solved'}`
+      : `Board, round ${view.round} of 5: ${words.map(word => word.map(slot => {
+         if (slot.kind !== 'letter') return slot.char
+         return view.current[slot.index] ?? '_'
+      }).join('')).join(' ')}`
 
    return (
       <>
-         <div className='flex justify-center'>
-            <div className={`flex flex-col justify-between w-app min-w-app h-[600px]`}>
-               <Board playSound={playSound} />
-               <Keyboard handleKeyDown={handleKeyDown} playSound={playSound} />
-            </div>
+         <DateHeader theme={theme} date={date} number={puzzleNumber(CALENDAR, date)} archive={date !== todayKey} onToday={onToday} />
+         <ClueChips day={day} words={words} clues={view.clues} fresh={animating ? scored?.fresh : null} />
+         <div className='board' ref={areaRef}>
+            {area.width > 0 && (
+               <Board
+                  theme={theme}
+                  cols={layout.cols}
+                  tiles={tiles}
+                  size={size}
+                  gap={gap}
+                  label={label}
+                  nope={nope}
+                  onPick={index => setCursor(index)}
+               />
+            )}
          </div>
-
-         {appStatus.gameOver &&
-            <FinalScreen playSound={playSound} />
-         }
+         {game.finished && (
+            <div className='after'>
+               <button type='button' className='pill' onClick={onShowResult}>
+                  {game.solvedIn ? `SOLVED IN ${game.solvedIn}/5` : 'NOT SOLVED'} · SEE RESULT ▸
+               </button>
+            </div>
+         )}
+         <p className='sr-only' aria-live='polite'>
+            {scored ? `Round ${scored.round} scored. ${game.finished ? (game.solvedIn ? 'Solved!' : 'Out of rounds.') : `Round ${view.round} of 5.`}` : ''}
+         </p>
+         <Keyboard hits={view.hits} misses={view.misses} disabled={game.finished} onKey={onVirtualKey} />
       </>
    )
 }

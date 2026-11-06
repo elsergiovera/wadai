@@ -1,103 +1,57 @@
-import Dialog from '@mui/material/Dialog'
-import example_rounds from '@/assets/img/example_rounds.png'
-import example_board from '@/assets/img/example_board.png'
-import { XIcon } from 'lucide-react'
-import { levelIndicatorStyle, getLevelInfo, getCountryCode, EMOJI_URL } from '@/components/Indicators'
-import useStore from '@/store'
+// A chunky pixel question mark: the Title font has none, and the number font's one is too thin.
+const BoldQ = () => (
+   <svg width='13' height='17' viewBox='0 0 10 13' fill='currentColor' shapeRendering='crispEdges' aria-hidden='true'>
+      <rect x='0' y='0' width='10' height='3' /><rect x='0' y='3' width='3' height='2' /><rect x='7' y='3' width='3' height='5' />
+      <rect x='3' y='6' width='7' height='2' /><rect x='3' y='8' width='3' height='1' /><rect x='3' y='10' width='3' height='3' />
+   </svg>
+)
 
-const SHOW_INDICATORS = import.meta.env.VITE_ENV_FLAG_SHOW_INDICATORS === 'true'
+const Mini = ({ tiles }: { tiles: string }) => (
+   <div className='minirow' aria-hidden='true'>
+      {tiles.split(' ').map((tile, i) => {
+         const [char, kind = ''] = tile.split(':')
+         return <div key={i} className={`mt ${kind}`}>{char === '_' ? '' : char}</div>
+      })}
+   </div>
+)
 
-interface HowToProps {
-   isOpen: boolean
-   handleToggle: () => void
-}
-const HowToPlay: React.FC<HowToProps> = ({ isOpen, handleToggle }) => {
-   const { appStatus: { level, region } } = useStore()
-   const levelInfo = getLevelInfo(level)
-   const countryCode = getCountryCode(region)
-
+const HowToPlay = ({ onPlay }: { onPlay: () => void }) => {
    return (
-      <Dialog
-         open={isOpen}
-         onClose={handleToggle}
-         fullWidth={false}
-         maxWidth={false}
-         slotProps={{
-            transition: { timeout: 400 },
-            backdrop: {
-               sx: {
-                  backgroundColor: 'rgba(0, 0, 0, 0.3)'
-               }
-            },
-            container: {
-               sx: {
-                  alignItems: 'flex-start'
-               }
-            },
-            paper: {
-               sx: {
-                  width: '380px',
-                  minWidth: '380px',
-                  height: 'fit-content',
-                  minHeight: 'unset',
-                  maxWidth: 'none',
-                  maxHeight: 'none !important',
-                  overflow: 'visible',
-                  margin: '60px 0 0',
-                  borderRadius: '0',
-                  background: '#fff',
-                  border: '1px solid #ddd'
-               },
-            },
-         }}
-      >
-         <div className='flex justify-end pt-2 px-2'>
-            <XIcon className='w-5 h-5 text-gray-300 cursor-pointer' onClick={handleToggle} />
-         </div>
-         <div className='flex justify-center place-content-center pb-8'>
-            <div className='grid grid-col gap-3'>
-               <div className='font-title text-center text-white bg-red-500 text-[20px]'>HOW TO PLAY</div>
-               <div className='font-text tracking-wider text-center text-[9px]'>
-                  Everyday is a festivity.<br />
-                  Do you know <span className='font-text bg-red-500 text-white px-0.5 text-[8px]'>WHAT DAY</span> is today?
-               </div>
-               <ul className='list-disc list-inside font-text text-[12px] tracking-tighter whitespace-nowrap space-y-2 pt-2'>
-                  <li>
-                     Guess the <strong>Daily Festivity</strong> around the world.
-                  </li>
-                  <li>
-                     <strong>You can only play one time per day</strong>.
-                  </li>
-                  <li>
-                     You have <strong>5 rounds</strong> to play.
-                  </li>
-                  <li>
-                     The <strong>rounds count</strong> is represented at the top:
-                  </li>
-                  <img src={example_rounds} width={'120px'} className='ml-[90px]' />
-                  <li>
-                     The results are displayed <strong>after every round</strong>:
-                  </li>
-                  <img src={example_board} width={'140px'} className='ml-[80px]' />
-                  {SHOW_INDICATORS && (<>
-                     <li>
-                        Below the board, <strong>the indicators</strong> show:
-                     </li>
-                     <ul className='list-none ml-4 space-y-1 whitespace-normal'>
-                        <li className='flex items-center gap-1'>
-                           <span style={{ ...levelIndicatorStyle, background: levelInfo.color }}>{levelInfo.label[0]}</span>
-                           <span><strong>Difficulty</strong>: Easy, Medium or Hard.</span>
-                        </li>
-                        <li className='flex items-center gap-1'>
-                           <img src={`${EMOJI_URL}/${countryCode ?? 'un'}.png`} alt='flag' style={{ height: 11, width: 'auto', flexShrink: 0 }} />
-                           <span><strong>Origin</strong>: Where the festivity comes from.</span>
-                        </li>
-                     </ul>
-                  </>)}
-               </ul>
+      <>
+         <p className='greet'>Every day, something is celebrated somewhere.</p>
+         <p className='pun' aria-label='What day is it?'>
+            <b>W</b>H<b>A</b>T <b>D</b><b>A</b>Y <b>I</b>S IT<span className='qm'><BoldQ /></span>
+         </p>
+
+         <div className='step'>
+            <div className='no' aria-hidden='true'>1</div>
+            <div>
+               <p>Type your guess and press <b>ENTER</b>. Dashed words are given.</p>
+               <Mini tiles='B O N F _:sp N:giv I:giv G:giv' />
             </div>
          </div>
-      </Dialog>
+         <div className='step'>
+            <div className='no' aria-hidden='true'>2</div>
+            <div>
+               <p><b style={{ color: 'var(--ok)' }}>Green</b> is right, <b style={{ color: 'var(--bad)' }}>red</b> is wrong. Right letters stay locked.</p>
+               <Mini tiles='B:g O:g N:r F:g' />
+            </div>
+         </div>
+         <div className='step'>
+            <div className='no' aria-hidden='true'>3</div>
+            <div><p>You get 5 tries, one per letter. <b>Every miss unlocks a clue.</b></p></div>
+         </div>
+         <div className='ladder5'>
+            <div><div className='lt on'>W</div><small><b aria-hidden='true'>📅</b>the date</small></div>
+            <div><div className='lt'>A</div><small><b aria-hidden='true'>🌍</b>where</small></div>
+            <div><div className='lt'>D</div><small><b aria-hidden='true'>🎉</b>what kind</small></div>
+            <div><div className='lt'>A</div><small><b aria-hidden='true'>💬</b>a hint</small></div>
+            <div><div className='lt'>I</div><small><b>B · N</b>starts with</small></div>
+         </div>
+
+         <div className='spacer' />
+         <button type='button' className='btn' onClick={onPlay}>PLAY <span style={{ fontFamily: 'Text, monospace' }}>▸</span></button>
+      </>
    )
 }
 

@@ -8,5 +8,7 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
-  }
+  },
+  // 5173 is taken by VS Code forwarding ports from an SSH server, so the dev server uses its own port.
+  server: { port: 5300, strictPort: true },
 })

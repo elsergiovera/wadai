@@ -1,11 +1,23 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="classic" data-colors="standard" data-size="m">
 
 <head>
    <meta charset="UTF-8" />
    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+   <meta name="theme-color" content="#ef4444" />
+   <meta name="description" content="WADAI: guess what the world celebrates today, in five tries." />
    <title>WADAI</title>
+   <script>
+      // Apply the saved theme before the first paint, so dark themes don't flash white.
+      try {
+         var s = JSON.parse(localStorage.getItem('wadai-v2') || '{}').state.settings
+         var r = document.documentElement
+         if (/^(classic|arcade|calendar)$/.test(s.theme)) r.dataset.theme = s.theme
+         if (/^(standard|colourblind)$/.test(s.colors)) r.dataset.colors = s.colors
+         if (/^(s|m|l)$/.test(s.textSize)) r.dataset.size = s.textSize
+      } catch (e) { }
+   </script>
 </head>
 
 <body>

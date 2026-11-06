@@ -14,15 +14,10 @@
     "react-dom": "^18.3.1"
   },
   "dependencies": {
-    "@ant-design/icons": "^5.6.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@mui/material": "^6.4.1",
-    "animate.css": "^4.1.1",
-    "antd": "^5.23.2",
-    "lodash": "^4.17.21",
-    "lucide-react": "^0.474.0",
-    "path": "^0.12.7",
+    "html-to-image": "^1.11.11",
     "react-simple-keyboard": "^3.8.40",
     "zustand": "^5.0.3"
   },
@@ -31,7 +26,6 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
-    "@types/lodash": "^4.17.15",
     "@types/node": "^22.12.0",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",

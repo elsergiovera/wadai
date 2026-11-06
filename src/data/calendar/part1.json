@@ -1,0 +1,2471 @@
+[
+  {
+    "date": "2026-11-06",
+    "phrase": "Saxophone Day",
+    "given": [
+      "Day"
+    ],
+    "category": "music",
+    "region": "BE",
+    "level": 2,
+    "clue": "Honors the birthday of a Belgian inventor whose brass instrument is played with a reed",
+    "description": "Celebrates the saxophone on the birthday of its inventor, Adolphe Sax, born in Dinant, Belgium, on November 6, 1814.",
+    "fact": "Although it is made of brass, the saxophone is classed as a woodwind because its sound comes from a reed.",
+    "source": "https://en.wikipedia.org/wiki/Adolphe_Sax"
+  },
+  {
+    "date": "2026-11-07",
+    "phrase": "Marie Curie",
+    "given": [],
+    "category": "science",
+    "region": "PL",
+    "level": 2,
+    "clue": "Born in Warsaw in 1867, she discovered polonium and radium",
+    "description": "The physicist and chemist who pioneered research on radioactivity was born in Warsaw on November 7, 1867.",
+    "fact": "She is still the only person to win Nobel Prizes in two different sciences: physics in 1903 and chemistry in 1911.",
+    "source": "https://en.wikipedia.org/wiki/Marie_Curie"
+  },
+  {
+    "date": "2026-11-08",
+    "phrase": "Diwali",
+    "given": [],
+    "category": "religion",
+    "region": "IN",
+    "level": 1,
+    "clue": "Hindus light oil lamps and fireworks to honor the triumph of light over darkness",
+    "description": "The Hindu festival of lights celebrates the victory of good over evil. In 2026 its main day, Lakshmi Puja on the new moon of Kartik, falls on November 8.",
+    "fact": "The name comes from the Sanskrit 'deepavali', meaning 'a row of lamps'.",
+    "source": "https://www.indianeagle.com/traveldiary/diwali-2026-date-puja-timings-significance/"
+  },
+  {
+    "date": "2026-11-09",
+    "phrase": "Fall of the Berlin Wall",
+    "given": [
+      "of",
+      "the"
+    ],
+    "category": "history",
+    "region": "DE",
+    "level": 1,
+    "clue": "In 1989 jubilant crowds climbed and chipped at a barrier that had split a city since 1961",
+    "description": "On the night of November 9, 1989, East German border crossings opened and crowds poured through, a big step toward German reunification.",
+    "fact": "The opening was partly an accident: an official wrongly announced at a press conference that new travel rules applied immediately.",
+    "source": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall"
+  },
+  {
+    "date": "2026-11-10",
+    "phrase": "Sesame Street",
+    "given": [],
+    "category": "arts",
+    "region": "US",
+    "level": 1,
+    "clue": "Big Bird, Elmo and Cookie Monster first appeared on TV in 1969",
+    "description": "The children's TV show premiered on American public television on November 10, 1969, mixing puppets, songs and early learning.",
+    "fact": "The show has been adapted into many local versions, from Mexico's Plaza Sésamo to Germany's Sesamstraße.",
+    "source": "https://en.wikipedia.org/wiki/Sesame_Street"
+  },
+  {
+    "date": "2026-11-11",
+    "phrase": "Singles Day",
+    "given": [
+      "Day"
+    ],
+    "category": "society",
+    "region": "CN",
+    "level": 2,
+    "clue": "The date 11.11 looks like four lone figures, so China turned it into a shopping spree",
+    "description": "Started by Chinese students in the 1990s as a day for people without partners, 11/11 has become the world's biggest online shopping event.",
+    "fact": "Alibaba began promoting 11.11 sales in 2009; within a decade it was selling tens of billions of dollars of goods in a single day.",
+    "source": "https://en.wikipedia.org/wiki/Singles%27_Day"
+  },
+  {
+    "date": "2026-11-12",
+    "phrase": "Comet Landing",
+    "given": [],
+    "category": "space",
+    "region": null,
+    "level": 2,
+    "clue": "In 2014 a European probe named Philae touched down on an icy body called 67P",
+    "description": "On November 12, 2014, the Philae lander from ESA's Rosetta mission made the first-ever soft landing on a comet, 67P/Churyumov-Gerasimenko.",
+    "fact": "Philae's anchoring harpoons failed to fire, so it bounced twice before settling in a shadowy spot far from its target.",
+    "source": "https://en.wikipedia.org/wiki/Philae_(spacecraft)"
+  },
+  {
+    "date": "2026-11-13",
+    "phrase": "World Kindness Day",
+    "given": [
+      "World",
+      "Day"
+    ],
+    "category": "society",
+    "region": null,
+    "level": 2,
+    "clue": "A day to hold doors, pay compliments and do good turns for strangers",
+    "description": "Introduced in 1998 by the World Kindness Movement, a coalition of groups from many countries, to encourage good deeds big and small.",
+    "fact": "The World Kindness Movement grew out of a 1997 conference of kindness organizations held in Tokyo.",
+    "source": "https://en.wikipedia.org/wiki/World_Kindness_Day"
+  },
+  {
+    "date": "2026-11-14",
+    "phrase": "Children's Day",
+    "given": [
+      "Day"
+    ],
+    "category": "society",
+    "region": "IN",
+    "level": 2,
+    "clue": "India marks Jawaharlal Nehru's birthday with school fun and treats for kids",
+    "description": "India celebrates its young people on the birthday of its first prime minister, Jawaharlal Nehru, born November 14, 1889, who was fondly called 'Chacha Nehru'.",
+    "fact": "'Chacha' means 'uncle' in Hindi, a nickname reflecting Nehru's well-known affection for kids.",
+    "source": "https://en.wikipedia.org/wiki/Children%27s_Day_(India)"
+  },
+  {
+    "date": "2026-11-15",
+    "phrase": "Shichi-Go-San",
+    "given": [],
+    "category": "celebration",
+    "region": "JP",
+    "level": 3,
+    "clue": "Japanese kids aged three, five and seven visit shrines dressed in kimono",
+    "description": "On November 15, Japanese families take girls aged 3 and 7 and boys aged 5 (sometimes 3) to Shinto shrines to pray for healthy growth.",
+    "fact": "Children receive chitose-ame, long red-and-white 'thousand-year candy' sticks that symbolize a long life.",
+    "source": "https://en.wikipedia.org/wiki/Shichi-Go-San"
+  },
+  {
+    "date": "2026-11-16",
+    "phrase": "Revolution Day",
+    "given": [
+      "Day"
+    ],
+    "category": "history",
+    "region": "MX",
+    "level": 2,
+    "clue": "Mexico honors the 1910 uprising against Porfirio Diaz with parades",
+    "description": "Recalls the start of the Mexican Revolution on November 20, 1910. The public holiday is the third Monday of November, which in 2026 is November 16.",
+    "fact": "Mexico City's Monument to the Revolution was first meant to be a grand legislative palace, left unfinished when the fighting began.",
+    "source": "https://en.wikipedia.org/wiki/Revolution_Day_(Mexico)"
+  },
+  {
+    "date": "2026-11-17",
+    "phrase": "Suez Canal",
+    "given": [],
+    "category": "history",
+    "region": "EG",
+    "level": 1,
+    "clue": "Opened in 1869, this Egyptian waterway links the Mediterranean and the Red Sea",
+    "description": "The canal opened on November 17, 1869, letting ships sail between Europe and Asia without going all the way around Africa.",
+    "fact": "Verdi's opera Aida is often linked to the opening, but it premiered in Cairo two years later, in 1871.",
+    "source": "https://en.wikipedia.org/wiki/Suez_Canal"
+  },
+  {
+    "date": "2026-11-18",
+    "phrase": "Mickey Mouse",
+    "given": [],
+    "category": "film",
+    "region": "US",
+    "level": 1,
+    "clue": "A Disney cartoon star with round black ears debuted in Steamboat Willie in 1928",
+    "description": "Disney counts November 18, 1928, the New York premiere of the sound cartoon Steamboat Willie, as the birthday of its most famous character.",
+    "fact": "Walt Disney himself voiced the character until 1947.",
+    "source": "https://en.wikipedia.org/wiki/Mickey_Mouse"
+  },
+  {
+    "date": "2026-11-19",
+    "phrase": "Beaujolais Nouveau",
+    "given": [],
+    "category": "food",
+    "region": "FR",
+    "level": 2,
+    "clue": "French red wine released on the third Thursday of November, uncorked at 12:01 a.m.",
+    "description": "The first wine of the harvest from France's Beaujolais region goes on sale on the third Thursday of November, which is November 19 in 2026.",
+    "fact": "It is made from Gamay grapes and bottled just weeks after the harvest, so it is meant to be drunk young.",
+    "source": "https://en.wikipedia.org/wiki/Beaujolais_nouveau"
+  },
+  {
+    "date": "2026-11-20",
+    "phrase": "Selma Lagerlof",
+    "given": [],
+    "category": "literature",
+    "region": "SE",
+    "level": 3,
+    "clue": "Swedish author of Nils Holgersson and first woman to win the Nobel in literature",
+    "description": "Born November 20, 1858, in Värmland, Sweden, she wrote The Wonderful Adventures of Nils and in 1909 became the first woman awarded the Nobel Prize in Literature.",
+    "fact": "She was featured on Sweden's 20-kronor banknote, with Nils riding a goose on the back.",
+    "source": "https://en.wikipedia.org/wiki/Selma_Lagerl%C3%B6f"
+  },
+  {
+    "date": "2026-11-21",
+    "phrase": "Hot Air Balloon",
+    "given": [],
+    "category": "science",
+    "region": "FR",
+    "level": 2,
+    "clue": "In 1783 two men drifted over Paris beneath a Montgolfier brothers' envelope",
+    "description": "On November 21, 1783, Pilâtre de Rozier and the Marquis d'Arlandes made the first free flight with people aboard, in a Montgolfier craft over Paris.",
+    "fact": "Before risking humans, the Montgolfiers sent up a sheep, a duck and a rooster in September 1783.",
+    "source": "https://en.wikipedia.org/wiki/Montgolfier_brothers"
+  },
+  {
+    "date": "2026-11-22",
+    "phrase": "Saint Cecilia's Day",
+    "given": [
+      "Day"
+    ],
+    "category": "music",
+    "region": null,
+    "level": 3,
+    "clue": "The feast of the patron of musicians, often marked with concerts and choir festivals",
+    "description": "November 22 is the feast of Saint Cecilia, an early Roman Christian venerated as the patron saint of music and musicians.",
+    "fact": "Henry Purcell and George Frideric Handel both wrote odes for her feast, including Handel's 1739 Ode for St. Cecilia's Day.",
+    "source": "https://en.wikipedia.org/wiki/Saint_Cecilia"
+  },
+  {
+    "date": "2026-11-23",
+    "phrase": "Doctor Who",
+    "given": [],
+    "category": "film",
+    "region": "GB",
+    "level": 1,
+    "clue": "A time-traveling alien in a blue police box first hit British TV in 1963",
+    "description": "The BBC science-fiction series premiered on November 23, 1963, following a mysterious traveler through time and space.",
+    "fact": "The TARDIS is bigger on the inside; its name stands for Time And Relative Dimension In Space.",
+    "source": "https://en.wikipedia.org/wiki/Doctor_Who"
+  },
+  {
+    "date": "2026-11-24",
+    "phrase": "Guru Nanak Jayanti",
+    "given": [],
+    "category": "religion",
+    "region": "IN",
+    "level": 2,
+    "clue": "Sikhs mark their founder's birth with processions and free community meals",
+    "description": "Sikhs celebrate the birth of Guru Nanak, founder of Sikhism, on the full moon of the month of Kartik, which falls on November 24 in 2026.",
+    "fact": "Gurdwaras serve free langar meals to anyone; the Golden Temple's kitchen feeds tens of thousands of people a day.",
+    "source": "https://www.drikpanchang.com/calendars/indian/sikh-festivals/jayanti/guru-nanak-jayanti-date.html?year=2026"
+  },
+  {
+    "date": "2026-11-25",
+    "phrase": "Saint Catherine's Day",
+    "given": [
+      "Day"
+    ],
+    "category": "celebration",
+    "region": "FR",
+    "level": 3,
+    "clue": "In France, unmarried women of 25 wear wild yellow-and-green hats",
+    "description": "On November 25, the feast of Saint Catherine, France celebrates 'Catherinettes', unmarried women aged 25, especially in fashion houses, with extravagant homemade hats.",
+    "fact": "The French phrase 'coiffer Sainte-Catherine' (to put on Saint Catherine's hat) once meant reaching 25 while still unmarried.",
+    "source": "https://en.wikipedia.org/wiki/Catherinettes"
+  },
+  {
+    "date": "2026-11-26",
+    "phrase": "Thanksgiving",
+    "given": [],
+    "category": "celebration",
+    "region": "US",
+    "level": 1,
+    "clue": "Americans gather for turkey, pumpkin pie and football on the fourth Thursday",
+    "description": "The US holiday falls on the fourth Thursday of November, November 26 in 2026, recalling a 1621 harvest feast of Plymouth colonists and the Wampanoag.",
+    "fact": "Abraham Lincoln made it a national holiday in 1863; Canada celebrates its own version in October.",
+    "source": "https://en.wikipedia.org/wiki/Thanksgiving_(United_States)"
+  },
+  {
+    "date": "2026-11-27",
+    "phrase": "Black Friday",
+    "given": [
+      "Friday"
+    ],
+    "category": "society",
+    "region": "US",
+    "level": 1,
+    "clue": "The day after the US turkey holiday, when stores open early with deep discounts",
+    "description": "The Friday after US Thanksgiving, November 27 in 2026, traditionally kicks off the Christmas shopping season with big sales.",
+    "fact": "The name was popularized by Philadelphia police in the 1950s and 60s, who dreaded the traffic and crowds that day.",
+    "source": "https://en.wikipedia.org/wiki/Black_Friday_(shopping)"
+  },
+  {
+    "date": "2026-11-28",
+    "phrase": "Albanian Flag Day",
+    "given": [
+      "Day"
+    ],
+    "category": "history",
+    "region": "AL",
+    "level": 3,
+    "clue": "Marks Ismail Qemali raising a red banner with a black double-headed eagle in 1912",
+    "description": "Albania celebrates independence from the Ottoman Empire, declared in Vlorë on November 28, 1912, the date Skanderbeg is said to have raised the same flag in 1443.",
+    "fact": "Albanians often make a double-headed eagle gesture by linking their thumbs and spreading their fingers.",
+    "source": "https://en.wikipedia.org/wiki/Independence_Day_(Albania)"
+  },
+  {
+    "date": "2026-11-29",
+    "phrase": "Tutankhamun",
+    "given": [],
+    "category": "history",
+    "region": "EG",
+    "level": 2,
+    "clue": "A boy pharaoh's treasure-packed tomb was formally opened in 1922",
+    "description": "On November 29, 1922, the tomb of the young pharaoh in Egypt's Valley of the Kings was officially opened, days after Howard Carter first peered inside.",
+    "fact": "Asked if he could see anything as he first looked in by candlelight, Carter reportedly answered: 'Yes, wonderful things.'",
+    "source": "https://en.wikipedia.org/wiki/KV62"
+  },
+  {
+    "date": "2026-11-30",
+    "phrase": "Mark Twain",
+    "given": [],
+    "category": "literature",
+    "region": "US",
+    "level": 1,
+    "clue": "Born in 1835, he created Tom Sawyer and Huckleberry Finn",
+    "description": "Samuel Clemens, who wrote under this pen name, was born on November 30, 1835, in Florida, Missouri.",
+    "fact": "He was born shortly after a visit of Halley's Comet and died in 1910, a day after its next closest approach to the Sun, just as he had predicted.",
+    "source": "https://en.wikipedia.org/wiki/Mark_Twain"
+  },
+  {
+    "date": "2026-12-01",
+    "phrase": "Advent Calendar",
+    "given": [],
+    "category": "celebration",
+    "region": "DE",
+    "level": 1,
+    "clue": "Children open a little door each morning on the countdown to Christmas",
+    "description": "On December 1, children open the first door of this countdown calendar, a custom that began among German Protestants in the 19th century.",
+    "fact": "The first printed version is credited to the Munich publisher Gerhard Lang in the early 1900s.",
+    "source": "https://en.wikipedia.org/wiki/Advent_calendar"
+  },
+  {
+    "date": "2026-12-02",
+    "phrase": "UAE National Day",
+    "given": [
+      "National",
+      "Day"
+    ],
+    "category": "history",
+    "region": "AE",
+    "level": 2,
+    "clue": "Marks the 1971 union of six emirates, with Ras Al Khaimah joining soon after",
+    "description": "Celebrates the union of the emirates on December 2, 1971, with fireworks, parades and buildings lit in red, green, white and black.",
+    "fact": "Ras Al Khaimah became the seventh emirate in February 1972, a couple of months after the union was declared.",
+    "source": "https://en.wikipedia.org/wiki/National_Day_(United_Arab_Emirates)"
+  },
+  {
+    "date": "2026-12-03",
+    "phrase": "Heart Transplant",
+    "given": [],
+    "category": "science",
+    "region": "ZA",
+    "level": 2,
+    "clue": "In 1967 surgeon Christiaan Barnard performed the first one in Cape Town",
+    "description": "On December 3, 1967, at Groote Schuur Hospital in Cape Town, Christiaan Barnard's team performed the first human-to-human heart transplant.",
+    "fact": "The patient, Louis Washkansky, lived 18 days; today many recipients live for decades.",
+    "source": "https://en.wikipedia.org/wiki/Christiaan_Barnard"
+  },
+  {
+    "date": "2026-12-04",
+    "phrase": "Hanukkah",
+    "given": [],
+    "category": "religion",
+    "region": "IL",
+    "level": 1,
+    "clue": "Jews light one more candle each night on an eight-branched menorah",
+    "description": "The Jewish festival of lights recalls the rededication of the Temple in Jerusalem. In 2026 the first candle is lit at sundown on Friday, December 4.",
+    "fact": "Foods fried in oil, like latkes and sufganiyot doughnuts, recall the legend of one day's oil burning for eight days.",
+    "source": "https://www.hebcal.com/holidays/chanukah-2026"
+  },
+  {
+    "date": "2026-12-05",
+    "phrase": "Sinterklaas",
+    "given": [],
+    "category": "celebration",
+    "region": "NL",
+    "level": 2,
+    "clue": "On Dutch 'gift evening', a bearded bishop from Spain leaves presents and poems",
+    "description": "On the evening of December 5, Dutch families celebrate Pakjesavond, exchanging gifts and teasing poems in the name of Saint Nicholas.",
+    "fact": "Dutch settlers in New York helped bring the figure to America, where he evolved into Santa Claus.",
+    "source": "https://en.wikipedia.org/wiki/Sinterklaas"
+  },
+  {
+    "date": "2026-12-06",
+    "phrase": "Finland Independence Day",
+    "given": [
+      "Day"
+    ],
+    "category": "history",
+    "region": "FI",
+    "level": 2,
+    "clue": "Finns light two candles in their windows to mark breaking away from Russia in 1917",
+    "description": "Finland declared independence from Russia on December 6, 1917. The day is marked with candles, a presidential ball and a calm, patriotic mood.",
+    "fact": "The televised presidential reception, where hundreds of guests shake the president's hand, is one of Finland's most-watched broadcasts every year.",
+    "source": "https://en.wikipedia.org/wiki/Independence_Day_(Finland)"
+  },
+  {
+    "date": "2026-12-07",
+    "phrase": "Blue Marble",
+    "given": [],
+    "category": "space",
+    "region": "US",
+    "level": 2,
+    "clue": "Apollo 17's crew snapped a famous photo of the whole, fully lit Earth in 1972",
+    "description": "On December 7, 1972, astronauts aboard Apollo 17 photographed the entire sunlit Earth, creating one of the most reproduced images in history.",
+    "fact": "Full-disk shots like this are rare because the Sun had to be directly behind the astronauts.",
+    "source": "https://en.wikipedia.org/wiki/The_Blue_Marble"
+  },
+  {
+    "date": "2026-12-08",
+    "phrase": "Immaculate Conception",
+    "given": [],
+    "category": "religion",
+    "region": "IT",
+    "level": 2,
+    "clue": "Catholic feast on which Italians traditionally put up their Christmas trees",
+    "description": "This Catholic feast honors the belief that Mary was conceived free of original sin; in Italy, Spain and other countries it is a public holiday.",
+    "fact": "In Rome, the pope traditionally visits the Marian column near the Spanish Steps on this day to pray and lay flowers.",
+    "source": "https://en.wikipedia.org/wiki/Feast_of_the_Immaculate_Conception"
+  },
+  {
+    "date": "2026-12-09",
+    "phrase": "Computer Mouse",
+    "given": [],
+    "category": "tech",
+    "region": "US",
+    "level": 2,
+    "clue": "Douglas Engelbart showed off a wooden pointing device in a famous 1968 demo",
+    "description": "On December 9, 1968, Douglas Engelbart demonstrated the device, plus hypertext and video calls, in San Francisco in what became known as 'The Mother of All Demos'.",
+    "fact": "The first prototype was a carved wooden block with two metal wheels underneath.",
+    "source": "https://en.wikipedia.org/wiki/The_Mother_of_All_Demos"
+  },
+  {
+    "date": "2026-12-10",
+    "phrase": "Nobel Prize",
+    "given": [],
+    "category": "science",
+    "region": "SE",
+    "level": 1,
+    "clue": "Laureates get medals in Stockholm and Oslo on the anniversary of Alfred's death",
+    "description": "The prizes are presented on December 10, the anniversary of Alfred Nobel's death in 1896: in Stockholm for most categories and in Oslo for peace.",
+    "fact": "The menu of the Stockholm banquet, including the dessert, is kept secret until the night itself.",
+    "source": "https://en.wikipedia.org/wiki/Nobel_Prize"
+  },
+  {
+    "date": "2026-12-11",
+    "phrase": "Tango Day",
+    "given": [
+      "Day"
+    ],
+    "category": "music",
+    "region": "AR",
+    "level": 2,
+    "clue": "Argentina honors Carlos Gardel and Julio De Caro, both born on this date",
+    "description": "Buenos Aires celebrates its signature dance and music on December 11, the shared birthday of singer Carlos Gardel and bandleader Julio De Caro.",
+    "fact": "UNESCO added the dance to its Intangible Cultural Heritage list in 2009, after a joint bid by Argentina and Uruguay.",
+    "source": "https://en.wikipedia.org/wiki/Tango"
+  },
+  {
+    "date": "2026-12-12",
+    "phrase": "Our Lady of Guadalupe",
+    "given": [
+      "of"
+    ],
+    "category": "religion",
+    "region": "MX",
+    "level": 2,
+    "clue": "Millions of pilgrims visit a Mexico City basilica honoring a 1531 vision of Mary",
+    "description": "Mexico's most important religious feast celebrates the apparitions of the Virgin Mary to Juan Diego on the hill of Tepeyac in 1531.",
+    "fact": "The basilica in Mexico City is one of the most visited Catholic shrines in the world, drawing millions of pilgrims around December 12.",
+    "source": "https://en.wikipedia.org/wiki/Our_Lady_of_Guadalupe"
+  },
+  {
+    "date": "2026-12-13",
+    "phrase": "Lucia Day",
+    "given": [
+      "Day"
+    ],
+    "category": "celebration",
+    "region": "SE",
+    "level": 2,
+    "clue": "A girl in white with a crown of candles leads a singing procession in Sweden",
+    "description": "Swedes mark the feast of Saint Lucy on December 13 with candlelit processions, songs and saffron buns, bringing light to the darkest time of year.",
+    "fact": "Under the old Julian calendar, December 13 fell close to the winter solstice, the longest night of the year.",
+    "source": "https://en.wikipedia.org/wiki/Saint_Lucy%27s_Day"
+  },
+  {
+    "date": "2026-12-14",
+    "phrase": "South Pole",
+    "given": [],
+    "category": "history",
+    "region": "NO",
+    "level": 1,
+    "clue": "In 1911 Roald Amundsen's Norwegian team got there first, beating Scott",
+    "description": "On December 14, 1911, Roald Amundsen and four companions became the first people to reach it, about five weeks before Robert Falcon Scott's team.",
+    "fact": "Amundsen left a tent with a letter for Scott, asking him to deliver it to Norway's king in case the Norwegians did not make it home.",
+    "source": "https://en.wikipedia.org/wiki/Amundsen%27s_South_Pole_expedition"
+  },
+  {
+    "date": "2026-12-15",
+    "phrase": "Esperanto Day",
+    "given": [
+      "Day"
+    ],
+    "category": "society",
+    "region": "PL",
+    "level": 2,
+    "clue": "Fans of Zamenhof's invented international language gather on his birthday",
+    "description": "Speakers of the constructed language celebrate December 15, the birthday of its creator L. L. Zamenhof, born in 1859 in Białystok, now in Poland.",
+    "fact": "Zamenhof published it in 1887 under the pen name 'Doktoro Esperanto', meaning 'Doctor Hopeful'.",
+    "source": "https://en.wikipedia.org/wiki/Zamenhof_Day"
+  },
+  {
+    "date": "2026-12-16",
+    "phrase": "Beethoven",
+    "given": [],
+    "category": "music",
+    "region": "DE",
+    "level": 1,
+    "clue": "German composer of the Fifth Symphony and Ode to Joy, baptized in Bonn in 1770",
+    "description": "The composer was baptized in Bonn on December 17, 1770; his birthday is traditionally celebrated on December 16.",
+    "fact": "He kept composing after going almost completely deaf, including his famous Ninth Symphony.",
+    "source": "https://en.wikipedia.org/wiki/Ludwig_van_Beethoven"
+  },
+  {
+    "date": "2026-12-17",
+    "phrase": "Wright Brothers",
+    "given": [],
+    "category": "tech",
+    "region": "US",
+    "level": 1,
+    "clue": "In 1903 Orville flew for 12 seconds over the dunes of Kitty Hawk",
+    "description": "On December 17, 1903, near Kitty Hawk, North Carolina, Orville and Wilbur made the first controlled, powered airplane flights.",
+    "fact": "A scrap of the 1903 Flyer's fabric traveled to Mars aboard NASA's Ingenuity helicopter in 2021.",
+    "source": "https://en.wikipedia.org/wiki/Wright_brothers"
+  },
+  {
+    "date": "2026-12-18",
+    "phrase": "Qatar National Day",
+    "given": [
+      "National",
+      "Day"
+    ],
+    "category": "history",
+    "region": "QA",
+    "level": 3,
+    "clue": "Commemorates Sheikh Jassim bin Mohammed taking power in 1878",
+    "description": "Qatar celebrates the 1878 succession of Sheikh Jassim bin Mohammed Al Thani, regarded as the founder of the state, with parades and fireworks in Doha.",
+    "fact": "The 2022 FIFA World Cup final in Lusail was played on December 18, this very holiday.",
+    "source": "https://en.wikipedia.org/wiki/Qatar_National_Day"
+  },
+  {
+    "date": "2026-12-19",
+    "phrase": "A Christmas Carol",
+    "given": [
+      "A"
+    ],
+    "category": "literature",
+    "region": "GB",
+    "level": 2,
+    "clue": "Dickens's 1843 tale of the miser Scrooge and three ghosts",
+    "description": "Charles Dickens's novella about Ebenezer Scrooge was published on December 19, 1843, and its first printing sold out by Christmas Eve.",
+    "fact": "Dickens wrote it in about six weeks, partly to pay off his debts.",
+    "source": "https://en.wikipedia.org/wiki/A_Christmas_Carol"
+  },
+  {
+    "date": "2026-12-20",
+    "phrase": "It's a Wonderful Life",
+    "given": [
+      "a"
+    ],
+    "category": "film",
+    "region": "US",
+    "level": 2,
+    "clue": "Frank Capra's 1946 tale of George Bailey and a guardian angel named Clarence",
+    "description": "Frank Capra's holiday classic starring James Stewart premiered in New York on December 20, 1946.",
+    "fact": "It disappointed at the box office and became a holiday staple only after its copyright lapsed and TV stations aired it freely.",
+    "source": "https://en.wikipedia.org/wiki/It%27s_a_Wonderful_Life"
+  },
+  {
+    "date": "2026-12-21",
+    "phrase": "Winter Solstice",
+    "given": [],
+    "category": "nature",
+    "region": null,
+    "level": 1,
+    "clue": "The longest night in the north, when the Sun sits lowest in the sky at noon",
+    "description": "In 2026 the December solstice falls on December 21, giving the Northern Hemisphere its shortest day and the Southern Hemisphere its longest.",
+    "fact": "Iranians celebrate Yalda Night around the solstice, staying up late with pomegranates, watermelon and poetry by Hafez.",
+    "source": "https://en.wikipedia.org/wiki/December_solstice"
+  },
+  {
+    "date": "2026-12-22",
+    "phrase": "Dongzhi Festival",
+    "given": [
+      "Festival"
+    ],
+    "category": "food",
+    "region": "CN",
+    "level": 2,
+    "clue": "Chinese families mark the shortest day with dumplings or sweet tangyuan rice balls",
+    "description": "The Chinese winter festival falls on December 22 in 2026. Families reunite to eat dumplings in the north and glutinous rice balls in the south.",
+    "fact": "A northern Chinese saying warns that if you skip dumplings on this day, your ears will freeze off.",
+    "source": "https://publicholidays.sg/winter-solstice/"
+  },
+  {
+    "date": "2026-12-23",
+    "phrase": "Night of the Radishes",
+    "given": [
+      "Night",
+      "of",
+      "the"
+    ],
+    "category": "arts",
+    "region": "MX",
+    "level": 3,
+    "clue": "In Oaxaca, artists carve giant root vegetables into nativity scenes and figures",
+    "description": "Every December 23, Oaxaca, Mexico, holds a contest of elaborate scenes carved from oversized radishes, a tradition dating to 1897.",
+    "fact": "The carvings start wilting within hours, so they can only be displayed for a single evening.",
+    "source": "https://en.wikipedia.org/wiki/Night_of_the_Radishes"
+  },
+  {
+    "date": "2026-12-24",
+    "phrase": "Christmas Eve",
+    "given": [
+      "Eve"
+    ],
+    "category": "celebration",
+    "region": null,
+    "level": 1,
+    "clue": "Many Europeans open presents tonight; elsewhere children hang up stockings",
+    "description": "The evening before Christmas Day is the main celebration in much of Europe and Latin America, with festive dinners, midnight Mass and gifts.",
+    "fact": "In Iceland many families give books on this evening and spend the night reading, a custom called Jólabókaflóð.",
+    "source": "https://en.wikipedia.org/wiki/Christmas_Eve"
+  },
+  {
+    "date": "2026-12-25",
+    "phrase": "Christmas Day",
+    "given": [
+      "Day"
+    ],
+    "category": "religion",
+    "region": null,
+    "level": 1,
+    "clue": "Christians celebrate the birth of Jesus with carols, decorated trees and gifts",
+    "description": "On December 25, Christians and many others celebrate the Nativity with church services, family meals and presents.",
+    "fact": "An 1848 picture of Queen Victoria and Prince Albert around a decorated tree helped make the German custom popular in Britain and America.",
+    "source": "https://en.wikipedia.org/wiki/Christmas"
+  },
+  {
+    "date": "2026-12-26",
+    "phrase": "Boxing Day",
+    "given": [
+      "Day"
+    ],
+    "category": "celebration",
+    "region": "GB",
+    "level": 1,
+    "clue": "British holiday after Christmas, named for gifts once given to servants",
+    "description": "A public holiday in the UK and many Commonwealth countries, now known for football fixtures, horse racing and big sales.",
+    "fact": "Its name likely comes from 'Christmas boxes' of money or gifts given to servants and tradespeople.",
+    "source": "https://en.wikipedia.org/wiki/Boxing_Day"
+  },
+  {
+    "date": "2026-12-27",
+    "phrase": "Johannes Kepler",
+    "given": [],
+    "category": "space",
+    "region": "DE",
+    "level": 3,
+    "clue": "German astronomer who showed that planets travel in elliptical orbits",
+    "description": "Born December 27, 1571, in Weil der Stadt, Germany, he worked out the three laws of planetary motion.",
+    "fact": "He also wrote Somnium, a tale of a journey to the Moon often called one of the first works of science fiction.",
+    "source": "https://en.wikipedia.org/wiki/Johannes_Kepler"
+  },
+  {
+    "date": "2026-12-28",
+    "phrase": "Lumiere Brothers",
+    "given": [],
+    "category": "film",
+    "region": "FR",
+    "level": 2,
+    "clue": "In 1895 Auguste and Louis held the first paid film screening at a Paris cafe",
+    "description": "On December 28, 1895, at the Grand Café in Paris, they projected ten short films to a paying audience, often seen as the birth of cinema.",
+    "fact": "Fittingly, their surname means 'light' in French.",
+    "source": "https://en.wikipedia.org/wiki/Auguste_and_Louis_Lumi%C3%A8re"
+  },
+  {
+    "date": "2026-12-29",
+    "phrase": "Kwanzaa",
+    "given": [],
+    "category": "celebration",
+    "region": "US",
+    "level": 1,
+    "clue": "A seven-day African American celebration with a candle holder called a kinara",
+    "description": "Created in 1966 by Maulana Karenga, the festival runs from December 26 to January 1, honoring African heritage with one principle for each day.",
+    "fact": "Its name comes from the Swahili phrase 'matunda ya kwanza', meaning 'first fruits'.",
+    "source": "https://en.wikipedia.org/wiki/Kwanzaa"
+  },
+  {
+    "date": "2026-12-30",
+    "phrase": "Rudyard Kipling",
+    "given": [],
+    "category": "literature",
+    "region": "GB",
+    "level": 2,
+    "clue": "Born in Bombay in 1865, he wrote The Jungle Book and the Just So Stories",
+    "description": "The author was born in Bombay (now Mumbai) on December 30, 1865, and in 1907 became the youngest-ever winner of the Nobel Prize in Literature.",
+    "fact": "He invented the name Mowgli; in the stories it is said to mean 'little frog'.",
+    "source": "https://en.wikipedia.org/wiki/Rudyard_Kipling"
+  },
+  {
+    "date": "2026-12-31",
+    "phrase": "New Year's Eve",
+    "given": [
+      "Eve"
+    ],
+    "category": "celebration",
+    "region": null,
+    "level": 1,
+    "clue": "Midnight countdowns, fireworks and a kiss as the calendar flips over",
+    "description": "The last night of the year is celebrated worldwide, with midnight fireworks rolling across time zones from Kiribati to American Samoa.",
+    "fact": "In Spain, people eat 12 grapes at midnight, one on each chime of the clock, for luck in each month ahead.",
+    "source": "https://en.wikipedia.org/wiki/New_Year%27s_Eve"
+  },
+  {
+    "date": "2027-01-01",
+    "phrase": "New Year's Concert",
+    "given": [],
+    "category": "music",
+    "region": "AT",
+    "level": 2,
+    "clue": "The Vienna Philharmonic plays Strauss waltzes for a global TV audience",
+    "description": "Every January 1 the Vienna Philharmonic performs in the Golden Hall of the Musikverein; the broadcast is seen in over 90 countries.",
+    "fact": "The encore always ends with the Radetzky March, with the audience clapping along under the conductor's direction.",
+    "source": "https://en.wikipedia.org/wiki/Vienna_New_Year%27s_Concert"
+  },
+  {
+    "date": "2027-01-02",
+    "phrase": "Isaac Asimov",
+    "given": [],
+    "category": "literature",
+    "region": "US",
+    "level": 2,
+    "clue": "The Foundation author who came up with the Three Laws of Robotics",
+    "description": "The science-fiction writer, born in Russia around 1920, celebrated his birthday on January 2. He wrote or edited more than 500 books.",
+    "fact": "He coined the word 'robotics' in a 1941 short story.",
+    "source": "https://en.wikipedia.org/wiki/Isaac_Asimov"
+  },
+  {
+    "date": "2027-01-03",
+    "phrase": "Tolkien Toast",
+    "given": [],
+    "category": "literature",
+    "region": "GB",
+    "level": 2,
+    "clue": "Fans raise a glass at 9 p.m. to The Hobbit's author, born this day in 1892",
+    "description": "Each January 3, the Tolkien Society asks fans worldwide to stand at 9 p.m. local time, raise a glass and toast 'The Professor' on his birthday.",
+    "fact": "J.R.R. Tolkien was born in Bloemfontein, South Africa, in 1892 and moved to England as a small child.",
+    "source": "https://www.tolkiensociety.org/?p=125"
+  },
+  {
+    "date": "2027-01-04",
+    "phrase": "World Braille Day",
+    "given": [
+      "World",
+      "Day"
+    ],
+    "category": "society",
+    "region": null,
+    "level": 1,
+    "clue": "Raised dots let blind people read; their French inventor was born in 1809",
+    "description": "The UN marks January 4, the birthday of Louis Braille, born in France in 1809, to promote the reading system used by blind and partially sighted people.",
+    "fact": "He was just 15 when he developed his system, adapting a military code for reading in the dark.",
+    "source": "https://en.wikipedia.org/wiki/World_Braille_Day"
+  },
+  {
+    "date": "2027-01-05",
+    "phrase": "Harbin Ice Festival",
+    "given": [
+      "Festival"
+    ],
+    "category": "arts",
+    "region": "CN",
+    "level": 2,
+    "clue": "A city in northeast China fills with glowing castles carved from frozen river blocks",
+    "description": "The Harbin International Ice and Snow Sculpture Festival officially opens on January 5 each year, though its sites often welcome visitors earlier.",
+    "fact": "Much of the building material is cut straight from the frozen Songhua River.",
+    "source": "https://en.wikipedia.org/wiki/Harbin_International_Ice_and_Snow_Sculpture_Festival"
+  },
+  {
+    "date": "2027-01-06",
+    "phrase": "Three Kings Day",
+    "given": [
+      "Day"
+    ],
+    "category": "religion",
+    "region": "ES",
+    "level": 1,
+    "clue": "Spanish children get gifts from Melchior, Caspar and Balthazar",
+    "description": "Epiphany on January 6 recalls the Magi visiting the baby Jesus. In Spain and Latin America it is a gift-giving day, after parades the evening before.",
+    "fact": "Spaniards eat roscón de reyes, a ring cake hiding a small figurine and a dried bean.",
+    "source": "https://en.wikipedia.org/wiki/Epiphany_(holiday)"
+  },
+  {
+    "date": "2027-01-07",
+    "phrase": "Ethiopian Christmas",
+    "given": [],
+    "category": "religion",
+    "region": "ET",
+    "level": 2,
+    "clue": "Called Genna, it follows the old Julian calendar and a 43-day fast",
+    "description": "Ethiopian Orthodox Christians, like several other Orthodox churches, celebrate the Nativity on January 7, often with all-night services in white clothing.",
+    "fact": "Genna shares its name with a hockey-like game traditionally played with curved sticks on this holiday.",
+    "source": "https://en.wikipedia.org/wiki/Christmas_in_Ethiopia"
+  },
+  {
+    "date": "2027-01-08",
+    "phrase": "Elvis Presley",
+    "given": [],
+    "category": "music",
+    "region": "US",
+    "level": 1,
+    "clue": "The King of Rock and Roll, born in Tupelo, Mississippi, in 1935",
+    "description": "Born January 8, 1935; fans gather at Graceland, his home in Memphis, every year on his birthday.",
+    "fact": "He almost never performed outside the US; his only foreign concerts were three shows in Canada in 1957.",
+    "source": "https://en.wikipedia.org/wiki/Elvis_Presley"
+  },
+  {
+    "date": "2027-01-09",
+    "phrase": "iPhone",
+    "given": [],
+    "category": "tech",
+    "region": "US",
+    "level": 2,
+    "clue": "Steve Jobs unveiled Apple's touchscreen handset in San Francisco in 2007",
+    "description": "Steve Jobs introduced it at Macworld on January 9, 2007; it went on sale in the US that June.",
+    "fact": "Apple's product photos traditionally show the time 9:41, roughly when Jobs revealed it during his keynote.",
+    "source": "https://en.wikipedia.org/wiki/IPhone_(1st_generation)"
+  },
+  {
+    "date": "2027-01-10",
+    "phrase": "London Underground",
+    "given": [],
+    "category": "tech",
+    "region": "GB",
+    "level": 2,
+    "clue": "The world's first subway opened in 1863 between Paddington and Farringdon",
+    "description": "The Metropolitan Railway opened on January 10, 1863, the world's first underground railway, running steam trains through tunnels.",
+    "fact": "Despite the name, more than half of the network actually runs above ground.",
+    "source": "https://en.wikipedia.org/wiki/London_Underground"
+  },
+  {
+    "date": "2027-01-11",
+    "phrase": "Coming of Age Day",
+    "given": [
+      "of",
+      "Day"
+    ],
+    "category": "society",
+    "region": "JP",
+    "level": 2,
+    "clue": "Young Japanese adults dress up in kimono for ceremonies on the second Monday of January",
+    "description": "Held on the second Monday of January, January 11 in 2027, it honors young adults with town-hall ceremonies, festive kimono and parties.",
+    "fact": "Japan lowered its legal adult age to 18 in 2022, but most ceremonies still invite those turning 20.",
+    "source": "https://en.wikipedia.org/wiki/Coming_of_Age_Day"
+  },
+  {
+    "date": "2027-01-12",
+    "phrase": "Batman",
+    "given": [],
+    "category": "film",
+    "region": "US",
+    "level": 1,
+    "clue": "Holy premiere! The caped crusader's campy TV series began in 1966",
+    "description": "The colorful ABC series starring Adam West premiered on January 12, 1966, with comic-book sound effects like 'POW!' flashing on screen.",
+    "fact": "It aired twice a week: a Wednesday cliffhanger was resolved on Thursday.",
+    "source": "https://en.wikipedia.org/wiki/Batman_(TV_series)"
+  },
+  {
+    "date": "2027-01-13",
+    "phrase": "Lohri",
+    "given": [],
+    "category": "celebration",
+    "region": "IN",
+    "level": 2,
+    "clue": "Punjabis dance around bonfires and toss in popcorn and sesame sweets",
+    "description": "This Punjabi winter festival is held the night before Makar Sankranti, on January 13 in 2027, marking the end of winter and the sugarcane harvest.",
+    "fact": "It is celebrated with extra fanfare by families marking a newborn's or a newly married couple's first one.",
+    "source": "https://www.bhaktibharat.com/festival/lohri"
+  },
+  {
+    "date": "2027-01-14",
+    "phrase": "Old New Year",
+    "given": [],
+    "category": "celebration",
+    "region": "RU",
+    "level": 3,
+    "clue": "Russians toast the old Julian calendar's January 1 with a second round of festivities",
+    "description": "Many people in Russia and other former Soviet countries celebrate again on the night of January 13–14, which is January 1 under the Julian calendar.",
+    "fact": "Russia switched to the Gregorian calendar only in 1918, after the revolution.",
+    "source": "https://en.wikipedia.org/wiki/Old_New_Year"
+  },
+  {
+    "date": "2027-01-15",
+    "phrase": "Pongal",
+    "given": [],
+    "category": "food",
+    "region": "IN",
+    "level": 2,
+    "clue": "Tamils boil rice with milk and jaggery until the pot spills over for good luck",
+    "description": "The Tamil harvest festival gives thanks to the sun; its main day, Thai Pongal, falls on January 15 in 2027.",
+    "fact": "The sweet rice dish shares the festival's name, which means 'boiling over' in Tamil.",
+    "source": "https://www.drikpanchang.com/festivals/pongal/thai-pongal-date-time.html?year=2027"
+  },
+  {
+    "date": "2027-01-16",
+    "phrase": "Don Quixote",
+    "given": [],
+    "category": "literature",
+    "region": "ES",
+    "level": 2,
+    "clue": "Cervantes's deluded knight first tilted at windmills in a 1605 book",
+    "description": "The first part of Miguel de Cervantes's novel was published in Madrid in January 1605, traditionally dated to January 16.",
+    "fact": "It is often called the first modern novel and is one of the best-selling books ever written.",
+    "source": "https://en.wikipedia.org/wiki/Don_Quixote"
+  },
+  {
+    "date": "2027-01-17",
+    "phrase": "Blessing of the Animals",
+    "given": [
+      "of",
+      "the"
+    ],
+    "category": "religion",
+    "region": "ES",
+    "level": 3,
+    "clue": "On Saint Anthony's feast, Spanish priests sprinkle holy water on pets and livestock",
+    "description": "On January 17, the feast of Saint Anthony the Abbot, patron of animals, owners bring pets and farm animals to churches across Spain to be blessed.",
+    "fact": "On Mallorca the eve of the feast is celebrated with bonfires and dancing devils.",
+    "source": "https://en.wikipedia.org/wiki/Anthony_the_Great"
+  },
+  {
+    "date": "2027-01-18",
+    "phrase": "Martin Luther King Day",
+    "given": [
+      "Day"
+    ],
+    "category": "people",
+    "region": "US",
+    "level": 1,
+    "clue": "Honors the civil rights leader who gave the 'I Have a Dream' speech",
+    "description": "The US federal holiday falls on the third Monday of January, January 18 in 2027, near Dr. King's birthday on January 15, 1929.",
+    "fact": "At 35, he was the youngest man to receive the Nobel Peace Prize when he won it in 1964.",
+    "source": "https://en.wikipedia.org/wiki/Martin_Luther_King_Jr._Day"
+  },
+  {
+    "date": "2027-01-19",
+    "phrase": "Edgar Allan Poe",
+    "given": [],
+    "category": "literature",
+    "region": "US",
+    "level": 1,
+    "clue": "Author of The Raven, born in Boston in 1809, master of the macabre tale",
+    "description": "Born January 19, 1809, he is credited with inventing the detective story with The Murders in the Rue Morgue.",
+    "fact": "Baltimore's NFL team, the Ravens, is named after his most famous poem.",
+    "source": "https://en.wikipedia.org/wiki/Edgar_Allan_Poe"
+  },
+  {
+    "date": "2027-01-20",
+    "phrase": "Tamborrada",
+    "given": [],
+    "category": "music",
+    "region": "ES",
+    "level": 3,
+    "clue": "San Sebastian drums nonstop for 24 hours, starting at midnight on its patron's day",
+    "description": "On January 20, the feast of Saint Sebastian, the Basque city of Donostia-San Sebastián celebrates with costumed drum companies parading for 24 hours.",
+    "fact": "Many companies dress as cooks and soldiers, with the cooks beating on wooden barrels.",
+    "source": "https://en.wikipedia.org/wiki/Tamborrada"
+  },
+  {
+    "date": "2027-01-21",
+    "phrase": "Concorde",
+    "given": [],
+    "category": "tech",
+    "region": "FR",
+    "level": 2,
+    "clue": "In 1976 the supersonic airliner began passenger service from London and Paris",
+    "description": "On January 21, 1976, British Airways and Air France simultaneously started the first scheduled supersonic passenger flights.",
+    "fact": "It crossed the Atlantic in about three and a half hours, and its body stretched several inches from the heat of flight.",
+    "source": "https://en.wikipedia.org/wiki/Concorde"
+  },
+  {
+    "date": "2027-01-22",
+    "phrase": "Thaipusam",
+    "given": [],
+    "category": "religion",
+    "region": "MY",
+    "level": 3,
+    "clue": "Devotees of Lord Murugan climb 272 steps to Malaysia's Batu Caves",
+    "description": "This Tamil Hindu festival on the full moon of the month of Thai falls on January 22 in 2027; huge crowds gather at Batu Caves near Kuala Lumpur.",
+    "fact": "Many devotees carry ornate kavadi frames, and some pierce their skin with hooks and skewers as acts of devotion.",
+    "source": "https://www.officeholidays.com/holidays/malaysia/thaipusam"
+  },
+  {
+    "date": "2027-01-23",
+    "phrase": "Edouard Manet",
+    "given": [],
+    "category": "arts",
+    "region": "FR",
+    "level": 3,
+    "clue": "French painter of Olympia and A Bar at the Folies-Bergere, born in 1832",
+    "description": "Born in Paris on January 23, 1832, he painted scandalous modern scenes that bridged realism and impressionism.",
+    "fact": "His Luncheon on the Grass was rejected by the official Paris Salon of 1863 and shown instead at the Salon des Refusés.",
+    "source": "https://en.wikipedia.org/wiki/%C3%89douard_Manet"
+  },
+  {
+    "date": "2027-01-24",
+    "phrase": "Alasitas",
+    "given": [],
+    "category": "celebration",
+    "region": "BO",
+    "level": 3,
+    "clue": "In La Paz, people buy tiny houses, cars and banknotes hoping to get the real thing",
+    "description": "The fair opens in La Paz, Bolivia, every January 24, honoring Ekeko, the Andean god of abundance; the miniatures are blessed at noon.",
+    "fact": "UNESCO added the festival to its Intangible Cultural Heritage list in 2017.",
+    "source": "https://en.wikipedia.org/wiki/Alasitas"
+  },
+  {
+    "date": "2027-01-25",
+    "phrase": "Burns Night",
+    "given": [
+      "Night"
+    ],
+    "category": "literature",
+    "region": "GB",
+    "level": 1,
+    "clue": "Scots address a haggis and recite poems by their national bard",
+    "description": "Scots honor the poet Robert Burns, born January 25, 1759, with a supper of haggis, whisky and readings of his verse.",
+    "fact": "'Auld Lang Syne', sung worldwide on New Year's Eve, is a song he wrote down and adapted.",
+    "source": "https://en.wikipedia.org/wiki/Burns_supper"
+  },
+  {
+    "date": "2027-01-26",
+    "phrase": "Australia Day",
+    "given": [
+      "Day"
+    ],
+    "category": "history",
+    "region": "AU",
+    "level": 1,
+    "clue": "Marks the 1788 arrival of the First Fleet at Sydney Cove",
+    "description": "Australia's national day recalls the British First Fleet's arrival in 1788; it is a public holiday with barbecues, awards and fireworks.",
+    "fact": "Thousands of people become Australian citizens at ceremonies held across the country on this day.",
+    "source": "https://en.wikipedia.org/wiki/Australia_Day"
+  },
+  {
+    "date": "2027-01-27",
+    "phrase": "Wolfgang Amadeus Mozart",
+    "given": [],
+    "category": "music",
+    "region": "AT",
+    "level": 1,
+    "clue": "Salzburg-born child prodigy who wrote The Magic Flute, born in 1756",
+    "description": "Born in Salzburg on January 27, 1756, he wrote more than 600 works in a life of just 35 years.",
+    "fact": "His baptismal name included Theophilus, which he later rendered in Latin as Amadeus, 'loved by God'.",
+    "source": "https://en.wikipedia.org/wiki/Wolfgang_Amadeus_Mozart"
+  },
+  {
+    "date": "2027-01-28",
+    "phrase": "Lego Brick",
+    "given": [],
+    "category": "tech",
+    "region": "DK",
+    "level": 1,
+    "clue": "A Danish toy company patented its stud-and-tube plastic building block in 1958",
+    "description": "On January 28, 1958, the Danish company filed the patent for its interlocking plastic brick, the design still used today.",
+    "fact": "The company name comes from the Danish 'leg godt', meaning 'play well'.",
+    "source": "https://en.wikipedia.org/wiki/Lego"
+  },
+  {
+    "date": "2027-01-29",
+    "phrase": "Birth of the Automobile",
+    "given": [
+      "of",
+      "the"
+    ],
+    "category": "tech",
+    "region": "DE",
+    "level": 2,
+    "clue": "Karl Benz filed a patent for his three-wheeled motor carriage in 1886",
+    "description": "On January 29, 1886, Karl Benz applied for a patent for his gasoline-powered vehicle, often called the birth certificate of the modern car.",
+    "fact": "In 1888 his wife Bertha drove it about 106 km to her mother's house, the first long-distance car trip.",
+    "source": "https://en.wikipedia.org/wiki/Benz_Patent-Motorwagen"
+  },
+  {
+    "date": "2027-01-30",
+    "phrase": "Rooftop Concert",
+    "given": [],
+    "category": "music",
+    "region": "GB",
+    "level": 2,
+    "clue": "The Beatles' last public performance, atop Apple's London office in 1969",
+    "description": "On January 30, 1969, the Beatles played a surprise 42-minute set on top of 3 Savile Row until police asked them to stop.",
+    "fact": "John Lennon closed it by saying: 'I hope we've passed the audition.'",
+    "source": "https://en.wikipedia.org/wiki/The_Beatles%27_rooftop_concert"
+  },
+  {
+    "date": "2027-01-31",
+    "phrase": "Franz Schubert",
+    "given": [],
+    "category": "music",
+    "region": "AT",
+    "level": 2,
+    "clue": "Viennese composer of the Unfinished Symphony and over 600 songs, born in 1797",
+    "description": "Born in Vienna on January 31, 1797, he wrote more than 600 songs before his death at just 31.",
+    "fact": "His friends held informal evenings devoted to his music, called Schubertiades.",
+    "source": "https://en.wikipedia.org/wiki/Franz_Schubert"
+  },
+  {
+    "date": "2027-02-01",
+    "phrase": "Saint Brigid's Day",
+    "given": [
+      "Day"
+    ],
+    "category": "religion",
+    "region": "IE",
+    "level": 2,
+    "clue": "The Irish weave rush crosses on the first day of spring and get a bank holiday",
+    "description": "Ireland honors its female patron saint on February 1, the old Celtic start of spring (Imbolc). Since 2023 it has a public holiday, on February 1 in 2027.",
+    "fact": "It was the first Irish public holiday named after a woman.",
+    "source": "https://en.wikipedia.org/wiki/Saint_Brigid%27s_Day"
+  },
+  {
+    "date": "2027-02-02",
+    "phrase": "Groundhog Day",
+    "given": [
+      "Day"
+    ],
+    "category": "nature",
+    "region": "US",
+    "level": 1,
+    "clue": "If Punxsutawney Phil sees his shadow, expect six more weeks of winter",
+    "description": "In Punxsutawney, Pennsylvania, crowds watch a famous rodent on February 2 to 'forecast' whether spring will come early.",
+    "fact": "The custom comes from German immigrants, who watched badgers on Candlemas.",
+    "source": "https://en.wikipedia.org/wiki/Groundhog_Day"
+  },
+  {
+    "date": "2027-02-03",
+    "phrase": "Setsubun",
+    "given": [],
+    "category": "celebration",
+    "region": "JP",
+    "level": 2,
+    "clue": "Japanese families throw roasted soybeans, shouting 'demons out, luck in'",
+    "description": "Held the day before the traditional start of spring, February 3 in 2027, it chases away evil with bean-throwing at homes, shrines and temples.",
+    "fact": "Many people eat a long uncut sushi roll, ehomaki, in silence while facing the year's lucky direction.",
+    "source": "https://en.wikipedia.org/wiki/Setsubun"
+  },
+  {
+    "date": "2027-02-04",
+    "phrase": "Fat Thursday",
+    "given": [
+      "Thursday"
+    ],
+    "category": "food",
+    "region": "PL",
+    "level": 2,
+    "clue": "Poles devour rose-jam paczki doughnuts on the last Thursday before Lent",
+    "description": "Poland's Tłusty Czwartek is the last Thursday before Lent, February 4 in 2027, when people eat millions of filled doughnuts.",
+    "fact": "In the German Rhineland the same day is Weiberfastnacht, when women playfully snip off men's ties.",
+    "source": "https://en.wikipedia.org/wiki/Fat_Thursday"
+  },
+  {
+    "date": "2027-02-05",
+    "phrase": "Sapporo Snow Festival",
+    "given": [
+      "Festival"
+    ],
+    "category": "arts",
+    "region": "JP",
+    "level": 2,
+    "clue": "Giant sculptures and ice slides fill Odori Park in Hokkaido's capital",
+    "description": "Japan's famous winter festival runs February 4–11, 2027, in Sapporo, with enormous sculptures across three sites.",
+    "fact": "It began in 1950, when local high school students built six statues in Odori Park.",
+    "source": "https://blog.wego.com/sapporo-snow-festival/"
+  },
+  {
+    "date": "2027-02-06",
+    "phrase": "Lunar New Year",
+    "given": [],
+    "category": "celebration",
+    "region": "CN",
+    "level": 1,
+    "clue": "Red lanterns, dumplings and firecrackers welcome the Fire Goat",
+    "description": "The Chinese calendar's new year begins on February 6, 2027, with the new moon, starting the Year of the Goat.",
+    "fact": "The holiday triggers the world's largest annual human migration, as hundreds of millions travel home.",
+    "source": "https://www.chinatravel.com/chinese-new-year/date"
+  },
+  {
+    "date": "2027-02-07",
+    "phrase": "Rio Carnival",
+    "given": [],
+    "category": "celebration",
+    "region": "BR",
+    "level": 1,
+    "clue": "Samba schools parade with giant floats through the Sambadrome",
+    "description": "Brazil's most famous party fills the days before Lent; Carnival Sunday, February 7 in 2027, is one of the main nights of samba-school parades.",
+    "fact": "The Sambadrome was designed by architect Oscar Niemeyer and opened in 1984.",
+    "source": "https://en.wikipedia.org/wiki/Rio_Carnival"
+  },
+  {
+    "date": "2027-02-08",
+    "phrase": "Rose Monday",
+    "given": [
+      "Monday"
+    ],
+    "category": "celebration",
+    "region": "DE",
+    "level": 2,
+    "clue": "Cologne and Dusseldorf throw tons of candy from carnival floats",
+    "description": "The highlight of Rhineland carnival falls two days before Ash Wednesday, February 8 in 2027, with huge parades in Cologne, Düsseldorf and Mainz.",
+    "fact": "The German name Rosenmontag probably comes from a dialect word for romping about, not from the flower.",
+    "source": "https://en.wikipedia.org/wiki/Rosenmontag"
+  },
+  {
+    "date": "2027-02-09",
+    "phrase": "Pancake Day",
+    "given": [
+      "Day"
+    ],
+    "category": "food",
+    "region": "GB",
+    "level": 1,
+    "clue": "A Shrove Tuesday treat; in Olney women race while flipping one in a pan",
+    "description": "On Shrove Tuesday, February 9 in 2027, Britons use up eggs and butter before Lent, topping thin batter cakes with lemon and sugar.",
+    "fact": "The Olney Pancake Race in Buckinghamshire is said to have been run since 1445.",
+    "source": "https://en.wikipedia.org/wiki/Shrove_Tuesday"
+  },
+  {
+    "date": "2027-02-10",
+    "phrase": "Ash Wednesday",
+    "given": [
+      "Wednesday"
+    ],
+    "category": "religion",
+    "region": null,
+    "level": 2,
+    "clue": "Christians receive a cross of grey dust on the forehead to start Lent",
+    "description": "The first day of Lent falls 46 days before Easter; in 2027 that is February 10.",
+    "fact": "The ashes are often made by burning palm branches from the previous year's Palm Sunday.",
+    "source": "https://en.wikipedia.org/wiki/Ash_Wednesday"
+  },
+  {
+    "date": "2027-02-11",
+    "phrase": "Release of Mandela",
+    "given": [
+      "of"
+    ],
+    "category": "history",
+    "region": "ZA",
+    "level": 2,
+    "clue": "In 1990 South Africa's most famous prisoner walked free after 27 years",
+    "description": "On February 11, 1990, Nelson Mandela left Victor Verster Prison, a turning point toward the end of apartheid and his election as president in 1994.",
+    "fact": "He later shared the 1993 Nobel Peace Prize with F. W. de Klerk, the president who freed him.",
+    "source": "https://en.wikipedia.org/wiki/Nelson_Mandela"
+  },
+  {
+    "date": "2027-02-12",
+    "phrase": "Darwin Day",
+    "given": [
+      "Day"
+    ],
+    "category": "science",
+    "region": "GB",
+    "level": 2,
+    "clue": "Celebrates the naturalist behind On the Origin of Species, born in 1809",
+    "description": "Science fans worldwide celebrate the birthday of Charles Darwin, born February 12, 1809, the very same day as Abraham Lincoln.",
+    "fact": "His voyage on HMS Beagle was planned for two years but lasted almost five.",
+    "source": "https://en.wikipedia.org/wiki/Darwin_Day"
+  },
+  {
+    "date": "2027-02-13",
+    "phrase": "World Radio Day",
+    "given": [
+      "World",
+      "Day"
+    ],
+    "category": "tech",
+    "region": null,
+    "level": 2,
+    "clue": "UNESCO's day for broadcasting, on the anniversary of the UN's own station from 1946",
+    "description": "Proclaimed by UNESCO, February 13 marks the anniversary of the launch of United Nations Radio in 1946.",
+    "fact": "Radio still reaches more people worldwide than any other medium, according to UNESCO.",
+    "source": "https://en.wikipedia.org/wiki/World_Radio_Day"
+  },
+  {
+    "date": "2027-02-14",
+    "phrase": "Valentine's Day",
+    "given": [
+      "Day"
+    ],
+    "category": "celebration",
+    "region": null,
+    "level": 1,
+    "clue": "Cards, red roses and chocolates for sweethearts",
+    "description": "Lovers exchange cards and gifts on February 14, the feast of an early Christian saint.",
+    "fact": "In 2027 the Super Bowl is scheduled on this date for the first time, at SoFi Stadium in California.",
+    "source": "https://www.foxla.com/news/2027-super-bowl-lxi-sofi-staduim-los-angeles"
+  },
+  {
+    "date": "2027-02-15",
+    "phrase": "Galileo Galilei",
+    "given": [],
+    "category": "science",
+    "region": "IT",
+    "level": 1,
+    "clue": "Pisa-born scientist who spotted Jupiter's moons through a telescope, born in 1564",
+    "description": "The father of modern observational astronomy was born in Pisa on February 15, 1564.",
+    "fact": "One of his fingers is on display at the Museo Galileo in Florence.",
+    "source": "https://en.wikipedia.org/wiki/Galileo_Galilei"
+  },
+  {
+    "date": "2027-02-16",
+    "phrase": "Nylon",
+    "given": [],
+    "category": "tech",
+    "region": "US",
+    "level": 2,
+    "clue": "A DuPont chemist's 1937 patent for a silky synthetic fiber, later famous in stockings",
+    "description": "On February 16, 1937, Wallace Carothers of DuPont was granted the patent behind the first fully synthetic fiber.",
+    "fact": "When stockings made from it went on sale in 1940, millions of pairs sold within days.",
+    "source": "https://en.wikipedia.org/wiki/Nylon"
+  },
+  {
+    "date": "2027-02-17",
+    "phrase": "Madama Butterfly",
+    "given": [],
+    "category": "music",
+    "region": "IT",
+    "level": 2,
+    "clue": "Puccini's opera about a Nagasaki geisha flopped at La Scala in 1904",
+    "description": "Puccini's opera premiered at La Scala, Milan, on February 17, 1904, and was booed; a revised version months later was a triumph.",
+    "fact": "It is now one of the most frequently performed operas in the world.",
+    "source": "https://en.wikipedia.org/wiki/Madama_Butterfly"
+  },
+  {
+    "date": "2027-02-18",
+    "phrase": "Pluto",
+    "given": [],
+    "category": "space",
+    "region": "US",
+    "level": 2,
+    "clue": "Clyde Tombaugh spotted this distant world at Lowell Observatory in 1930",
+    "description": "On February 18, 1930, Clyde Tombaugh found it by comparing photographic plates; it was reclassified as a dwarf planet in 2006.",
+    "fact": "Its name was suggested by Venetia Burney, an 11-year-old schoolgirl in Oxford.",
+    "source": "https://en.wikipedia.org/wiki/Pluto"
+  },
+  {
+    "date": "2027-02-19",
+    "phrase": "Nicolaus Copernicus",
+    "given": [],
+    "category": "space",
+    "region": "PL",
+    "level": 2,
+    "clue": "Torun-born astronomer who put the Sun, not Earth, at the center, born in 1473",
+    "description": "Born on February 19, 1473, in Toruń, Poland, he argued that Earth and the planets orbit the Sun.",
+    "fact": "Legend says he received the first printed copy of his great book on his deathbed in 1543.",
+    "source": "https://en.wikipedia.org/wiki/Nicolaus_Copernicus"
+  },
+  {
+    "date": "2027-02-20",
+    "phrase": "Lantern Festival",
+    "given": [
+      "Festival"
+    ],
+    "category": "celebration",
+    "region": "CN",
+    "level": 2,
+    "clue": "On the year's first full moon, people solve riddles and eat sweet tangyuan",
+    "description": "Falling on the 15th day of the first lunar month, February 20 in 2027, it closes the New Year season with glowing displays.",
+    "fact": "Riddles are traditionally attached to the lanterns for visitors to guess.",
+    "source": "https://www.chinatravel.com/chinese-new-year/date"
+  },
+  {
+    "date": "2027-02-21",
+    "phrase": "Steam Locomotive",
+    "given": [],
+    "category": "tech",
+    "region": "GB",
+    "level": 3,
+    "clue": "In 1804 Richard Trevithick's engine hauled iron and passengers in Wales",
+    "description": "On February 21, 1804, Trevithick's engine pulled a train along the Penydarren tramway in Wales, the first railway journey by a steam locomotive.",
+    "fact": "It hauled 10 tons of iron, five wagons and about 70 men on a trip of nearly ten miles.",
+    "source": "https://en.wikipedia.org/wiki/Richard_Trevithick"
+  },
+  {
+    "date": "2027-02-22",
+    "phrase": "Cat Day",
+    "given": [
+      "Day"
+    ],
+    "category": "nature",
+    "region": "JP",
+    "level": 1,
+    "clue": "Japan picked 2/22 because 'ni ni ni' sounds like a meow",
+    "description": "Japan's Neko no Hi, chosen by a vote of cat lovers, falls on February 22 because 'ni' (two) echoes 'nyan', the Japanese 'meow'.",
+    "fact": "Japan has many cafes devoted to the animals and several islands where they outnumber people.",
+    "source": "https://en.wikipedia.org/wiki/National_Cat_Day"
+  },
+  {
+    "date": "2027-02-23",
+    "phrase": "George Frideric Handel",
+    "given": [],
+    "category": "music",
+    "region": "DE",
+    "level": 2,
+    "clue": "Composer of Messiah and Water Music, born in Halle in 1685",
+    "description": "Born February 23, 1685, in Halle, Germany, he settled in London and became a British subject.",
+    "fact": "Audiences traditionally stand for the Hallelujah chorus, a custom said to go back to King George II.",
+    "source": "https://en.wikipedia.org/wiki/George_Frideric_Handel"
+  },
+  {
+    "date": "2027-02-24",
+    "phrase": "Gregorian Calendar",
+    "given": [],
+    "category": "history",
+    "region": "VA",
+    "level": 2,
+    "clue": "A 1582 papal bull fixed the drifting date of Easter by skipping ten days",
+    "description": "On February 24, 1582, Pope Gregory XIII issued the bull Inter gravissimas, creating the calendar most of the world uses today.",
+    "fact": "To catch up, Catholic countries jumped straight from October 4 to October 15, 1582.",
+    "source": "https://en.wikipedia.org/wiki/Inter_gravissimas"
+  },
+  {
+    "date": "2027-02-25",
+    "phrase": "Kuwait National Day",
+    "given": [
+      "National",
+      "Day"
+    ],
+    "category": "history",
+    "region": "KW",
+    "level": 2,
+    "clue": "Honors the 1950 accession of Emir Abdullah Al-Salem Al-Sabah",
+    "description": "Kuwait celebrates on February 25 with fireworks and parades, honoring Sheikh Abdullah Al-Salem, who led the country to independence in 1961.",
+    "fact": "Liberation Day follows the next day, giving the country a back-to-back festive holiday.",
+    "source": "https://en.wikipedia.org/wiki/National_Day_(Kuwait)"
+  },
+  {
+    "date": "2027-02-26",
+    "phrase": "Victor Hugo",
+    "given": [],
+    "category": "literature",
+    "region": "FR",
+    "level": 2,
+    "clue": "French author of Les Miserables and The Hunchback of Notre-Dame, born in 1802",
+    "description": "Born in Besançon on February 26, 1802, he was a towering figure of French Romanticism.",
+    "fact": "About two million people are said to have joined his funeral procession in Paris in 1885.",
+    "source": "https://en.wikipedia.org/wiki/Victor_Hugo"
+  },
+  {
+    "date": "2027-02-27",
+    "phrase": "Dominican Independence",
+    "given": [],
+    "category": "history",
+    "region": "DO",
+    "level": 3,
+    "clue": "Marks the 1844 break from Haiti, with carnival parades in Santo Domingo",
+    "description": "The Dominican Republic declared independence on February 27, 1844; the day also caps the country's carnival season.",
+    "fact": "Its flag is one of the very few national flags to show an image of the Bible.",
+    "source": "https://en.wikipedia.org/wiki/Dominican_War_of_Independence"
+  },
+  {
+    "date": "2027-02-28",
+    "phrase": "Kalevala Day",
+    "given": [
+      "Day"
+    ],
+    "category": "literature",
+    "region": "FI",
+    "level": 3,
+    "clue": "Finland honors its national epic, compiled by Elias Lonnrot in 1835",
+    "description": "On February 28, Finland celebrates the date Elias Lönnrot signed the preface to the first edition in 1835; it is also Finnish Culture Day.",
+    "fact": "Its tales helped inspire J.R.R. Tolkien, who tried to learn Finnish to read it in the original.",
+    "source": "https://en.wikipedia.org/wiki/Kalevala"
+  },
+  {
+    "date": "2027-03-01",
+    "phrase": "Saint David's Day",
+    "given": [
+      "Day"
+    ],
+    "category": "religion",
+    "region": "GB",
+    "level": 2,
+    "clue": "The Welsh wear daffodils and leeks to honor their patron saint",
+    "description": "Wales celebrates its patron saint on March 1, traditionally the date of his death in 589, with parades, Welsh cakes and national dress.",
+    "fact": "His last sermon reportedly urged: 'Do the little things.'",
+    "source": "https://en.wikipedia.org/wiki/Saint_David%27s_Day"
+  },
+  {
+    "date": "2027-03-02",
+    "phrase": "Dr Seuss",
+    "given": [],
+    "category": "literature",
+    "region": "US",
+    "level": 1,
+    "clue": "Author of The Cat in the Hat and Green Eggs and Ham, born in 1904",
+    "description": "Theodor Geisel was born on March 2, 1904; his birthday anchors Read Across America events in US schools.",
+    "fact": "Green Eggs and Ham uses just 50 different words, the result of a bet with his publisher.",
+    "source": "https://en.wikipedia.org/wiki/Dr._Seuss"
+  },
+  {
+    "date": "2027-03-03",
+    "phrase": "Hinamatsuri",
+    "given": [],
+    "category": "celebration",
+    "region": "JP",
+    "level": 2,
+    "clue": "Japanese families display tiers of dolls in imperial court robes for their daughters",
+    "description": "On March 3, Japanese families with girls display ornamental dolls and enjoy diamond-shaped rice cakes and chirashi sushi.",
+    "fact": "Many families pack the dolls away quickly afterwards; folklore says leaving them out delays a daughter's marriage.",
+    "source": "https://en.wikipedia.org/wiki/Hinamatsuri"
+  },
+  {
+    "date": "2027-03-04",
+    "phrase": "Antonio Vivaldi",
+    "given": [],
+    "category": "music",
+    "region": "IT",
+    "level": 2,
+    "clue": "Venetian violinist-priest who wrote The Four Seasons, born in 1678",
+    "description": "Born in Venice on March 4, 1678, he composed hundreds of concertos and dozens of operas.",
+    "fact": "Because of his hair he was nicknamed 'il Prete Rosso', the Red Priest.",
+    "source": "https://en.wikipedia.org/wiki/Antonio_Vivaldi"
+  },
+  {
+    "date": "2027-03-05",
+    "phrase": "Gerardus Mercator",
+    "given": [],
+    "category": "science",
+    "region": "BE",
+    "level": 3,
+    "clue": "Flemish mapmaker whose 1569 projection makes Greenland look gigantic",
+    "description": "Born March 5, 1512, in Rupelmonde, Flanders, he created the map projection still used by many web maps today.",
+    "fact": "He also popularized the word 'atlas' for a bound collection of maps.",
+    "source": "https://en.wikipedia.org/wiki/Gerardus_Mercator"
+  },
+  {
+    "date": "2027-03-06",
+    "phrase": "Ghana Independence Day",
+    "given": [
+      "Day"
+    ],
+    "category": "history",
+    "region": "GH",
+    "level": 2,
+    "clue": "In 1957 Kwame Nkrumah declared the Gold Coast free from British rule",
+    "description": "On March 6, 1957, Ghana became the first sub-Saharan African colony to gain independence.",
+    "fact": "The black star on its flag became a symbol of African freedom; its national football team is nicknamed the Black Stars.",
+    "source": "https://en.wikipedia.org/wiki/Independence_Day_(Ghana)"
+  },
+  {
+    "date": "2027-03-07",
+    "phrase": "Vasaloppet",
+    "given": [],
+    "category": "sports",
+    "region": "SE",
+    "level": 3,
+    "clue": "A 90 km cross-country ski race from Salen to Mora in Sweden",
+    "description": "The world's oldest and biggest cross-country ski race is held on the first Sunday of March, March 7 in 2027, retracing Gustav Vasa's 1520 flight.",
+    "fact": "Skiers are served warm blueberry soup at refreshment stations along the course.",
+    "source": "https://www.skiclassics.com/livecenter/vasaloppet/"
+  },
+  {
+    "date": "2027-03-08",
+    "phrase": "Women's Day",
+    "given": [
+      "Day"
+    ],
+    "category": "society",
+    "region": null,
+    "level": 1,
+    "clue": "Marked with mimosa flowers in Italy and a public holiday in many countries",
+    "description": "International Women's Day on March 8 celebrates women's achievements and campaigns for equality; it is a public holiday in many countries.",
+    "fact": "The date took hold after women in Petrograd went on strike on March 8, 1917, helping spark the Russian Revolution.",
+    "source": "https://en.wikipedia.org/wiki/International_Women%27s_Day"
+  },
+  {
+    "date": "2027-03-09",
+    "phrase": "Barbie",
+    "given": [],
+    "category": "society",
+    "region": "US",
+    "level": 1,
+    "clue": "Ruth Handler's fashion doll debuted at New York's Toy Fair in 1959",
+    "description": "Mattel introduced the doll at the American International Toy Fair on March 9, 1959, now treated as her official birthday.",
+    "fact": "Her full name is Barbara Millicent Roberts, after Ruth Handler's daughter Barbara.",
+    "source": "https://en.wikipedia.org/wiki/Barbie"
+  },
+  {
+    "date": "2027-03-10",
+    "phrase": "Mario Day",
+    "given": [
+      "Day"
+    ],
+    "category": "tech",
+    "region": "JP",
+    "level": 2,
+    "clue": "Nintendo's plumber gets a day because MAR10 looks like his name",
+    "description": "Nintendo celebrates its mascot on March 10, since 'MAR10' resembles his name, with game sales and events.",
+    "fact": "He first appeared in 1981's Donkey Kong as 'Jumpman', a carpenter rather than a plumber.",
+    "source": "https://en.wikipedia.org/wiki/Mario"
+  },
+  {
+    "date": "2027-03-11",
+    "phrase": "Moshoeshoe Day",
+    "given": [
+      "Day"
+    ],
+    "category": "history",
+    "region": "LS",
+    "level": 3,
+    "clue": "Lesotho honors the founder of the Basotho nation with games and feasts",
+    "description": "Lesotho marks March 11 in honor of King Moshoeshoe I, who united the Basotho people in the 19th century and founded the mountain kingdom.",
+    "fact": "Lesotho is entirely surrounded by South Africa, and its lowest point is about 1,400 metres above sea level.",
+    "source": "https://en.wikipedia.org/wiki/Moshoeshoe_I"
+  },
+  {
+    "date": "2027-03-12",
+    "phrase": "World Wide Web",
+    "given": [],
+    "category": "tech",
+    "region": "CH",
+    "level": 2,
+    "clue": "Tim Berners-Lee's 1989 CERN proposal, which his boss called 'vague but exciting'",
+    "description": "On March 12, 1989, Tim Berners-Lee submitted 'Information Management: A Proposal' at CERN near Geneva, the founding document of the web.",
+    "fact": "The first website, info.cern.ch, is still online.",
+    "source": "https://en.wikipedia.org/wiki/World_Wide_Web"
+  },
+  {
+    "date": "2027-03-13",
+    "phrase": "Uranus",
+    "given": [],
+    "category": "space",
+    "region": "GB",
+    "level": 2,
+    "clue": "William Herschel spotted this tilted ice giant from his garden in Bath in 1781",
+    "description": "On March 13, 1781, William Herschel discovered it, the first planet found with a telescope.",
+    "fact": "Herschel wanted to name it 'George's Star' after King George III.",
+    "source": "https://en.wikipedia.org/wiki/Uranus"
+  },
+  {
+    "date": "2027-03-14",
+    "phrase": "Pi Day",
+    "given": [
+      "Day"
+    ],
+    "category": "science",
+    "region": null,
+    "level": 1,
+    "clue": "3/14 is celebrated with round desserts and digit-reciting contests",
+    "description": "Math fans celebrate the ratio of a circle's circumference to its diameter, roughly 3.14, on March 14.",
+    "fact": "Albert Einstein was born on this date in 1879, and in 2027 the Oscars are also held on it.",
+    "source": "https://en.wikipedia.org/wiki/Pi_Day"
+  },
+  {
+    "date": "2027-03-15",
+    "phrase": "Hungarian National Day",
+    "given": [
+      "National",
+      "Day"
+    ],
+    "category": "history",
+    "region": "HU",
+    "level": 2,
+    "clue": "Budapest marks the 1848 uprising with cockades in red, white and green",
+    "description": "Hungary commemorates the revolution that began on March 15, 1848, when young radicals read out the 12 Points and the National Song in Pest.",
+    "fact": "People wear a small cockade in the national colors pinned to their coats.",
+    "source": "https://en.wikipedia.org/wiki/Hungarian_Revolution_of_1848"
+  },
+  {
+    "date": "2027-03-16",
+    "phrase": "Liquid-Fueled Rocket",
+    "given": [],
+    "category": "space",
+    "region": "US",
+    "level": 2,
+    "clue": "In 1926 Robert Goddard's launch in Massachusetts climbed just 12 meters",
+    "description": "On March 16, 1926, in Auburn, Massachusetts, Robert Goddard launched the first liquid-fueled rocket, which flew for about 2.5 seconds.",
+    "fact": "In 1920 The New York Times mocked his ideas on spaceflight; it printed a correction in 1969 as Apollo 11 headed to the Moon.",
+    "source": "https://en.wikipedia.org/wiki/Robert_H._Goddard"
+  },
+  {
+    "date": "2027-03-17",
+    "phrase": "Saint Patrick's Day",
+    "given": [
+      "Day"
+    ],
+    "category": "celebration",
+    "region": "IE",
+    "level": 1,
+    "clue": "Ireland's patron saint, shamrocks and a green-dyed river in Chicago",
+    "description": "March 17 honors the patron saint of Ireland, with parades and celebrations around the world.",
+    "fact": "Chicago has dyed its river green every year since 1962.",
+    "source": "https://en.wikipedia.org/wiki/Saint_Patrick%27s_Day"
+  },
+  {
+    "date": "2027-03-18",
+    "phrase": "First Spacewalk",
+    "given": [],
+    "category": "space",
+    "region": "RU",
+    "level": 2,
+    "clue": "Alexei Leonov floated outside Voskhod 2 for 12 minutes in 1965",
+    "description": "On March 18, 1965, Soviet cosmonaut Alexei Leonov became the first person to leave a spacecraft in open space.",
+    "fact": "His suit ballooned so much that he had to let out air to squeeze back into the airlock.",
+    "source": "https://en.wikipedia.org/wiki/Alexei_Leonov"
+  },
+  {
+    "date": "2027-03-19",
+    "phrase": "Las Fallas",
+    "given": [
+      "Las"
+    ],
+    "category": "arts",
+    "region": "ES",
+    "level": 2,
+    "clue": "Valencia burns giant satirical statues on Saint Joseph's night",
+    "description": "Valencia's festival climaxes on March 19, Saint Joseph's Day, with the Cremà, when hundreds of papier-mâché sculptures go up in flames.",
+    "fact": "Each year one figure, the 'ninot indultat', is saved from the flames by public vote.",
+    "source": "https://en.wikipedia.org/wiki/Falles"
+  },
+  {
+    "date": "2027-03-20",
+    "phrase": "Spring Equinox",
+    "given": [],
+    "category": "nature",
+    "region": null,
+    "level": 1,
+    "clue": "Day and night are nearly equal as the Sun crosses the celestial equator",
+    "description": "In 2027 the March equinox falls on March 20, marking the start of astronomical spring in the north and autumn in the south.",
+    "fact": "At Chichen Itza in Mexico, the sun at this time casts a serpent-shaped shadow down the pyramid steps.",
+    "source": "https://en.wikipedia.org/wiki/March_equinox"
+  },
+  {
+    "date": "2027-03-21",
+    "phrase": "Nowruz",
+    "given": [],
+    "category": "celebration",
+    "region": "IR",
+    "level": 2,
+    "clue": "The Persian new year, with a table of seven symbolic items starting with S",
+    "description": "Celebrated by about 300 million people from Iran to Central Asia, the Persian New Year begins at the equinox; in Iran it is March 21 in 2027.",
+    "fact": "The haft-sin table holds seven items whose Persian names start with 's', such as sabzeh sprouts and serkeh vinegar.",
+    "source": "https://www.officeholidays.com/holidays/iran/novruz"
+  },
+  {
+    "date": "2027-03-22",
+    "phrase": "Holi",
+    "given": [],
+    "category": "religion",
+    "region": "IN",
+    "level": 1,
+    "clue": "Hindus throw colored powder and water to welcome spring",
+    "description": "The Hindu festival of colors follows the full moon of Phalguna; in 2027 the Holika bonfires burn on March 21 and the color play is on March 22.",
+    "fact": "The bonfires the night before recall the legend of the demoness Holika.",
+    "source": "https://hindutone.com/festivals/holi-2027/"
+  },
+  {
+    "date": "2027-03-23",
+    "phrase": "Purim",
+    "given": [],
+    "category": "religion",
+    "region": "IL",
+    "level": 2,
+    "clue": "Jews read the Book of Esther, wear costumes and eat triangular hamantaschen",
+    "description": "This joyful Jewish holiday recalls how Queen Esther saved the Jews of Persia; in 2027 it begins at sundown on March 22 and is celebrated on March 23.",
+    "fact": "Noisemakers called graggers are spun to drown out the villain Haman's name when the story is read.",
+    "source": "https://www.myjewishlearning.com/article/purim/"
+  },
+  {
+    "date": "2027-03-24",
+    "phrase": "Harry Houdini",
+    "given": [],
+    "category": "arts",
+    "region": "HU",
+    "level": 2,
+    "clue": "Budapest-born escape artist who wriggled out of handcuffs and water tanks",
+    "description": "Born Erik Weisz in Budapest on March 24, 1874, he moved to America and became the world's most famous escape artist.",
+    "fact": "He spent his later years exposing fake spiritualist mediums.",
+    "source": "https://en.wikipedia.org/wiki/Harry_Houdini"
+  },
+  {
+    "date": "2027-03-25",
+    "phrase": "Greek Independence Day",
+    "given": [
+      "Day"
+    ],
+    "category": "history",
+    "region": "GR",
+    "level": 2,
+    "clue": "Celebrates the 1821 revolt against Ottoman rule with school parades in blue and white",
+    "description": "Greece marks the start of its War of Independence in 1821 on March 25, which is also the Orthodox feast of the Annunciation.",
+    "fact": "Greeks traditionally eat fried salt cod with garlic sauce, bakaliaros skordalia, on this day.",
+    "source": "https://en.wikipedia.org/wiki/Greek_Independence_Day"
+  },
+  {
+    "date": "2027-03-26",
+    "phrase": "Good Friday",
+    "given": [
+      "Friday"
+    ],
+    "category": "religion",
+    "region": null,
+    "level": 1,
+    "clue": "Christians recall the crucifixion of Jesus two days before Easter",
+    "description": "Commemorating the crucifixion of Jesus, it falls two days before Easter, on March 26 in 2027.",
+    "fact": "In Bermuda people fly colorful kites on this day, said to symbolize Christ's ascension.",
+    "source": "https://en.wikipedia.org/wiki/Good_Friday"
+  },
+  {
+    "date": "2027-03-27",
+    "phrase": "World Theatre Day",
+    "given": [
+      "World",
+      "Day"
+    ],
+    "category": "arts",
+    "region": null,
+    "level": 2,
+    "clue": "Each year a famous playwright or actor writes a message read on stages worldwide",
+    "description": "Created by the International Theatre Institute and first celebrated on March 27, 1962, it promotes theater in all its forms.",
+    "fact": "The very first international message was written by the French artist Jean Cocteau.",
+    "source": "https://en.wikipedia.org/wiki/World_Theatre_Day"
+  },
+  {
+    "date": "2027-03-28",
+    "phrase": "Easter Sunday",
+    "given": [
+      "Sunday"
+    ],
+    "category": "religion",
+    "region": null,
+    "level": 1,
+    "clue": "Chocolate eggs and bunnies mark this spring feast",
+    "description": "Christians celebrate the resurrection of Jesus. In 2027 it falls on March 28, the first Sunday after the spring full moon.",
+    "fact": "The date is computed from the moon, so it can land anywhere between March 22 and April 25.",
+    "source": "https://www.farmersalmanac.com/when-easter-10797"
+  },
+  {
+    "date": "2027-03-29",
+    "phrase": "Wet Monday",
+    "given": [
+      "Monday"
+    ],
+    "category": "celebration",
+    "region": "PL",
+    "level": 2,
+    "clue": "Poles drench each other with buckets and water pistols the day after Easter",
+    "description": "On Easter Monday, March 29 in 2027, Poland celebrates Śmigus-dyngus, when friends and neighbors douse each other with water.",
+    "fact": "The custom is often linked to the baptism of Poland's Duke Mieszko I on Easter in 966.",
+    "source": "https://en.wikipedia.org/wiki/%C5%9Amigus-dyngus"
+  },
+  {
+    "date": "2027-03-30",
+    "phrase": "Vincent van Gogh",
+    "given": [
+      "van"
+    ],
+    "category": "arts",
+    "region": "NL",
+    "level": 1,
+    "clue": "Dutch painter of The Starry Night and Sunflowers, born in 1853",
+    "description": "Born March 30, 1853, in Zundert, the Netherlands, he produced about 2,100 artworks in roughly a decade.",
+    "fact": "He sold very few paintings during his lifetime.",
+    "source": "https://en.wikipedia.org/wiki/Vincent_van_Gogh"
+  },
+  {
+    "date": "2027-03-31",
+    "phrase": "Eiffel Tower",
+    "given": [],
+    "category": "history",
+    "region": "FR",
+    "level": 1,
+    "clue": "Gustave's iron lattice in Paris was inaugurated for the 1889 World's Fair",
+    "description": "On March 31, 1889, Gustave Eiffel climbed to the top to raise the French flag at the tower's inauguration.",
+    "fact": "It was meant to stand for only 20 years; its value as a radio antenna saved it from demolition.",
+    "source": "https://en.wikipedia.org/wiki/Eiffel_Tower"
+  },
+  {
+    "date": "2027-04-01",
+    "phrase": "April Fools' Day",
+    "given": [
+      "Day"
+    ],
+    "category": "celebration",
+    "region": null,
+    "level": 1,
+    "clue": "Pranks and hoaxes until noon; the French tape paper fish to people's backs",
+    "description": "Around the world, people play practical jokes and newspapers publish fake stories on April 1.",
+    "fact": "In 1957 the BBC aired a report on Swiss farmers harvesting spaghetti from trees.",
+    "source": "https://en.wikipedia.org/wiki/April_Fools%27_Day"
+  },
+  {
+    "date": "2027-04-02",
+    "phrase": "Hans Christian Andersen",
+    "given": [],
+    "category": "literature",
+    "region": "DK",
+    "level": 2,
+    "clue": "Danish author of The Little Mermaid and The Ugly Duckling, born in 1805",
+    "description": "Born on April 2, 1805, in Odense, Denmark; his birthday is International Children's Book Day.",
+    "fact": "Copenhagen's Little Mermaid statue, inspired by his tale, turned 100 in 2013.",
+    "source": "https://en.wikipedia.org/wiki/Hans_Christian_Andersen"
+  },
+  {
+    "date": "2027-04-03",
+    "phrase": "Mobile Phone",
+    "given": [],
+    "category": "tech",
+    "region": "US",
+    "level": 2,
+    "clue": "Motorola's Martin Cooper made the first handheld cellular call in 1973",
+    "description": "On April 3, 1973, on a New York street, Martin Cooper called a rival at Bell Labs on a prototype weighing about 1 kg.",
+    "fact": "The prototype's battery gave about 30 minutes of talk time and took around 10 hours to charge.",
+    "source": "https://en.wikipedia.org/wiki/Martin_Cooper_(inventor)"
+  },
+  {
+    "date": "2027-04-04",
+    "phrase": "Senegal Independence Day",
+    "given": [
+      "Day"
+    ],
+    "category": "history",
+    "region": "SN",
+    "level": 3,
+    "clue": "Dakar marks freedom from France in 1960 with a big parade",
+    "description": "Senegal's national day, April 4, recalls the 1960 agreement with France that led to independence; Dakar hosts a large parade.",
+    "fact": "Senegal's first president, Léopold Sédar Senghor, was a celebrated poet and the first African member of the Académie française.",
+    "source": "https://en.wikipedia.org/wiki/Senegal"
+  },
+  {
+    "date": "2027-04-05",
+    "phrase": "Qingming Festival",
+    "given": [
+      "Festival"
+    ],
+    "category": "society",
+    "region": "CN",
+    "level": 2,
+    "clue": "Chinese families sweep ancestors' tombs, fly kites and eat green rice balls",
+    "description": "Also called Tomb-Sweeping Day, it falls on April 5 in 2027, 15 days after the spring equinox.",
+    "fact": "Its name means 'clear and bright', describing the fresh spring weather.",
+    "source": "https://publicholidays.hk/?p=51"
+  },
+  {
+    "date": "2027-04-06",
+    "phrase": "First Modern Olympics",
+    "given": [],
+    "category": "sports",
+    "region": "GR",
+    "level": 1,
+    "clue": "Athens opened the revived Games in 1896, the dream of Pierre de Coubertin",
+    "description": "On April 6, 1896, the first modern Olympic Games opened in Athens, with athletes from 14 nations.",
+    "fact": "Winners received silver medals; gold medals for first place were introduced only in 1904.",
+    "source": "https://en.wikipedia.org/wiki/1896_Summer_Olympics"
+  },
+  {
+    "date": "2027-04-07",
+    "phrase": "Metric System",
+    "given": [],
+    "category": "science",
+    "region": "FR",
+    "level": 2,
+    "clue": "Revolutionary France adopted decimal units of length and mass in 1795",
+    "description": "On April 7, 1795, a French law defined the metre and the gram, laying the foundation of the measurement system most of the world uses.",
+    "fact": "Revolutionary France also tried decimal time, with 10-hour days, but soon gave it up.",
+    "source": "https://en.wikipedia.org/wiki/History_of_the_metric_system"
+  },
+  {
+    "date": "2027-04-08",
+    "phrase": "Masters Tournament",
+    "given": [],
+    "category": "sports",
+    "region": "US",
+    "level": 2,
+    "clue": "Golf's first major of the year at Augusta, where the winner gets a green jacket",
+    "description": "The first round of the 2027 tournament at Augusta National Golf Club in Georgia is on April 8; the final round is on April 11.",
+    "fact": "The defending champion hosts the Champions Dinner each year and chooses the menu.",
+    "source": "https://www.golfcompendium.com/2023/04/2027-masters-tournament.html"
+  },
+  {
+    "date": "2027-04-09",
+    "phrase": "First Sound Recording",
+    "given": [],
+    "category": "science",
+    "region": "FR",
+    "level": 3,
+    "clue": "In 1860 a Frenchman captured a voice singing 'Au clair de la lune' as squiggles on paper",
+    "description": "On April 9, 1860, Édouard-Léon Scott de Martinville's phonautograph captured part of a French folk song, the oldest known recording of a human voice.",
+    "fact": "It was meant only to be seen, not heard; scientists first played it back in 2008.",
+    "source": "https://en.wikipedia.org/wiki/Phonautograph"
+  },
+  {
+    "date": "2027-04-10",
+    "phrase": "First Black Hole Photo",
+    "given": [],
+    "category": "space",
+    "region": null,
+    "level": 2,
+    "clue": "In 2019 astronomers revealed a glowing orange ring around the dark heart of galaxy M87",
+    "description": "On April 10, 2019, the Event Horizon Telescope team released the first image of a black hole, at the center of the galaxy M87.",
+    "fact": "The image combined data from radio telescopes across the globe, effectively forming an Earth-sized telescope.",
+    "source": "https://en.wikipedia.org/wiki/Event_Horizon_Telescope"
+  },
+  {
+    "date": "2027-04-11",
+    "phrase": "Boat Race",
+    "given": [],
+    "category": "sports",
+    "region": "GB",
+    "level": 2,
+    "clue": "Oxford and Cambridge crews row the Thames from Putney to Mortlake",
+    "description": "The rowing contest between Oxford and Cambridge universities, first held in 1829, takes place on April 11 in 2027.",
+    "fact": "In 1877 the result was declared a dead heat, the only tie in the race's history.",
+    "source": "https://www.theboatrace.org/news/the-chanel-j12-boat-race-2027-date-confirmed"
+  },
+  {
+    "date": "2027-04-12",
+    "phrase": "Yuri Gagarin",
+    "given": [],
+    "category": "space",
+    "region": "RU",
+    "level": 1,
+    "clue": "In 1961 the pilot of Vostok 1 became the first human in space",
+    "description": "On April 12, 1961, the Soviet cosmonaut orbited Earth once in 108 minutes; fans worldwide celebrate 'Yuri's Night' on the anniversary.",
+    "fact": "As he lifted off he famously said 'Poyekhali!', meaning 'Let's go!'",
+    "source": "https://en.wikipedia.org/wiki/Yuri_Gagarin"
+  },
+  {
+    "date": "2027-04-13",
+    "phrase": "Songkran",
+    "given": [],
+    "category": "celebration",
+    "region": "TH",
+    "level": 1,
+    "clue": "Thailand's New Year turns into a giant nationwide water fight",
+    "description": "The Thai New Year runs April 13–15, with temple visits, water gently poured over elders' hands and huge water fights in the streets.",
+    "fact": "UNESCO added it to its Intangible Cultural Heritage list in 2023.",
+    "source": "https://en.wikipedia.org/wiki/Songkran_(Thailand)"
+  },
+  {
+    "date": "2027-04-14",
+    "phrase": "Pohela Boishakh",
+    "given": [],
+    "category": "celebration",
+    "region": "BD",
+    "level": 3,
+    "clue": "Bangladesh greets the Bengali new year in red and white with colorful processions",
+    "description": "The first day of the Bengali calendar falls on April 14 in Bangladesh, celebrated with music, fairs and a colorful procession in Dhaka.",
+    "fact": "Dhaka's Mangal Shobhajatra procession was added to UNESCO's Intangible Cultural Heritage list in 2016.",
+    "source": "https://en.wikipedia.org/wiki/Pohela_Boishakh"
+  },
+  {
+    "date": "2027-04-15",
+    "phrase": "Leonardo da Vinci",
+    "given": [
+      "da"
+    ],
+    "category": "arts",
+    "region": "IT",
+    "level": 1,
+    "clue": "Painter of the Mona Lisa and designer of flying machines, born in 1452",
+    "description": "Born April 15, 1452, near Vinci in Tuscany; his birthday is celebrated as World Art Day.",
+    "fact": "He wrote many of his notes in mirror script, from right to left.",
+    "source": "https://en.wikipedia.org/wiki/Leonardo_da_Vinci"
+  },
+  {
+    "date": "2027-04-16",
+    "phrase": "Charlie Chaplin",
+    "given": [],
+    "category": "film",
+    "region": "GB",
+    "level": 2,
+    "clue": "London-born silent film star famous as the Little Tramp, born in 1889",
+    "description": "Born in London on April 16, 1889, he became the biggest star of silent cinema.",
+    "fact": "In 1919 he co-founded the United Artists studio with Mary Pickford, Douglas Fairbanks and D. W. Griffith.",
+    "source": "https://en.wikipedia.org/wiki/Charlie_Chaplin"
+  },
+  {
+    "date": "2027-04-17",
+    "phrase": "Malbec World Day",
+    "given": [
+      "World",
+      "Day"
+    ],
+    "category": "food",
+    "region": "AR",
+    "level": 3,
+    "clue": "Celebrates Argentina's signature red wine grape, originally from France",
+    "description": "Created by Wines of Argentina in 2011, April 17 recalls the date in 1853 when Argentina set out to transform its wine industry.",
+    "fact": "The grape came from southwest France, but Mendoza is now its most famous home.",
+    "source": "https://en.wikipedia.org/wiki/Malbec"
+  },
+  {
+    "date": "2027-04-18",
+    "phrase": "Zimbabwe Independence",
+    "given": [],
+    "category": "history",
+    "region": "ZW",
+    "level": 3,
+    "clue": "In 1980 Rhodesia became a new nation, its capital later renamed Harare",
+    "description": "Zimbabwe became independent on April 18, 1980; the anniversary is its national holiday.",
+    "fact": "Bob Marley and the Wailers performed at the independence celebrations, including his song 'Zimbabwe'.",
+    "source": "https://en.wikipedia.org/wiki/Independence_Day_(Zimbabwe)"
+  },
+  {
+    "date": "2027-04-19",
+    "phrase": "Boston Marathon",
+    "given": [],
+    "category": "sports",
+    "region": "US",
+    "level": 1,
+    "clue": "The world's oldest annual 26.2-mile race, run on Patriots' Day in Massachusetts",
+    "description": "Held since 1897 on Patriots' Day, the third Monday in April, which is April 19 in 2027.",
+    "fact": "In 1967 Kathrine Switzer became the first woman to run it as a registered entrant, despite an official trying to stop her.",
+    "source": "https://en.wikipedia.org/wiki/Boston_Marathon"
+  },
+  {
+    "date": "2027-04-20",
+    "phrase": "Pasteurization",
+    "given": [],
+    "category": "science",
+    "region": "FR",
+    "level": 2,
+    "clue": "Louis and Claude Bernard first heated a liquid to kill microbes in an 1862 test",
+    "description": "On April 20, 1862, Louis Pasteur and Claude Bernard completed the first test of gently heating liquids to kill germs, a process now named after him.",
+    "fact": "Pasteur first used it to stop wine and beer from spoiling, years before it was applied to milk.",
+    "source": "https://en.wikipedia.org/wiki/Pasteurization"
+  },
+  {
+    "date": "2027-04-21",
+    "phrase": "Passover",
+    "given": [],
+    "category": "religion",
+    "region": "IL",
+    "level": 1,
+    "clue": "Jewish families hold a Seder with matzah to recall the Exodus from Egypt",
+    "description": "The Jewish festival of freedom begins at sundown on April 21, 2027 (15 Nisan), with the Seder meal, and lasts seven or eight days.",
+    "fact": "The youngest child at the Seder traditionally asks the Four Questions.",
+    "source": "https://www.farmersalmanac.com/when-is-passover"
+  },
+  {
+    "date": "2027-04-22",
+    "phrase": "Earth Day",
+    "given": [
+      "Day"
+    ],
+    "category": "nature",
+    "region": null,
+    "level": 1,
+    "clue": "Since 1970, people have planted trees and cleaned up parks for the planet on this day",
+    "description": "First held on April 22, 1970, in the US, it is now marked in more than 190 countries.",
+    "fact": "The first one drew an estimated 20 million Americans, about one in ten people in the country.",
+    "source": "https://en.wikipedia.org/wiki/Earth_Day"
+  },
+  {
+    "date": "2027-04-23",
+    "phrase": "Sant Jordi",
+    "given": [],
+    "category": "literature",
+    "region": "ES",
+    "level": 3,
+    "clue": "Catalans give a rose and a book to loved ones on Saint George's Day",
+    "description": "On April 23, Barcelona's streets fill with book and rose stalls for the feast of Catalonia's patron saint.",
+    "fact": "UNESCO chose April 23 as World Book and Copyright Day partly inspired by this Catalan tradition.",
+    "source": "https://en.wikipedia.org/wiki/Saint_George%27s_Day_in_Catalonia"
+  },
+  {
+    "date": "2027-04-24",
+    "phrase": "Hubble Space Telescope",
+    "given": [],
+    "category": "space",
+    "region": "US",
+    "level": 2,
+    "clue": "Shuttle Discovery carried this orbiting observatory aloft in 1990",
+    "description": "Launched on April 24, 1990, aboard Discovery, it has made more than 1.5 million observations.",
+    "fact": "Its main mirror was flawed at launch; astronauts installed corrective optics in 1993.",
+    "source": "https://en.wikipedia.org/wiki/Hubble_Space_Telescope"
+  },
+  {
+    "date": "2027-04-25",
+    "phrase": "Carnation Revolution",
+    "given": [],
+    "category": "history",
+    "region": "PT",
+    "level": 3,
+    "clue": "In 1974 Lisbon soldiers toppled a dictatorship with flowers in their rifles",
+    "description": "On April 25, 1974, a nearly bloodless military coup ended decades of dictatorship in Portugal; the date is now Freedom Day.",
+    "fact": "A radio broadcast of the song 'Grândola, Vila Morena' was a secret signal to start the uprising.",
+    "source": "https://en.wikipedia.org/wiki/Carnation_Revolution"
+  },
+  {
+    "date": "2027-04-26",
+    "phrase": "Pretzel Day",
+    "given": [
+      "Day"
+    ],
+    "category": "food",
+    "region": "US",
+    "level": 1,
+    "clue": "Twisted, salty knots of baked bread, said to have been invented by monks",
+    "description": "National Pretzel Day on April 26 was first proclaimed in Pennsylvania in 2003 and celebrates the knotted baked snack.",
+    "fact": "Legend says a monk shaped the dough to look like arms crossed in prayer.",
+    "source": "https://en.wikipedia.org/wiki/Pretzel"
+  },
+  {
+    "date": "2027-04-27",
+    "phrase": "King's Day",
+    "given": [
+      "Day"
+    ],
+    "category": "celebration",
+    "region": "NL",
+    "level": 2,
+    "clue": "The Dutch wear orange and hold street flea markets for their monarch's birthday",
+    "description": "Koningsdag on April 27 celebrates King Willem-Alexander's birthday with orange outfits, street parties and a nationwide free market.",
+    "fact": "On this day almost anyone may sell second-hand goods on the street without a permit.",
+    "source": "https://en.wikipedia.org/wiki/Koningsdag"
+  },
+  {
+    "date": "2027-04-28",
+    "phrase": "Kon-Tiki",
+    "given": [],
+    "category": "history",
+    "region": "NO",
+    "level": 2,
+    "clue": "Thor Heyerdahl's balsa raft set sail from Peru toward Polynesia in 1947",
+    "description": "On April 28, 1947, Heyerdahl and five crewmates left Callao, Peru; 101 days later they reached the Tuamotu Islands.",
+    "fact": "The original raft is preserved in its own museum in Oslo.",
+    "source": "https://en.wikipedia.org/wiki/Kon-Tiki_expedition"
+  },
+  {
+    "date": "2027-04-29",
+    "phrase": "International Dance Day",
+    "given": [
+      "International",
+      "Day"
+    ],
+    "category": "arts",
+    "region": null,
+    "level": 2,
+    "clue": "Held on the birthday of ballet reformer Jean-Georges Noverre, born in 1727",
+    "description": "Created in 1982 by the International Theatre Institute, a UNESCO partner, it celebrates dance of every style on April 29.",
+    "fact": "Noverre's 'Letters on Dancing and Ballets' helped turn ballet into dramatic storytelling.",
+    "source": "https://en.wikipedia.org/wiki/International_Dance_Day"
+  },
+  {
+    "date": "2027-04-30",
+    "phrase": "Walpurgis Night",
+    "given": [
+      "Night"
+    ],
+    "category": "celebration",
+    "region": "DE",
+    "level": 2,
+    "clue": "Bonfires blaze, and legend says witches gather on the Brocken in Germany's Harz",
+    "description": "On April 30, people across central and northern Europe light bonfires to welcome spring; German folklore tells of witches dancing on the Brocken.",
+    "fact": "Swedes call it Valborg and sing spring songs around the fires.",
+    "source": "https://en.wikipedia.org/wiki/Walpurgis_Night"
+  },
+  {
+    "date": "2027-05-01",
+    "phrase": "Kentucky Derby",
+    "given": [],
+    "category": "sports",
+    "region": "US",
+    "level": 2,
+    "clue": "Mint juleps and big hats at Churchill Downs on the first Saturday of May",
+    "description": "The 153rd running of the famous horse race takes place at Churchill Downs in Louisville on May 1, 2027.",
+    "fact": "Nicknamed 'the most exciting two minutes in sports', the race covers about 2 km.",
+    "source": "https://www.kentuckyderby.com/tickets/2027/"
+  },
+  {
+    "date": "2027-05-02",
+    "phrase": "Orthodox Easter",
+    "given": [],
+    "category": "religion",
+    "region": "GR",
+    "level": 2,
+    "clue": "Greeks crack red-dyed eggs and roast lamb five weeks after the Western feast",
+    "description": "Orthodox churches use the Julian calendar to set the date; in 2027 their feast falls on May 2, five weeks after Western Easter.",
+    "fact": "At midnight, worshippers pass the 'Holy Light' from candle to candle and greet each other with 'Christos Anesti!'",
+    "source": "https://www.officeholidays.com/amp/holidays/orthodox-easter-day"
+  },
+  {
+    "date": "2027-05-03",
+    "phrase": "Golden Week",
+    "given": [
+      "Week"
+    ],
+    "category": "celebration",
+    "region": "JP",
+    "level": 2,
+    "clue": "Japan's string of spring holidays includes Constitution Memorial Day on May 3",
+    "description": "A cluster of public holidays runs from April 29 to May 5; May 3 is Constitution Memorial Day, and millions of people travel.",
+    "fact": "The name was coined by the film industry in the 1950s to lure holiday crowds into cinemas.",
+    "source": "https://en.wikipedia.org/wiki/Golden_Week_(Japan)"
+  },
+  {
+    "date": "2027-05-04",
+    "phrase": "Star Wars Day",
+    "given": [
+      "Day"
+    ],
+    "category": "film",
+    "region": "US",
+    "level": 1,
+    "clue": "Fans greet each other with 'May the Fourth be with you'",
+    "description": "A pun on 'May the Force be with you' turned May 4 into a fan holiday for the space saga.",
+    "fact": "The pun appeared in a 1979 London newspaper ad congratulating Margaret Thatcher on her election win.",
+    "source": "https://en.wikipedia.org/wiki/Star_Wars_Day"
+  },
+  {
+    "date": "2027-05-05",
+    "phrase": "Cinco de Mayo",
+    "given": [
+      "de"
+    ],
+    "category": "celebration",
+    "region": "MX",
+    "level": 1,
+    "clue": "Commemorates Mexico's 1862 victory over French troops at Puebla",
+    "description": "Marking the Battle of Puebla on May 5, 1862, it is celebrated more widely in the US than in most of Mexico.",
+    "fact": "It is often mistaken for Mexico's Independence Day, which is actually September 16.",
+    "source": "https://en.wikipedia.org/wiki/Cinco_de_Mayo"
+  },
+  {
+    "date": "2027-05-06",
+    "phrase": "Four-Minute Mile",
+    "given": [],
+    "category": "sports",
+    "region": "GB",
+    "level": 2,
+    "clue": "In 1954 Roger Bannister broke a famous running barrier in Oxford",
+    "description": "On May 6, 1954, Roger Bannister ran 3:59.4 at the Iffley Road track in Oxford, a feat many had thought impossible.",
+    "fact": "His record lasted only 46 days before Australia's John Landy beat it.",
+    "source": "https://en.wikipedia.org/wiki/Four-minute_mile"
+  },
+  {
+    "date": "2027-05-07",
+    "phrase": "Tchaikovsky",
+    "given": [],
+    "category": "music",
+    "region": "RU",
+    "level": 2,
+    "clue": "Russian composer of Swan Lake and The Nutcracker, born in 1840",
+    "description": "Pyotr Ilyich Tchaikovsky was born on May 7, 1840, in Votkinsk, Russia.",
+    "fact": "He conducted at the opening of New York's Carnegie Hall in 1891.",
+    "source": "https://en.wikipedia.org/wiki/Pyotr_Ilyich_Tchaikovsky"
+  },
+  {
+    "date": "2027-05-08",
+    "phrase": "Flora Day",
+    "given": [
+      "Day"
+    ],
+    "category": "celebration",
+    "region": "GB",
+    "level": 3,
+    "clue": "Helston in Cornwall dances through streets and houses in its Furry Dance",
+    "description": "Held on May 8 unless that is a Sunday or Monday, it fills Helston, Cornwall, with dancers in their finest clothes wearing lily of the valley.",
+    "fact": "The first dance starts at 7 a.m., and the dancers weave in and out of shops and houses.",
+    "source": "https://helstonfloraday.org.uk/dates"
+  },
+  {
+    "date": "2027-05-09",
+    "phrase": "Mother's Day",
+    "given": [
+      "Day"
+    ],
+    "category": "celebration",
+    "region": null,
+    "level": 1,
+    "clue": "Breakfast in bed and flowers for mom on the second Sunday of May",
+    "description": "The US, Canada, Australia, Germany, Italy and many other countries honor mothers on the second Sunday in May, May 9 in 2027.",
+    "fact": "Its founder, Anna Jarvis, later campaigned against the holiday's commercialization.",
+    "source": "https://en.wikipedia.org/wiki/Mother%27s_Day_(United_States)"
+  },
+  {
+    "date": "2027-05-10",
+    "phrase": "Golden Spike",
+    "given": [],
+    "category": "history",
+    "region": "US",
+    "level": 2,
+    "clue": "East and west rail lines were joined at Promontory, Utah, in 1869 to complete a railroad",
+    "description": "On May 10, 1869, the Central Pacific and Union Pacific lines joined at Promontory Summit, Utah, completing the first transcontinental railroad in the US.",
+    "fact": "Wires were rigged so the hammer blows would go out by telegraph; in the end an operator simply tapped out 'DONE'.",
+    "source": "https://en.wikipedia.org/wiki/Golden_spike"
+  },
+  {
+    "date": "2027-05-11",
+    "phrase": "Salvador Dali",
+    "given": [],
+    "category": "arts",
+    "region": "ES",
+    "level": 1,
+    "clue": "Surrealist with an upturned mustache who painted melting clocks, born in 1904",
+    "description": "Born in Figueres, Catalonia, on May 11, 1904, he became the most famous Surrealist painter.",
+    "fact": "He designed the Chupa Chups lollipop logo in 1969.",
+    "source": "https://en.wikipedia.org/wiki/Salvador_Dal%C3%AD"
+  },
+  {
+    "date": "2027-05-12",
+    "phrase": "International Nurses Day",
+    "given": [
+      "International",
+      "Day"
+    ],
+    "category": "society",
+    "region": null,
+    "level": 2,
+    "clue": "Held on Florence Nightingale's birthday to honor those who care for patients",
+    "description": "Celebrated on May 12, the birthday of Florence Nightingale, born in 1820 and regarded as the founder of modern nursing.",
+    "fact": "Nightingale was also a pioneering statistician, famous for her 'rose' diagrams.",
+    "source": "https://en.wikipedia.org/wiki/International_Nurses_Day"
+  },
+  {
+    "date": "2027-05-13",
+    "phrase": "Formula One",
+    "given": [],
+    "category": "sports",
+    "region": "GB",
+    "level": 2,
+    "clue": "The first world championship Grand Prix roared around Silverstone in 1950",
+    "description": "On May 13, 1950, the first race of the new world championship was held at Silverstone, England, won by Giuseppe Farina in an Alfa Romeo.",
+    "fact": "King George VI attended, the only time a reigning British monarch has watched a world championship race.",
+    "source": "https://en.wikipedia.org/wiki/1950_British_Grand_Prix"
+  },
+  {
+    "date": "2027-05-14",
+    "phrase": "Smallpox Vaccine",
+    "given": [],
+    "category": "science",
+    "region": "GB",
+    "level": 2,
+    "clue": "Edward Jenner used cowpox to protect a boy named James Phipps in 1796",
+    "description": "On May 14, 1796, Edward Jenner inoculated eight-year-old James Phipps with cowpox, the start of vaccination.",
+    "fact": "The word 'vaccine' comes from the Latin 'vacca', meaning cow.",
+    "source": "https://en.wikipedia.org/wiki/Edward_Jenner"
+  },
+  {
+    "date": "2027-05-15",
+    "phrase": "San Isidro",
+    "given": [],
+    "category": "celebration",
+    "region": "ES",
+    "level": 3,
+    "clue": "Madrid's patron saint fiesta, with meadow picnics and chotis dancing",
+    "description": "On May 15, Madrid honors its patron, a medieval farm laborer, with picnics by his hermitage and locals dressed as chulapos.",
+    "fact": "Goya painted the crowds at the saint's meadow in his 1788 'La pradera de San Isidro'.",
+    "source": "https://en.wikipedia.org/wiki/Isidore_the_Laborer"
+  }
+]

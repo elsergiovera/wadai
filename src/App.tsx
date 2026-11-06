@@ -1,96 +1,119 @@
-import useStore, { Sound } from '@/store'
-import { useEffect, useRef } from 'react'
-import Topbar from '@/components/Topbar'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import useStore from '@/store'
+import { findDay } from '@/lib/puzzle'
+import { CALENDAR } from '@/data/calendar'
+import useSounds from '@/hooks/useSounds'
+import { useTodayKey } from '@/hooks/useClock'
+import { GameBar } from '@/components/Topbar'
 import Game from '@/components/Game'
-import bumpSound from '@/assets/audio/bump.mp3'
-import clickSound from '@/assets/audio/click.mp3'
-import messageSound from '@/assets/audio/message.mp3'
-import rightSound from '@/assets/audio/right.mp3'
-import wrongSound from '@/assets/audio/wrong.mp3'
-import winSound from '@/assets/audio/win.mp3'
-import loseSound from '@/assets/audio/lose.mp3'
-import 'animate.css'
+import Screen from '@/components/Screen'
+import ResultScreen from '@/components/ResultScreen'
+import StatsScreen from '@/components/StatsScreen'
+import ArchiveScreen from '@/components/ArchiveScreen'
+import SettingsScreen from '@/components/SettingsScreen'
+import HowToPlay from '@/components/HowToPlay'
+import NoPuzzle from '@/components/NoPuzzle'
+import Toast from '@/components/Toast'
+
+type Panel = 'none' | 'result' | 'stats' | 'archive' | 'settings' | 'howto'
+
+const THEME_COLOR = { classic: '#ef4444', arcade: '#121212', calendar: '#b8322b' }
 
 const App = () => {
-   const resetDailyState = useStore((state) => state.resetDailyState)
-   const audioContextRef = useRef<AudioContext | null>(null)
-   const audioBuffersRef = useRef<Map<string, AudioBuffer>>(new Map())
+   const todayKey = useTodayKey()
+   const settings = useStore(state => state.settings)
+   const seenHowTo = useStore(state => state.seenHowTo)
+   const markHowToSeen = useStore(state => state.markHowToSeen)
+   const playSound = useSounds()
+
+   const [playDate, setPlayDate] = useState(todayKey)
+   const game = useStore(state => state.games[playDate])
+   const day = findDay(CALENDAR, playDate)
+
+   // First visit shows how to play; coming back to a finished day shows its result.
+   const [panel, setPanel] = useState<Panel>(() => !seenHowTo ? 'howto' : game?.finished ? 'result' : 'none')
+   const [toast, setToast] = useState<string | null>(null)
+
+   // Follow the date when the app stays open past midnight, unless an archive day is being played.
+   const previousToday = useRef(todayKey)
+   useEffect(() => {
+      if (previousToday.current === todayKey) return
+      setPlayDate(date => date === previousToday.current ? todayKey : date)
+      previousToday.current = todayKey
+   }, [todayKey])
+
+   // Theme, colours and text size live on <html> so the full-screen panels (portals) get them too.
+   useEffect(() => {
+      const root = document.documentElement
+      root.dataset.theme = settings.theme
+      root.dataset.colors = settings.colors
+      root.dataset.size = settings.textSize
+      document.querySelector('meta[name="theme-color"]')?.setAttribute('content', THEME_COLOR[settings.theme])
+   }, [settings])
 
    useEffect(() => {
-      // Checks and reset App Status if necessary.
-      resetDailyState()
+      if (!toast) return
+      const timer = window.setTimeout(() => setToast(null), 2000)
+      return () => window.clearTimeout(timer)
+   }, [toast])
 
-      // Playback audio functions.
-      const loadAudio = async (url: string) => {
-         const response = await fetch(url)
-         const arrayBuffer = await response.arrayBuffer()
-         const audioBuffer = await audioContextRef.current!.decodeAudioData(arrayBuffer)
+   const open = useCallback((next: Panel) => {
+      if (next !== 'none') playSound('message')
+      setPanel(next)
+   }, [playSound])
 
-         audioBuffersRef.current.set(url, audioBuffer)
-      }
-      const initializeAudio = async () => {
-         if (!audioContextRef.current) {
-            audioContextRef.current = new AudioContext()
-         }
-         await Promise.all([
-            loadAudio(bumpSound),
-            loadAudio(clickSound),
-            loadAudio(messageSound),
-            loadAudio(rightSound),
-            loadAudio(wrongSound),
-            loadAudio(winSound),
-            loadAudio(loseSound)
-         ])
-      }
-      initializeAudio()
-
-      // Keep the AudioContext Active (important for mobile).
-      // Mobile browsers pause the AudioContext when inactive, which adds delays.
-      const unlockAudio = () => {
-         if (audioContextRef.current?.state === 'suspended') {
-            audioContextRef.current.resume()
-         }
-      }
-
-      // Add Event Listeners and their respectives cleanup function.
-      window.addEventListener('touchstart', unlockAudio)
-      window.addEventListener('click', unlockAudio)
-
-      return () => {
-         window.removeEventListener('touchstart', unlockAudio)
-         window.removeEventListener('click', unlockAudio)
-      }
-   }, [])
-
-   const playSound = (sound: Sound) => {
-      if (!audioContextRef.current) return
-      
-      const source = audioContextRef.current!.createBufferSource()
-      const url = (() => {
-         switch (sound) {
-            case 'bump': return bumpSound
-            case 'click': return clickSound
-            case 'message': return messageSound
-            case 'right': return rightSound
-            case 'wrong': return wrongSound
-            case 'win': return winSound
-            case 'lose': return loseSound
-            default: return ''
-         }
-      })()
-
-      if (!url || !audioBuffersRef.current.has(url)) return
-      if (!audioBuffersRef.current.has(url)) return
-
-      source.buffer = audioBuffersRef.current.get(url)!
-      source.connect(audioContextRef.current!.destination)
-      source.start(0)
+   const close = () => {
+      if (panel === 'howto') markHowToSeen()
+      setPanel('none')
    }
 
+   const pickDay = (date: string) => {
+      setPlayDate(date)
+      setPanel(useStore.getState().games[date]?.finished ? 'result' : 'none')
+   }
+
+   const used = game ? game.guesses.length : 0
+
    return (
-      <div className='w-screen h-full space-y-6'>
-         <Topbar playSound={playSound} />
-         <Game playSound={playSound} />
+      <div className='app'>
+         <GameBar
+            used={day ? used : 0}
+            onStats={() => open('stats')}
+            onArchive={() => open('archive')}
+            onSettings={() => open('settings')}
+            onHelp={() => open('howto')}
+         />
+         <main className='column'>
+            {day
+               ? <Game
+                  key={day.date}
+                  day={day}
+                  todayKey={todayKey}
+                  blocked={panel !== 'none'}
+                  playSound={playSound}
+                  onFinished={() => setPanel('result')}
+                  onShowResult={() => open('result')}
+                  onToday={() => pickDay(todayKey)}
+               />
+               : <NoPuzzle todayKey={todayKey} onArchive={() => open('archive')} onHelp={() => open('howto')} />}
+         </main>
+
+         <Screen open={panel === 'result' && !!day && !!game?.finished} title='WADAI' onClose={close}>
+            {day && game?.finished && <ResultScreen day={day} game={game} todayKey={todayKey} onArchive={() => open('archive')} onToast={setToast} />}
+         </Screen>
+         <Screen open={panel === 'stats'} title='STATS' onClose={close}>
+            <StatsScreen todayKey={todayKey} />
+         </Screen>
+         <Screen open={panel === 'archive'} title='ARCHIVE' onClose={close}>
+            <ArchiveScreen todayKey={todayKey} current={playDate} onPick={pickDay} />
+         </Screen>
+         <Screen open={panel === 'settings'} title='SETTINGS' onClose={close}>
+            <SettingsScreen />
+         </Screen>
+         <Screen open={panel === 'howto'} title='HOW TO' onClose={close} popup>
+            <HowToPlay onPlay={close} />
+         </Screen>
+         <Toast message={toast} />
       </div>
    )
 }

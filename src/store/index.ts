@@ -1,120 +1,126 @@
 import { create } from 'zustand'
-import { persist, devtools, createJSONStorage } from 'zustand/middleware'
-import lodash from 'lodash'
-import data from '@/data/full_data.json'
+import { persist, createJSONStorage, StateStorage } from 'zustand/middleware'
+import { GameState } from '@/lib/game'
+import { GameResult } from '@/lib/stats'
+import { MAX_ROUNDS } from '@/lib/puzzle'
+import { isDateKey } from '@/lib/dates'
 
 export type Sound = 'bump' | 'click' | 'message' | 'right' | 'wrong' | 'win' | 'lose'
-export type Status = {
-   date: string
-   phrase: string
-   region: string | null
-   level: number
-   description: string
-   answerByChar: (string | null)[]
-   matchsByChar: (boolean | null)[]
-   activeSlot: number
-   round: number
-   score: number
-   paused: boolean
-   gameOver: boolean
-   startedAt: Date
-}
-export type Day = {
-   date: string
-   phrase: string
-   region: string
-   level: number
-   description: string
-}
-export interface AppSound {
-   playSound: (sound: Sound) => void
-}
-interface StoreProps {
-   appStatus: Status
-   setAppStatus: (status: Status) => void
-   setTogglePause: () => void
-   resetDailyState: () => void
-   howToPlay: boolean
-   toggleHowToPlay: () => void
-   _hasHydrated: boolean
-   setHasHydrated: (status: boolean) => void
+export type Theme = 'classic' | 'arcade' | 'calendar'
+export type Colors = 'standard' | 'colourblind'
+export type TextSize = 's' | 'm' | 'l'
+
+export type Settings = {
+   theme: Theme
+   colors: Colors
+   textSize: TextSize
 }
 
-const getFormattedDate = (): string => {
-   const now = new Date()
-   const month = String(now.getMonth() + 1).padStart(2, '0')
-   const day = String(now.getDate()).padStart(2, '0')
-   return `${month}${day}`
+type Persisted = {
+   games: Record<string, GameState>
+   results: GameResult[]
+   settings: Settings
+   seenHowTo: boolean
 }
-const getInitialStatus = (): Status => {
-   const formattedDate = getFormattedDate()
-   // const formattedDate: string = '0329'
-   const day: Day | undefined = lodash.find((data as Day[]), { date: formattedDate })
-   const _phrase = day?.phrase ?? ''
-   const _region = day?.region ?? null
-   const _level = day?.level ?? 0
-   const _description = day?.description ?? ''
+
+interface Store extends Persisted {
+   saveGame: (date: string, game: GameState) => void
+   addResult: (result: GameResult) => void
+   setSettings: (settings: Partial<Settings>) => void
+   markHowToSeen: () => void
+}
+
+export const DEFAULT_SETTINGS: Settings = { theme: 'classic', colors: 'standard', textSize: 'm' }
+export const STORAGE_KEY = 'wadai-v2'
+
+// localStorage can be missing, blocked or full; never let that crash the game.
+const safeStorage: StateStorage = {
+   getItem: name => { try { return localStorage.getItem(name) } catch { return null } },
+   setItem: (name, value) => { try { localStorage.setItem(name, value) } catch { /* progress just isn't saved */ } },
+   removeItem: name => { try { localStorage.removeItem(name) } catch { /* ignore */ } },
+}
+
+const isObject = (value: unknown): value is Record<string, unknown> =>
+   typeof value === 'object' && value !== null && !Array.isArray(value)
+
+const isCharArray = (value: unknown): value is (string | null)[] =>
+   Array.isArray(value) && value.every(c => c === null || (typeof c === 'string' && c.length <= 1))
+
+const cleanGame = (value: unknown): GameState | null => {
+   if (!isObject(value)) return null
+   const { guesses, draft, finished, solvedIn } = value
+   if (!Array.isArray(guesses) || !guesses.every(isCharArray) || guesses.length > MAX_ROUNDS) return null
+   if (!isCharArray(draft) || typeof finished !== 'boolean') return null
+   const solved = typeof solvedIn === 'number' && solvedIn >= 1 && solvedIn <= MAX_ROUNDS ? solvedIn : null
+   return { guesses, draft, finished, solvedIn: solved }
+}
+
+const cleanResult = (value: unknown): GameResult | null => {
+   if (!isObject(value) || !isDateKey(value.date)) return null
+   const solvedIn = typeof value.solvedIn === 'number' && value.solvedIn >= 1 && value.solvedIn <= MAX_ROUNDS ? value.solvedIn : null
+   const region = typeof value.region === 'string' && value.region ? value.region : null
+   return { date: value.date, solvedIn, archive: value.archive === true, region }
+}
+
+const pick = <T extends string>(value: unknown, options: readonly T[], fallback: T): T =>
+   options.includes(value as T) ? value as T : fallback
+
+// Validates whatever was in storage, keeping the good parts of a partly corrupt save.
+export const cleanPersisted = (value: unknown): Persisted => {
+   const raw = isObject(value) ? value : {}
+
+   const games: Record<string, GameState> = {}
+   if (isObject(raw.games)) {
+      for (const [date, game] of Object.entries(raw.games)) {
+         const clean = isDateKey(date) ? cleanGame(game) : null
+         if (clean) games[date] = clean
+      }
+   }
+
+   const seen = new Set<string>()
+   const results = (Array.isArray(raw.results) ? raw.results : [])
+      .map(cleanResult)
+      .filter((r): r is GameResult => !!r && !seen.has(r.date) && !!seen.add(r.date))
+
+   const settings = isObject(raw.settings) ? raw.settings : {}
 
    return {
-      date: formattedDate,
-      phrase: _phrase,
-      region: _region,
-      level: _level,
-      description: _description,
-      answerByChar: _phrase.split('').map(char => (char === ' ' ? char : null)),
-      matchsByChar: [],
-      activeSlot: 1,
-      round: 1,
-      score: 100,
-      paused: true,
-      gameOver: false,
-      startedAt: new Date()
+      games,
+      results,
+      settings: {
+         theme: pick(settings.theme, ['classic', 'arcade', 'calendar'], DEFAULT_SETTINGS.theme),
+         colors: pick(settings.colors, ['standard', 'colourblind'], DEFAULT_SETTINGS.colors),
+         textSize: pick(settings.textSize, ['s', 'm', 'l'], DEFAULT_SETTINGS.textSize),
+      },
+      seenHowTo: raw.seenHowTo === true,
    }
 }
 
-const useStore = create(
-   devtools(
-      persist<StoreProps>(
-         (set, get) => ({
-            appStatus: getInitialStatus(),
-            setAppStatus: (status: Status) => set({ appStatus: status }),
-            setTogglePause: () => {
-               const prev = get().appStatus
+// The v1 store used another key and shape; drop it.
+safeStorage.removeItem('appStore')
 
-               get().setAppStatus({
-                  ...prev,
-                  paused: !prev.paused
-               })
-            },
-            resetDailyState: () => {
-               const startedAt = new Date(get().appStatus.startedAt).toLocaleDateString('en-US', { day: '2-digit', month: '2-digit', year: '2-digit' })
-               const today = new Date().toLocaleDateString('en-US', { day: '2-digit', month: '2-digit', year: '2-digit' })
-
-               if (startedAt !== today) {
-                  set({ appStatus: getInitialStatus() })
-                  set({ howToPlay: true })
-               }
-               // set({ appStatus: getInitialStatus() })
-            },
-            howToPlay: true,
-            toggleHowToPlay: () => {
-               set({ howToPlay: !get().howToPlay })
-               get().setTogglePause()
-            },
-            _hasHydrated: false,
-            setHasHydrated: (status: boolean) => set({ _hasHydrated: status })
-         }),
-         {
-            name: "appStore",
-            storage: createJSONStorage(() => localStorage),
-            onRehydrateStorage: (state) => {
-               return () => {
-                  // state.resetDailyState()
-                  state.setHasHydrated(true)
-               }
-            }
-         }
-      )
+const useStore = create<Store>()(
+   persist(
+      set => ({
+         games: {},
+         results: [],
+         settings: DEFAULT_SETTINGS,
+         seenHowTo: false,
+         saveGame: (date, game) => set(state => ({ games: { ...state.games, [date]: game } })),
+         // One result per date: replaying a finished day isn't possible, so the first result stands.
+         addResult: result => set(state => state.results.some(r => r.date === result.date)
+            ? state
+            : { results: [...state.results, result] }),
+         setSettings: settings => set(state => ({ settings: { ...state.settings, ...settings } })),
+         markHowToSeen: () => set({ seenHowTo: true }),
+      }),
+      {
+         name: STORAGE_KEY,
+         version: 1,
+         storage: createJSONStorage(() => safeStorage),
+         partialize: ({ games, results, settings, seenHowTo }) => ({ games, results, settings, seenHowTo }) as Store,
+         merge: (persisted, current) => ({ ...current, ...cleanPersisted(persisted) }),
+      }
    )
 )
 
