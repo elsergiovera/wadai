@@ -45,8 +45,8 @@ const HowToPlay = ({ onPlay }: { onPlay: () => void }) => {
             <div><div className='lt on'>W</div><small><b aria-hidden='true'>🌍</b>where</small></div>
             <div><div className='lt'>A</div><small><b aria-hidden='true'>🎉</b>what kind</small></div>
             <div><div className='lt'>D</div><small><b aria-hidden='true'>💬</b>a hint</small></div>
-            <div><div className='lt'>A</div><small><b>B · N</b>starts with</small></div>
-            <div><div className='lt'>I</div><small><b>B…E</b>and ends</small></div>
+            <div><div className='lt'>A</div><small><b>B…</b>first letters</small></div>
+            <div><div className='lt'>I</div><small><b>B…E</b>last letters</small></div>
          </div>
 
          <div className='spacer' />

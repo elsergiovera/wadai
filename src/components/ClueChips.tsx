@@ -2,10 +2,11 @@ import { useEffect, useId, useState } from 'react'
 import { CLUE_ORDER, ClueKey, Day, Word } from '@/lib/puzzle'
 import { categoryInfo, countryName, countryShort } from '@/lib/labels'
 import Flag from '@/components/Flag'
+import { LockIcon } from '@/components/Icons'
 
-const TITLES: Record<ClueKey, string> = { origin: 'ORIGIN', category: 'TYPE', clue: 'HINT', letters: 'STARTS WITH', ends: 'FIRST + LAST' }
+const TITLES: Record<ClueKey, string> = { origin: 'ORIGIN', category: 'TYPE', clue: 'HINT', letters: 'LETTERS', ends: 'LETTERS' }
 
-// 'ends' has no chip: in the last round it turns the STARTS WITH chip into FIRST + LAST.
+// 'ends' has no chip of its own: in the last round the LETTERS chip adds each word's last letter.
 const CHIPS = CLUE_ORDER.filter(key => key !== 'ends')
 
 type ClueChipsProps = {
@@ -23,13 +24,12 @@ const ClueChips = ({ day, words, clues, fresh }: ClueChipsProps) => {
    // A clue that was just unlocked opens its own drawer.
    useEffect(() => { if (fresh) setOpen(fresh === 'ends' ? 'letters' : fresh) }, [fresh])
    const ends = clues.includes('ends')
-   const title = (key: ClueKey) => key === 'letters' && ends ? TITLES.ends : TITLES[key]
 
    const category = categoryInfo(day.category)
    const initials = words
       .map(word => word.filter(slot => slot.kind === 'letter'))
       .filter(letters => letters.length > 0)
-      .map(letters => ends && letters.length > 1 ? `${letters[0].char}…${letters[letters.length - 1].char}` : letters[0].char)
+      .map(letters => ends && letters.length > 1 ? `${letters[0].char}…${letters[letters.length - 1].char}` : `${letters[0].char}…`)
    const max = ends ? 2 : 3
    const letters = initials.length > max ? `${initials.slice(0, max).join(' · ')} …` : initials.join(' · ')
 
@@ -69,7 +69,7 @@ const ClueChips = ({ day, words, clues, fresh }: ClueChipsProps) => {
    const shown = open && clues.includes(open) ? open : null
 
    return (
-      <>
+      <div className='clues'>
          <ul className='ladder' aria-label='Clues'>
             {CHIPS.map((key, i) => {
                const on = clues.includes(key)
@@ -82,17 +82,17 @@ const ClueChips = ({ day, words, clues, fresh }: ClueChipsProps) => {
                               type='button'
                               aria-expanded={shown === key}
                               aria-controls={`${id}-drawer`}
-                              aria-label={`${title(key)}: show more`}
+                              aria-label={`${TITLES[key]}: show more`}
                               onClick={() => setOpen(shown === key ? null : key)}
                            >
-                              <span className='t'>{title(key)}<span className='chev' aria-hidden='true'>▾</span></span>
+                              <span className='t'>{TITLES[key]}<span className='chev' aria-hidden='true'>▾</span></span>
                               <span className='v'>{value(key)}</span>
                            </button>
                         )
                         : (
                            <div aria-label={`${TITLES[key]}: unlocks in round ${i + 1}`}>
                               <span className='t' aria-hidden='true'>{TITLES[key]}</span>
-                              <span className='v' aria-hidden='true'>{`R${i + 1}`}</span>
+                              <span className='v lk' aria-hidden='true'><LockIcon />{i + 1}</span>
                            </div>
                         )}
                   </li>
@@ -100,11 +100,11 @@ const ClueChips = ({ day, words, clues, fresh }: ClueChipsProps) => {
             })}
          </ul>
          {shown && (
-            <div id={`${id}-drawer`} key={shown} className={`cluebox k-${shown}`} role='note' aria-label={title(shown)}>
+            <div id={`${id}-drawer`} key={shown} className={`cluebox k-${shown}`} role='note' aria-label={TITLES[shown]}>
                <span>{detail(shown)}</span>
             </div>
          )}
-      </>
+      </div>
    )
 }
 

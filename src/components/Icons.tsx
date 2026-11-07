@@ -38,3 +38,8 @@ export const BulbIcon = ({ size = 14 }: IconProps) => svg(size, <>
    <rect x='4' y='0' width='4' height='1' /><rect x='3' y='1' width='6' height='4' /><rect x='4' y='5' width='4' height='1' />
    <rect x='5' y='6' width='2' height='1' /><rect x='4' y='7' width='4' height='1' /><rect x='4' y='9' width='4' height='1' /><rect x='5' y='10' width='2' height='1' />
 </>)
+
+export const LockIcon = ({ size = 11 }: IconProps) => svg(size, <>
+   <rect x='4' y='0' width='4' height='1' /><rect x='3' y='1' width='1' height='4' /><rect x='8' y='1' width='1' height='4' />
+   <rect x='2' y='5' width='8' height='7' />
+</>)

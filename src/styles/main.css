@@ -125,6 +125,7 @@ body {
 .pill.red { background: var(--red); border-color: var(--red); color: #fff; }
 
 /* ---------- clue chips ---------- */
+.clues { position: relative; flex: none; z-index: 5; }
 .ladder { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; padding: 8px 16px; flex: none; }
 .chip { border: 2px solid var(--tileb); height: 44px; display: flex; flex-direction: column; justify-content: center; align-items: center; font-size: 10px; letter-spacing: 1px; color: var(--muted); background: var(--tile); min-width: 0; overflow: hidden; }
 .chip .t { font-size: 8px; opacity: .8; }
@@ -145,12 +146,15 @@ body {
 .chip.open { border-bottom: none; height: 54px; margin-bottom: -10px; position: relative; z-index: 1; padding-bottom: 10px; }
 .chip.on .v { font-size: 11px; font-weight: bold; letter-spacing: .5px; }
 .chip.lock .v { font-size: 11px; font-weight: bold; letter-spacing: .5px; }
+.chip .v.lk { display: flex; align-items: center; gap: 4px; }
+.chip .v.lk svg { opacity: .9; }
 .chip.new { animation: chip-in .5s ease-out 1; }
 .cluebox { animation: drawer .3s ease-out 1; }
 :root[data-theme='arcade'] .chip.on { box-shadow: 0 0 8px color-mix(in srgb, var(--acc) 35%, transparent); }
 :root[data-theme='calendar'] .chip { border-radius: 4px; }
 :root[data-theme='calendar'] .chip.open { border-radius: 4px 4px 0 0; }
-.cluebox { position: relative; margin: 0 16px 4px; border: 2px solid var(--acc); background: color-mix(in srgb, var(--acc) 10%, var(--card)); padding: 7px 10px; font-size: .78rem; line-height: 1.45; display: flex; gap: 8px; align-items: flex-start; flex: none; }
+/* The drawer floats over the space above the board, so opening a clue never moves the grid. */
+.cluebox { position: absolute; top: 100%; left: 16px; right: 16px; margin: 0; border: 2px solid var(--acc); background: color-mix(in srgb, var(--acc) 10%, var(--card)); padding: 7px 10px; font-size: .78rem; line-height: 1.45; display: flex; gap: 8px; align-items: flex-start; flex: none; }
 .cluebox b { color: var(--acc); }
 .cluebox .fl { margin: 0 0 0 4px; }
 .pattern { display: flex; flex-wrap: wrap; gap: 6px 14px; font-weight: bold; }
