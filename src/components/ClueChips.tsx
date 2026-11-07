@@ -29,13 +29,14 @@ const ClueChips = ({ day, words, clues, fresh, ends: endsSet }: ClueChipsProps) 
 
    const category = categoryInfo(day.category)
    const guessable = words.map(word => word.filter(slot => slot.kind === 'letter')).filter(letters => letters.length > 0)
-   // Last round: the whole word it revealed, or for a one-word answer its first and last letter.
-   const bonus = ends ? guessable.find(letters => letters.length > 1 && letters.every(slot => endsSet.has(slot.index))) : undefined
-   const single = ends && guessable.length === 1 && guessable[0].length > 1 ? guessable[0] : undefined
+   // Last round: the whole word it revealed, or the word that got one more letter (first…last).
+   const target = ends ? guessable.find(letters => letters.some(slot => endsSet.has(slot.index))) : undefined
+   const bonus = target && endsSet.size > 1 && target.every(slot => endsSet.has(slot.index)) ? target : undefined
+   const single = target && !bonus ? target : undefined
    const initials = guessable.map(letters => `${letters[0].char}…`)
    const max = 3
    const letters = bonus ? `+ ${bonus.map(slot => slot.char).join('')}`
-      : single ? `${single[0].char}…${single[single.length - 1].char}`
+      : single ? (single[single.length - 1] && endsSet.has(single[single.length - 1].index) ? `${single[0].char}…${single[single.length - 1].char}` : '+1 LETTER')
       : initials.length > max ? `${initials.slice(0, max).join(' · ')} …` : initials.join(' · ')
 
    const value = (key: ClueKey) => {

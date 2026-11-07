@@ -25,6 +25,10 @@ type GameProps = {
 // Last scored round, kept for a moment so the new colours can animate.
 type Scored = { round: number, fresh: ClueKey | null }
 
+// Keyboard colouring (letters hit / tried) is switched off for now: Sergio found it more noise than help.
+// To bring it back, pass view.hits and view.misses to <Keyboard> again.
+const NO_LETTERS = new Set<string>()
+
 const Game = ({ day, todayKey, blocked, playSound, onFinished, onShowResult, onToday }: GameProps) => {
    const date = day.date
    const theme = useStore(state => state.settings.theme)
@@ -214,7 +218,7 @@ const Game = ({ day, todayKey, blocked, playSound, onFinished, onShowResult, onT
          <p className='sr-only' aria-live='polite'>
             {scored ? `Round ${scored.round} scored. ${game.finished ? (game.solvedIn ? 'Solved!' : 'Out of rounds.') : `Round ${view.round} of 5.`}` : ''}
          </p>
-         <Keyboard hits={view.hits} misses={view.misses} disabled={game.finished} onKey={onVirtualKey} />
+         <Keyboard hits={NO_LETTERS} misses={NO_LETTERS} disabled={game.finished} onKey={onVirtualKey} />
       </>
    )
 }
