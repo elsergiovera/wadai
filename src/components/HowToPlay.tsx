@@ -46,7 +46,7 @@ const HowToPlay = ({ onPlay }: { onPlay: () => void }) => {
             <div><div className='lt'>A</div><small><b aria-hidden='true'>🎉</b>what kind</small></div>
             <div><div className='lt'>D</div><small><b aria-hidden='true'>💬</b>a hint</small></div>
             <div><div className='lt'>A</div><small><b>B…</b>first letters</small></div>
-            <div><div className='lt'>I</div><small><b>B…E</b>last letters</small></div>
+            <div><div className='lt'>I</div><small><b>+ 1</b>whole word</small></div>
          </div>
 
          <div className='spacer' />

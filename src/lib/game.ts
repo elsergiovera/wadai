@@ -1,5 +1,5 @@
 import {
-   ClueKey, MAX_ROUNDS, Word, allSlots, firstLetterIndexes, isSolved, lastLetterIndexes, playableIndexes, scoreGuess, unlockedClues,
+   ClueKey, MAX_ROUNDS, Word, allSlots, firstLetterIndexes, endsIndexes, isSolved, playableIndexes, scoreGuess, unlockedClues,
 } from '@/lib/puzzle'
 
 // What gets saved per date, so a reload resumes the game where it was left.
@@ -24,8 +24,10 @@ export type GameView = {
    clues: ClueKey[]
    // Letter slots confirmed in an earlier round.
    locked: Set<number>
-   // First (and in the last round, last) letters shown by the STARTS WITH clue.
+   // Letters shown by the LETTERS clue: first letters, plus in the last round one whole word (see endsIndexes).
    revealed: Set<number>
+   // Letters revealed by the last round's clue (also the ones already locked).
+   ends: Set<number>
    // Slots the player can type in this round, in order.
    editable: number[]
    // The guess as it stands: locked and revealed letters plus the draft.
@@ -46,9 +48,10 @@ export const viewGame = (words: Word[], game: GameState): GameView => {
    const locked = new Set<number>()
    scores.forEach(score => score.forEach((ok, i) => { if (ok && slots[i].kind === 'letter') locked.add(i) }))
 
+   const ends = new Set(clues.includes('ends') ? endsIndexes(words, locked) : [])
    const revealed = new Set([
       ...(clues.includes('letters') ? firstLetterIndexes(words) : []),
-      ...(clues.includes('ends') ? lastLetterIndexes(words) : []),
+      ...ends,
    ].filter(i => !locked.has(i)))
    const editable = game.finished ? [] : playableIndexes(words, new Set([...locked, ...revealed]))
 
@@ -67,7 +70,7 @@ export const viewGame = (words: Word[], game: GameState): GameView => {
    }))
    hits.forEach(char => misses.delete(char))
 
-   return { round, clues, locked, revealed, editable, current, scores, hits, misses }
+   return { round, clues, locked, revealed, ends, editable, current, scores, hits, misses }
 }
 
 export const isComplete = (view: GameView) => view.editable.every(i => !!view.current[i])

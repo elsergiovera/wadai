@@ -6,7 +6,7 @@ import { LockIcon } from '@/components/Icons'
 
 const TITLES: Record<ClueKey, string> = { origin: 'ORIGIN', category: 'TYPE', clue: 'HINT', letters: 'LETTERS', ends: 'LETTERS' }
 
-// 'ends' has no chip of its own: in the last round the LETTERS chip adds each word's last letter.
+// 'ends' has no chip of its own: in the last round the LETTERS chip also shows the word it reveals.
 const CHIPS = CLUE_ORDER.filter(key => key !== 'ends')
 
 type ClueChipsProps = {
@@ -14,11 +14,13 @@ type ClueChipsProps = {
    words: Word[]
    clues: ClueKey[]
    fresh?: ClueKey | null
+   // Letters revealed by the last round's clue (see endsIndexes).
+   ends: Set<number>
 }
 
 // Four clue chips above the board, each with its own colour. ORIGIN is open from the start, the rest unlock one per missed round
 // (locked chips show the round). Tapping an unlocked chip opens its drawer with more detail; one drawer at a time.
-const ClueChips = ({ day, words, clues, fresh }: ClueChipsProps) => {
+const ClueChips = ({ day, words, clues, fresh, ends: endsSet }: ClueChipsProps) => {
    const id = useId()
    const [open, setOpen] = useState<ClueKey | null>(() => clues.includes('clue') ? 'clue' : null)
    // A clue that was just unlocked opens its own drawer.
@@ -26,12 +28,15 @@ const ClueChips = ({ day, words, clues, fresh }: ClueChipsProps) => {
    const ends = clues.includes('ends')
 
    const category = categoryInfo(day.category)
-   const initials = words
-      .map(word => word.filter(slot => slot.kind === 'letter'))
-      .filter(letters => letters.length > 0)
-      .map(letters => ends && letters.length > 1 ? `${letters[0].char}…${letters[letters.length - 1].char}` : `${letters[0].char}…`)
-   const max = ends ? 2 : 3
-   const letters = initials.length > max ? `${initials.slice(0, max).join(' · ')} …` : initials.join(' · ')
+   const guessable = words.map(word => word.filter(slot => slot.kind === 'letter')).filter(letters => letters.length > 0)
+   // Last round: the whole word it revealed, or for a one-word answer its first and last letter.
+   const bonus = ends ? guessable.find(letters => letters.length > 1 && letters.every(slot => endsSet.has(slot.index))) : undefined
+   const single = ends && guessable.length === 1 && guessable[0].length > 1 ? guessable[0] : undefined
+   const initials = guessable.map(letters => `${letters[0].char}…`)
+   const max = 3
+   const letters = bonus ? `+ ${bonus.map(slot => slot.char).join('')}`
+      : single ? `${single[0].char}…${single[single.length - 1].char}`
+      : initials.length > max ? `${initials.slice(0, max).join(' · ')} …` : initials.join(' · ')
 
    const value = (key: ClueKey) => {
       switch (key) {
@@ -50,14 +55,12 @@ const ClueChips = ({ day, words, clues, fresh }: ClueChipsProps) => {
          case 'letters': return (
             <span className='pattern'>
                {words.map((word, w) => {
-                  const guessable = word.filter(slot => slot.kind === 'letter')
-                  const first = guessable[0]
-                  const last = ends && guessable.length > 1 ? guessable[guessable.length - 1] : null
+                  const first = word.find(slot => slot.kind === 'letter')
                   return (
                      <span key={w} className='pw'>
                         {word.map(slot => slot.kind !== 'letter'
                            ? <i key={slot.index} className='given'>{slot.char}</i>
-                           : slot === first || slot === last ? <i key={slot.index} className='first'>{slot.char}</i> : <i key={slot.index}>&nbsp;</i>)}
+                           : slot === first || endsSet.has(slot.index) ? <i key={slot.index} className='first'>{slot.char}</i> : <i key={slot.index}>&nbsp;</i>)}
                      </span>
                   )
                })}

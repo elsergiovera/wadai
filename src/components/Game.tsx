@@ -189,7 +189,7 @@ const Game = ({ day, todayKey, blocked, playSound, onFinished, onShowResult, onT
    return (
       <>
          <DateHeader theme={theme} date={date} number={puzzleNumber(CALENDAR, date)} archive={date !== todayKey} onToday={onToday} />
-         <ClueChips day={day} words={words} clues={view.clues} fresh={animating ? scored?.fresh : null} />
+         <ClueChips day={day} words={words} clues={view.clues} ends={view.ends} fresh={animating ? scored?.fresh : null} />
          <div className='board' ref={areaRef}>
             {area.width > 0 && (
                <Board

@@ -22,8 +22,8 @@ export type Word = Slot[]
 
 export type ClueKey = 'origin' | 'category' | 'clue' | 'letters' | 'ends'
 
-// The origin is shown from the first round; each miss unlocks the next clue. The last round adds the
-// last letter of each word to the first letters ('ends' upgrades the STARTS WITH chip, it has no chip of its own).
+// The origin is shown from the first round; each miss unlocks the next clue. The last round's clue ('ends') has no
+// chip of its own: it adds to the LETTERS chip (see endsIndexes).
 export const CLUE_ORDER: ClueKey[] = ['origin', 'category', 'clue', 'letters', 'ends']
 
 export const MAX_ROUNDS = 5
@@ -77,11 +77,26 @@ export const playableIndexes = (words: Word[], revealed: Set<number> = new Set()
 export const firstLetterIndexes = (words: Word[]): number[] =>
    words.map(word => word.find(slot => slot.kind === 'letter')?.index).filter((i): i is number => i !== undefined)
 
-// The 'ends' clue also reveals the last guessable letter of every word with at least two to guess.
-export const lastLetterIndexes = (words: Word[]): number[] =>
-   words.map(word => word.filter(slot => slot.kind === 'letter'))
-      .filter(letters => letters.length > 1)
-      .map(letters => letters[letters.length - 1].index)
+// The last-round clue ('ends'). With two or more words to guess it reveals one whole word: the least obvious one,
+// meaning the one with the most letters still unguessed (ties: the longer word, then the earlier one).
+// A single word gets its last letter instead. `locked` holds letters already confirmed in earlier rounds.
+export const endsIndexes = (words: Word[], locked: Set<number>): number[] => {
+   const guessable = words.map(word => word.filter(slot => slot.kind === 'letter')).filter(letters => letters.length > 0)
+   if (guessable.length === 1) {
+      const letters = guessable[0]
+      return letters.length > 1 ? [letters[letters.length - 1].index] : []
+   }
+   let best: Slot[] | null = null
+   let bestOpen = 0
+   for (const letters of guessable) {
+      const open = letters.filter(slot => !locked.has(slot.index)).length
+      if (open > bestOpen || (open === bestOpen && best && open > 0 && letters.length > best.length)) {
+         best = letters
+         bestOpen = open
+      }
+   }
+   return best ? best.map(slot => slot.index) : []
+}
 
 export const unlockedClues = (round: number): ClueKey[] => CLUE_ORDER.slice(0, Math.max(0, round))
 
