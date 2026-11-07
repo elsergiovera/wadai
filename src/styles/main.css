@@ -248,16 +248,14 @@ body {
 .streak b .emo { font-size: 18px; line-height: 1; margin-right: 6px; }
 .streak b small { font-size: 18px; line-height: 1; align-self: flex-end; margin-bottom: 3px; margin-left: 2px; color: var(--muted); }
 .streak b small i { font-family: 'Text', monospace; font-style: normal; font-size: 15px; margin-right: 3px; }
-/* Result footer mirrors the header: value over label, same size. */
-.next { margin-top: 18px; }
-/* the footer row is a footnote: smaller than the buttons above it */
-.next .lbl { font-size: 9px; margin-bottom: 4px; }
-.next .streak b { font-size: 19px; height: 22px; line-height: 22px; }
-.next .tom .fl-big { height: 14px; margin-right: 6px; }
-.next .tom-c { font-size: 15px; }
-.tom { min-width: 0; }
-.tom .fl-big { height: 20px; width: auto; margin: 0 8px 0 0; flex: none; }
-.tom-c { font-size: 21px; letter-spacing: 1px; overflow: hidden; text-overflow: ellipsis; max-width: 170px; }
+/* Result footer: a single footnote line under the buttons. */
+.nextline { display: flex; align-items: center; gap: 10px; margin-top: 14px; min-height: 20px; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+.nextline .lbl { font-size: 9px; }
+.nextline .cd { font-family: 'Numbers', 'Title', monospace; font-size: 15px; font-weight: normal; color: var(--ink); letter-spacing: 1px; }
+.nextline .nx { margin-left: auto; display: flex; align-items: center; gap: 6px; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.nextline .nx img { height: 11px; width: auto; flex: none; }
+.nextline.go { width: 100%; background: none; border: 0; border-top: 2px dashed var(--tileb); padding: 12px 0 0; cursor: pointer; font: inherit; font-size: 11px; color: var(--muted); }
+.nextline.go .nx { color: var(--ink); font-weight: bold; }
 .streak b .x { font-family: 'Numbers', monospace; color: var(--bad); }
 .ans { margin-top: 26px; }
 .ans .n { font-family: 'Title', monospace; font-size: 34px; line-height: 36px; letter-spacing: 1px; overflow-wrap: anywhere; }
@@ -268,7 +266,6 @@ body {
 .dlg .tip { margin: 28px 0 4px; }
 .dlg > p { font-size: .875rem; }
 :root[data-theme='arcade'] .tip { background: #0f1a33; color: #cfe0ff; }
-/* Result footer: one NEXT WADAI title, then the countdown and tomorrow's hint at the same height. */
 .calic { display: inline-block; flex: none; width: 30px; height: 28px; border: 3px solid var(--ink); margin-right: 12px; position: relative; background: var(--bg); }
 .calic::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 7px; background: var(--red); border-bottom: 2px solid var(--ink); }
 .calic::after { content: ''; position: absolute; left: 3px; top: 12px; width: 5px; height: 4px; background: var(--ink); box-shadow: 7px 0 var(--ink), 14px 0 var(--ink), 0 6px var(--ink), 7px 6px var(--ok), 14px 6px var(--tileb); }

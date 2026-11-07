@@ -20,6 +20,7 @@ type ResultProps = {
    todayKey: string
    onArchive: () => void
    onToast: (message: string) => void
+   onToday: () => void
 }
 
 const copyText = async (text: string) => {
@@ -44,7 +45,7 @@ const copyText = async (text: string) => {
 
 const Countdown = () => <b className='cd' role='timer' aria-label='Time until the next puzzle'>{useCountdown()}</b>
 
-const ResultScreen = ({ day, game, todayKey, onArchive, onToast }: ResultProps) => {
+const ResultScreen = ({ day, game, todayKey, onArchive, onToast, onToday }: ResultProps) => {
    const results = useStore(state => state.results)
    const colors = useStore(state => state.settings.colors)
    const theme = useStore(state => state.settings.theme)
@@ -56,6 +57,7 @@ const ResultScreen = ({ day, game, todayKey, onArchive, onToast }: ResultProps) 
    const archive = result ? result.archive : day.date !== todayKey
    const { streak } = computeStats(results, todayKey)
    const tomorrow = findDay(CALENDAR, addDays(todayKey, 1))
+   const todayDone = useStore(state => !!state.games[todayKey]?.finished)
    const number = puzzleNumber(CALENDAR, day.date)
 
    // The share picture is drawn as soon as the screen opens, so tapping SHARE can open the share
@@ -125,15 +127,26 @@ const ResultScreen = ({ day, game, todayKey, onArchive, onToast }: ResultProps) 
             <button type='button' className='btn' onClick={share}>SHARE <span style={{ fontFamily: 'Text, monospace' }}>▸</span></button>
             <button type='button' className='btn2' onClick={onArchive} aria-label='Play past days'><span className='calic' aria-hidden='true' />PAST DAYS</button>
          </div>
-         <div className='res-top next'>
-            <div className='streak solved'><span className='lbl'>NEXT WADAI</span><Countdown /></div>
-            {tomorrow && (
-               <div className='streak tom' aria-label={`Tomorrow: ${countryName(tomorrow.region)}, ${tomorrow.category}`}>
-                  <span className='lbl'>{tomorrow.category.toUpperCase()}</span>
-                  <b><Flag region={tomorrow.region} className='fl fl-big' /><span className='tom-c'><TitleText text={countryName(tomorrow.region).toUpperCase()} /></span></b>
+         {day.date === todayKey
+            ? (
+               // Today's result: one footnote line with the countdown and tomorrow's origin and type.
+               <div className='nextline'>
+                  <span className='lbl'>NEXT</span>
+                  <Countdown />
+                  {tomorrow && (
+                     <span className='nx' aria-label={`Tomorrow: ${countryName(tomorrow.region)}, ${tomorrow.category}`}>
+                        <Flag region={tomorrow.region} />{countryName(tomorrow.region)} · {tomorrow.category}
+                     </span>
+                  )}
                </div>
+            )
+            : (
+               // A past day's result: point back to today instead of teasing tomorrow.
+               <button type='button' className='nextline go' onClick={onToday}>
+                  <span className='lbl'>TODAY&apos;S WADAI</span>
+                  <span className='nx'>{todayDone ? 'SEE RESULT' : 'PLAY'} ▸</span>
+               </button>
             )}
-         </div>
       </>
    )
 }

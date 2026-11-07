@@ -99,7 +99,7 @@ const App = () => {
          </main>
 
          <Screen open={panel === 'result' && !!day && !!game?.finished} title='WADAI' onClose={close}>
-            {day && game?.finished && <ResultScreen day={day} game={game} todayKey={todayKey} onArchive={() => open('archive')} onToast={setToast} />}
+            {day && game?.finished && <ResultScreen day={day} game={game} todayKey={todayKey} onArchive={() => open('archive')} onToast={setToast} onToday={() => pickDay(todayKey)} />}
          </Screen>
          <Screen open={panel === 'stats'} title='STATS' onClose={close}>
             <StatsScreen todayKey={todayKey} />

@@ -39,14 +39,14 @@ const HowToPlay = ({ onPlay }: { onPlay: () => void }) => {
          </div>
          <div className='step'>
             <div className='no' aria-hidden='true'>3</div>
-            <div><p>You get 5 tries, one per letter. <b>Every miss unlocks a clue.</b></p></div>
+            <div><p>You get 5 tries, one per letter. <b>You start with the origin, and every miss unlocks another clue.</b></p></div>
          </div>
          <div className='ladder5'>
-            <div><div className='lt on'>W</div><small><b aria-hidden='true'>📅</b>the date</small></div>
-            <div><div className='lt'>A</div><small><b aria-hidden='true'>🌍</b>where</small></div>
-            <div><div className='lt'>D</div><small><b aria-hidden='true'>🎉</b>what kind</small></div>
-            <div><div className='lt'>A</div><small><b aria-hidden='true'>💬</b>a hint</small></div>
-            <div><div className='lt'>I</div><small><b>B · N</b>starts with</small></div>
+            <div><div className='lt on'>W</div><small><b aria-hidden='true'>🌍</b>where</small></div>
+            <div><div className='lt'>A</div><small><b aria-hidden='true'>🎉</b>what kind</small></div>
+            <div><div className='lt'>D</div><small><b aria-hidden='true'>💬</b>a hint</small></div>
+            <div><div className='lt'>A</div><small><b>B · N</b>starts with</small></div>
+            <div><div className='lt'>I</div><small><b>B…E</b>and ends</small></div>
          </div>
 
          <div className='spacer' />

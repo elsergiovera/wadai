@@ -1,5 +1,5 @@
 import {
-   ClueKey, MAX_ROUNDS, Word, allSlots, firstLetterIndexes, isSolved, playableIndexes, scoreGuess, unlockedClues,
+   ClueKey, MAX_ROUNDS, Word, allSlots, firstLetterIndexes, isSolved, lastLetterIndexes, playableIndexes, scoreGuess, unlockedClues,
 } from '@/lib/puzzle'
 
 // What gets saved per date, so a reload resumes the game where it was left.
@@ -24,7 +24,7 @@ export type GameView = {
    clues: ClueKey[]
    // Letter slots confirmed in an earlier round.
    locked: Set<number>
-   // First letters shown by the LETTERS clue.
+   // First (and in the last round, last) letters shown by the STARTS WITH clue.
    revealed: Set<number>
    // Slots the player can type in this round, in order.
    editable: number[]
@@ -46,7 +46,10 @@ export const viewGame = (words: Word[], game: GameState): GameView => {
    const locked = new Set<number>()
    scores.forEach(score => score.forEach((ok, i) => { if (ok && slots[i].kind === 'letter') locked.add(i) }))
 
-   const revealed = new Set(clues.includes('letters') ? firstLetterIndexes(words).filter(i => !locked.has(i)) : [])
+   const revealed = new Set([
+      ...(clues.includes('letters') ? firstLetterIndexes(words) : []),
+      ...(clues.includes('ends') ? lastLetterIndexes(words) : []),
+   ].filter(i => !locked.has(i)))
    const editable = game.finished ? [] : playableIndexes(words, new Set([...locked, ...revealed]))
 
    const current = slots.map(slot => {

@@ -20,10 +20,11 @@ export type SlotKind = 'letter' | 'given' | 'fixed'
 export type Slot = { char: string, kind: SlotKind, index: number }
 export type Word = Slot[]
 
-export type ClueKey = 'origin' | 'category' | 'clue' | 'letters'
+export type ClueKey = 'origin' | 'category' | 'clue' | 'letters' | 'ends'
 
-// Clues unlock one per missed round: after the 1st miss the origin, after the 2nd the category, and so on.
-export const CLUE_ORDER: ClueKey[] = ['origin', 'category', 'clue', 'letters']
+// The origin is shown from the first round; each miss unlocks the next clue. The last round adds the
+// last letter of each word to the first letters ('ends' upgrades the STARTS WITH chip, it has no chip of its own).
+export const CLUE_ORDER: ClueKey[] = ['origin', 'category', 'clue', 'letters', 'ends']
 
 export const MAX_ROUNDS = 5
 
@@ -76,7 +77,13 @@ export const playableIndexes = (words: Word[], revealed: Set<number> = new Set()
 export const firstLetterIndexes = (words: Word[]): number[] =>
    words.map(word => word.find(slot => slot.kind === 'letter')?.index).filter((i): i is number => i !== undefined)
 
-export const unlockedClues = (round: number): ClueKey[] => CLUE_ORDER.slice(0, Math.max(0, round - 1))
+// The 'ends' clue also reveals the last guessable letter of every word with at least two to guess.
+export const lastLetterIndexes = (words: Word[]): number[] =>
+   words.map(word => word.filter(slot => slot.kind === 'letter'))
+      .filter(letters => letters.length > 1)
+      .map(letters => letters[letters.length - 1].index)
+
+export const unlockedClues = (round: number): ClueKey[] => CLUE_ORDER.slice(0, Math.max(0, round))
 
 // Compares a guess (indexed like the slots) with the answer. Non-letter and given slots always match.
 export const scoreGuess = (words: Word[], guess: (string | null)[]): boolean[] =>
