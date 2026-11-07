@@ -214,6 +214,7 @@ body {
 .kbd .hg-theme-default .hg-row .hg-button:not(:last-child) { margin-right: 0; }
 .kbd .hg-theme-default .hg-button { height: 52px; flex: 0 0 calc((100% - 45px) / 10); max-width: none; min-width: 0; padding: 0; background: var(--key); color: var(--keyink); border-radius: 6px; border: 0; box-shadow: none; font-weight: bold; font-size: 16px; cursor: pointer; transition: transform .06s; }
 .kbd .hg-theme-default .hg-button.k-wide { flex: 1 1 0; font-size: 12px; }
+.kbd .hg-theme-default .hg-button.k-del span { display: grid; place-items: center; }
 .kbd .hg-theme-default .hg-button.k-hit { background: var(--ok); color: #fff; }
 .kbd .hg-theme-default .hg-button.k-used { opacity: .4; }
 .kbd .hg-theme-default .hg-button.hg-activeButton { transform: translateY(2px); filter: brightness(.92); }
@@ -404,6 +405,9 @@ body {
 /* How-to popup: a framed window, so it reads as a one-off overlay rather than a page. */
 .popup .screen { min-height: 0; }
 .popup .scr { padding: 16px 18px 18px; }
+/* The popup is narrower than a phone screen: side columns only as wide as the one close button,
+   so the title keeps its size and doesn't push the close button out of the frame. */
+.popup .bar-in { grid-template-columns: 40px minmax(0, 1fr) 40px; padding: 0 4px; }
 .popup .spacer { flex: none; min-height: 18px; }
 .popup .MuiBackdrop-root { background: rgba(0, 0, 0, .6); }
 :root[data-theme='arcade'] .popup .MuiPaper-root { border-color: var(--red); box-shadow: 0 0 0 3px #000, 0 0 24px rgba(255, 77, 77, .35); }
