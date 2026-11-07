@@ -12,7 +12,7 @@ const LAYOUT = {
 
 // The delete key as an SVG (simple-keyboard renders display labels as HTML). The ⌫ character comes
 // from a fallback font on iOS and stays tiny whatever the font size.
-const DELETE_ICON = `<svg width='30' height='22' viewBox='0 0 30 22' fill='none' stroke='currentColor' stroke-width='2.6' stroke-linejoin='round' stroke-linecap='round' aria-hidden='true' style='display:block'>
+const DELETE_ICON = `<svg width='24' height='18' viewBox='0 0 30 22' fill='none' stroke='currentColor' stroke-width='2.6' stroke-linejoin='round' stroke-linecap='round' aria-hidden='true' style='display:block'>
    <path d='M10 2h17v18H10L2 11z' /><path d='M14 7l8 8M22 7l-8 8' />
 </svg>`
 
