@@ -1,14 +1,13 @@
 import { useEffect, useMemo, useRef } from 'react'
 import useStore from '@/store'
-import { Day, buildWords, findDay, puzzleNumber, scoreGuess } from '@/lib/puzzle'
+import { Day, buildWords, puzzleNumber, scoreGuess } from '@/lib/puzzle'
 import { GameState } from '@/lib/game'
 import { computeStats } from '@/lib/stats'
 import { buildShareText } from '@/lib/share'
 import { downloadFile, renderCard } from '@/lib/shareImage'
 import { countryName } from '@/lib/labels'
-import { addDays, shortDate } from '@/lib/dates'
+import { shortDate } from '@/lib/dates'
 import { CALENDAR } from '@/data/calendar'
-import { useCountdown } from '@/hooks/useClock'
 import Flag from '@/components/Flag'
 import TitleText from '@/components/TitleText'
 import ShareCard from '@/components/ShareCard'
@@ -43,8 +42,6 @@ const copyText = async (text: string) => {
    }
 }
 
-const Countdown = () => <b className='cd' role='timer' aria-label='Time until the next puzzle'>{useCountdown()}</b>
-
 const ResultScreen = ({ day, game, todayKey, onArchive, onToast, onToday }: ResultProps) => {
    const results = useStore(state => state.results)
    const colors = useStore(state => state.settings.colors)
@@ -56,7 +53,6 @@ const ResultScreen = ({ day, game, todayKey, onArchive, onToast, onToday }: Resu
    const result = results.find(r => r.date === day.date)
    const archive = result ? result.archive : day.date !== todayKey
    const { streak } = computeStats(results, todayKey)
-   const tomorrow = findDay(CALENDAR, addDays(todayKey, 1))
    const todayDone = useStore(state => !!state.games[todayKey]?.finished)
    const number = puzzleNumber(CALENDAR, day.date)
 
@@ -127,26 +123,13 @@ const ResultScreen = ({ day, game, todayKey, onArchive, onToast, onToday }: Resu
             <button type='button' className='btn' onClick={share}>SHARE <span style={{ fontFamily: 'Text, monospace' }}>▸</span></button>
             <button type='button' className='btn2' onClick={onArchive} aria-label='Play past days'><span className='calic' aria-hidden='true' />PAST DAYS</button>
          </div>
-         {day.date === todayKey
-            ? (
-               // Today's result: one footnote line with the countdown and tomorrow's origin and type.
-               <div className='nextline'>
-                  <span className='lbl'>NEXT</span>
-                  <Countdown />
-                  {tomorrow && (
-                     <span className='nx' aria-label={`Tomorrow: ${countryName(tomorrow.region)}, ${tomorrow.category}`}>
-                        <Flag region={tomorrow.region} />{countryName(tomorrow.region)} · {tomorrow.category}
-                     </span>
-                  )}
-               </div>
-            )
-            : (
-               // A past day's result: point back to today instead of teasing tomorrow.
-               <button type='button' className='nextline go' onClick={onToday}>
-                  <span className='lbl'>TODAY&apos;S WADAI</span>
-                  <span className='nx'>{todayDone ? 'SEE RESULT' : 'PLAY'} ▸</span>
-               </button>
-            )}
+         {day.date !== todayKey && (
+            // A past day's result: point back to today.
+            <button type='button' className='nextline go' onClick={onToday}>
+               <span className='lbl'>TODAY&apos;S WADAI</span>
+               <span className='nx'>{todayDone ? 'SEE RESULT' : 'PLAY'} ▸</span>
+            </button>
+         )}
       </>
    )
 }

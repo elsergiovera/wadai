@@ -18,7 +18,6 @@ type GameProps = {
    blocked: boolean
    playSound: PlaySound
    onFinished: () => void
-   onShowResult: () => void
    onToday: () => void
 }
 
@@ -29,7 +28,7 @@ type Scored = { round: number, fresh: ClueKey | null }
 // To bring it back, pass view.hits and view.misses to <Keyboard> again.
 const NO_LETTERS = new Set<string>()
 
-const Game = ({ day, todayKey, blocked, playSound, onFinished, onShowResult, onToday }: GameProps) => {
+const Game = ({ day, todayKey, blocked, playSound, onFinished, onToday }: GameProps) => {
    const date = day.date
    const theme = useStore(state => state.settings.theme)
    const saved = useStore(state => state.games[date])
@@ -208,13 +207,6 @@ const Game = ({ day, todayKey, blocked, playSound, onFinished, onShowResult, onT
                />
             )}
          </div>
-         {game.finished && (
-            <div className='after'>
-               <button type='button' className='pill' onClick={onShowResult}>
-                  {game.solvedIn ? `SOLVED IN ${game.solvedIn}/5` : 'NOT SOLVED'} · SEE RESULT ▸
-               </button>
-            </div>
-         )}
          <p className='sr-only' aria-live='polite'>
             {scored ? `Round ${scored.round} scored. ${game.finished ? (game.solvedIn ? 'Solved!' : 'Out of rounds.') : `Round ${view.round} of 5.`}` : ''}
          </p>

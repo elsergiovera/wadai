@@ -41,11 +41,3 @@ export const shortDate = (key: string) => {
    const { day, weekday, month, year } = dateParts(key)
    return { weekday: weekday.slice(0, 3), rest: `${month.slice(0, 3)} ${day} · ${year}` }
 }
-
-// Time left until the next local midnight, as HH:MM:SS.
-export const untilMidnight = (now: Date = new Date()): string => {
-   const next = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1)
-   const total = Math.max(0, Math.floor((next.getTime() - now.getTime()) / 1000))
-   const pad = (n: number) => String(n).padStart(2, '0')
-   return `${pad(Math.floor(total / 3600))}:${pad(Math.floor(total / 60) % 60)}:${pad(total % 60)}`
-}

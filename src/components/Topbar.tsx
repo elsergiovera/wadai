@@ -65,7 +65,7 @@ export const ScreenBar = ({ title, id, onClose }: { title: string, id: string, o
       <Rings />
       <div className='bar-in'>
          <div />
-         <h2 id={id} className={`logo ${title.length > 6 ? 'sm' : ''}`}><TitleText text={title} /></h2>
+         <h2 id={id} className={`logo ${title.length > 9 ? 'xs' : title.length > 6 ? 'sm' : ''}`}><TitleText text={title} /></h2>
          <div className='icons r'>
             <IconButton label='Close' onClick={onClose}><CloseIcon /></IconButton>
          </div>

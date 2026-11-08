@@ -92,7 +92,6 @@ const App = () => {
                   blocked={panel !== 'none'}
                   playSound={playSound}
                   onFinished={() => setPanel('result')}
-                  onShowResult={() => open('result')}
                   onToday={() => pickDay(todayKey)}
                />
                : <NoPuzzle todayKey={todayKey} onArchive={() => open('archive')} onHelp={() => open('howto')} />}
@@ -110,7 +109,7 @@ const App = () => {
          <Screen open={panel === 'settings'} title='SETTINGS' onClose={close}>
             <SettingsScreen />
          </Screen>
-         <Screen open={panel === 'howto'} title='HOW TO' onClose={close} popup>
+         <Screen open={panel === 'howto'} title='HOW TO PLAY' onClose={close} popup>
             <HowToPlay onPlay={close} />
          </Screen>
          <Toast message={toast} />

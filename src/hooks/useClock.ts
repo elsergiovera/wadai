@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { todayKey, untilMidnight } from '@/lib/dates'
+import { todayKey } from '@/lib/dates'
 
 // Today's date key, kept fresh when the app stays open past midnight or comes back from the background.
 export const useTodayKey = () => {
@@ -16,15 +16,4 @@ export const useTodayKey = () => {
    }, [])
 
    return key
-}
-
-export const useCountdown = () => {
-   const [left, setLeft] = useState(() => untilMidnight())
-
-   useEffect(() => {
-      const timer = window.setInterval(() => setLeft(untilMidnight()), 1000)
-      return () => window.clearInterval(timer)
-   }, [])
-
-   return left
 }

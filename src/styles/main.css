@@ -102,6 +102,7 @@ body {
 .rings i { width: 9px; height: 20px; border-radius: 5px; background: linear-gradient(90deg, #9a9a9a, #eee 45%, #8a8a8a); box-shadow: 0 1px 1px rgba(0, 0, 0, .4); }
 .logo { font-family: 'Title', monospace; font-size: 34px; line-height: 1; text-align: center; letter-spacing: 2px; white-space: nowrap; }
 .logo.sm { font-size: 26px; }
+.logo.xs { font-size: 20px; letter-spacing: 1px; }
 .logo .used { color: var(--bar); -webkit-text-stroke: 2px var(--barink); }
 .logo .flash { animation: logo-flash 1s ease-in-out 1; }
 :root[data-theme='arcade'] .logo { text-shadow: 0 0 12px rgba(255, 77, 77, .6); }
@@ -208,7 +209,6 @@ body {
 .hous-calendar .ch .holes i { width: 8px; height: 8px; border-radius: 50%; background: var(--bg); box-shadow: inset 0 1px 2px rgba(0, 0, 0, .4); }
 .hous-calendar .cb { padding: 7px; }
 
-.after { display: flex; justify-content: center; padding: 0 16px 6px; flex: none; }
 
 /* ---------- keyboard (react-simple-keyboard) ---------- */
 .kbd { flex: none; padding: 4px 4px 12px; }
@@ -255,9 +255,7 @@ body {
 /* Result footer: a single footnote line under the buttons. */
 .nextline { display: flex; align-items: center; gap: 10px; margin-top: 14px; min-height: 20px; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
 .nextline .lbl { font-size: 9px; }
-.nextline .cd { font-family: 'Numbers', 'Title', monospace; font-size: 15px; font-weight: normal; color: var(--ink); letter-spacing: 1px; }
 .nextline .nx { margin-left: auto; display: flex; align-items: center; gap: 6px; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
-.nextline .nx img { height: 11px; width: auto; flex: none; }
 .nextline.go { width: 100%; background: none; border: 0; border-top: 2px dashed var(--tileb); padding: 12px 0 0; cursor: pointer; font: inherit; font-size: 11px; color: var(--muted); }
 .nextline.go .nx { color: var(--ink); font-weight: bold; }
 .streak b .x { font-family: 'Numbers', monospace; color: var(--bad); }
@@ -300,10 +298,6 @@ body {
 /* ---------- how to ---------- */
 .greet { text-align: center; font-size: .68rem; line-height: 1.55; color: var(--muted); white-space: nowrap; }
 /* The game's name hidden in the question: W-A-D-A-I in red, the rest faded. */
-.pun { text-align: center; font-family: 'Title', monospace; font-size: 21px; line-height: 1; letter-spacing: 1px; margin: 10px 0 12px; white-space: nowrap; color: color-mix(in srgb, var(--ink) 25%, var(--bg)); }
-.pun b { color: var(--red); font-weight: normal; }
-.pun .qm { display: inline-block; margin-left: 4px; vertical-align: 0; }
-:root[data-theme='arcade'] .pun b { text-shadow: 0 0 10px rgba(255, 77, 77, .6); }
 .step { display: grid; grid-template-columns: 30px 1fr; gap: 12px; margin-top: 20px; align-items: start; }
 .step .no { width: 30px; height: 30px; background: var(--ink); color: var(--bg); font-family: 'Title', monospace; font-size: 16px; display: grid; place-items: center; }
 .step p { font-size: .78rem; line-height: 1.45; margin-bottom: 8px; }
@@ -313,6 +307,12 @@ body {
 .mt.r { background: var(--bad); border-color: var(--bad); color: #fff; }
 .mt.giv { border-style: dashed; border-color: var(--givb); color: var(--muted); }
 .mt.sp { border: none; width: 8px; }
+/* Narrow phones: keep the 8-tile example on one line */
+@media (max-width: 380px) {
+   .minirow { gap: 3px; }
+   .mt { width: 24px; height: 24px; font-size: 13px; }
+   .mt.sp { width: 6px; }
+}
 :root[data-theme='calendar'] .mt { border-radius: 4px; }
 .ladder5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; text-align: center; margin: 4px 0 0 42px; max-width: 290px; }
 .ladder5 .lt { height: 24px; display: grid; place-items: center; font-family: 'Title', monospace; font-size: 13px; border: 2px solid var(--ink); }
