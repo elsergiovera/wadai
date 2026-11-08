@@ -3,7 +3,7 @@ import useStore from '@/store'
 import { Day, buildWords, puzzleNumber, scoreGuess } from '@/lib/puzzle'
 import { GameState } from '@/lib/game'
 import { computeStats } from '@/lib/stats'
-import { buildShareText } from '@/lib/share'
+import { SHARE_URL } from '@/lib/share'
 import { downloadFile, renderCard } from '@/lib/shareImage'
 import { countryName } from '@/lib/labels'
 import { shortDate } from '@/lib/dates'
@@ -66,12 +66,10 @@ const ResultScreen = ({ day, game, todayKey, onArchive, onToast, onToday }: Resu
       image.current = renderCard(node, `wadai-${number}.png`).catch(() => null)
    }, [number, theme, colors, scores, streak])
 
-   // Shares the picture (with the spoiler-free text alongside). Phones get the share sheet; elsewhere the
-   // picture is downloaded and the text copied. If the picture fails, the text is shared on its own.
+   // Shares the picture with the game's link. Phones get the share sheet; elsewhere the picture is
+   // downloaded and the link copied. If the picture fails, the link is shared on its own.
    const share = async () => {
-      let text = buildShareText({ number, region: day.region, words, rounds: scores, solved })
-      if (colors === 'colourblind') text = text.replace(/🟩/g, '🟦').replace(/🟥/g, '🟧')
-
+      const text = SHARE_URL
       const file = await (image.current ?? Promise.resolve(null))
       const touch = window.matchMedia?.('(pointer: coarse)').matches
       if (touch && navigator.share) {
@@ -86,7 +84,7 @@ const ResultScreen = ({ day, game, todayKey, onArchive, onToast, onToday }: Resu
       }
       if (file) downloadFile(file)
       const copied = await copyText(text)
-      onToast(file ? (copied ? 'IMAGE SAVED · TEXT COPIED' : 'IMAGE SAVED') : (copied ? 'COPIED TO CLIPBOARD' : 'COULD NOT COPY'))
+      onToast(file ? (copied ? 'IMAGE SAVED · LINK COPIED' : 'IMAGE SAVED') : (copied ? 'LINK COPIED' : 'COULD NOT COPY'))
    }
 
    const when = day.date === todayKey ? 'TODAY' : shortDate(day.date).rest.replace(/ · \d+$/, '')
